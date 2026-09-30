@@ -1,6 +1,6 @@
 # 招才官 开发指南
 
-本文适用于 **1.0.1 公开版候选，未发布**。日常安装与操作见[用户指南](docs/GETTING_STARTED.md)，平台支持和材料外发边界见 [README](README.md)。
+本文适用于 [1.0.1 候选版（预发布）](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)。日常安装与操作见[用户指南](docs/GETTING_STARTED.md)，平台支持和材料外发边界见 [README](README.md)。
 
 ## 环境与启动
 
@@ -39,7 +39,7 @@ npm run build:web
 
 [Windows check](.github/workflows/windows-check.yml) 保留 ACL/SQLite 与截图核心检查；全量普查继续为非阻塞信息，不可将工作流的绿色状态解读为全部用例通过。两份工作流只需要 `contents: read`，不需要签名密钥、AI 账号或付费服务，也不会自动发布。标准公共仓库 runner 不使用付费的 larger runner；若在私有仓库启用，先核对该账号 Actions 额度与费用设置。
 
-这些配置尚待首次 GitHub 实际运行验证。它们不执行完整 `npm run verify`、真实 Electron 界面、干净安装、打包、系统钥匙串、OCR/录音或真实服务验收；发布仍须执行下文门禁。首次公开推送后记录各平台的实际结果与显式跳过项，再选择确已通过的作业作为分支保护必需检查。
+首次公开提交的 [Linux/macOS 核心与前端构建](https://github.com/denggui-ai/zhaocai-guan/actions/runs/36667126669)和 [Windows 核心门禁](https://github.com/denggui-ai/zhaocai-guan/actions/runs/36667126492)已通过。Windows 非阻塞全量普查的 PDF 解析进程终止确认检查失败，保留为实验源码限制。CI 不等于真实 Electron 界面、干净安装、打包、系统钥匙串、OCR/录音或真实服务验收；发布仍须执行下文门禁。分支保护只能选确已通过的作业作为必需检查。
 
 依赖或锁文件变化后，更新第三方声明与许可证库存：
 
@@ -109,9 +109,9 @@ Electron 主进程持有本地服务令牌，renderer 通过受信 IPC 访问服
 | `npm run release:mac:internal` | 本地候选归档模式，成功产物放入 `dist/`；历史脚本名保留 |
 | `npm run release:source` | 导出源码 ZIP 到 `dist/`，排除运行数据、依赖和旧产物 |
 
-构建不等于上传或发布。macOS 候选需要干净提交并在隔离目录复验；既定首版允许未公证的 Apple Silicon 包，须完成人工业务与安装验收，并由负责人对最终产物明确决定发布。当前候选尚未获发布决定，详见[首发渠道与验收说明](release/FIRST-RELEASE-POLICY.md)。Developer ID 与公证属于后续渠道，使用时须通过 [正式包说明模板](release/MACOS-OFFICIAL-README.md) 中的全部门禁。Windows 构建器仅留给后续技术验收，见 [Windows 候选构建](release/WINDOWS-CANDIDATE-BUILD.md)，当前首发不提供 Windows 包。
+构建不等于上传或发布。macOS 候选需要干净提交并在隔离目录复验；既定首版允许未公证的 Apple Silicon 包，须完成人工业务与安装验收，并由负责人对最终产物明确决定发布。后续候选仍须取得对应版本的发布决定，详见[首发渠道与验收说明](release/FIRST-RELEASE-POLICY.md)。Developer ID 与公证属于后续渠道，使用时须通过 [正式包说明模板](release/MACOS-OFFICIAL-README.md) 中的全部门禁。Windows 构建器仅留给后续技术验收，见 [Windows 候选构建](release/WINDOWS-CANDIDATE-BUILD.md)，当前首发不提供 Windows 包。
 
-公开发布前必须完成干净安装、verify、禁用内容与密钥扫描、许可证及文档链接检查、提交身份核验、纯合成数据人工旅程，以及实际候选包检查。真实外部服务和麦克风验证需另行授权。创建公开仓库、首次推送和发布需负责人明确确认。
+每次发布前检查独立依赖安装、verify、禁用内容与密钥扫描、许可证及文档链接、提交身份、合成数据人工旅程和实际候选包。干净 macOS、系统 Keychain、真实外部服务和麦克风的验收状态须分别说明，不能用开发机测试代替；外部服务与麦克风验证需另行授权。发布需负责人明确确认。
 
 ## 提交与定位
 

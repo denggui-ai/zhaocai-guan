@@ -6,7 +6,7 @@
 
 [安装与第一次使用](docs/GETTING_STARTED.md) · [四步图解演示](docs/DEMO.md) · [虚构样例材料](docs/examples/README.md) · [路线图](ROADMAP.md) · [English](README.en.md)
 
-**当前为 1.0.1 公开版候选，尚未发布。** 暂无公开安装包下载地址。首发面向 Mac Apple 芯片；完整打包业务旅程、干净 Mac 安装及真实 AI 服务验证仍在准备中。现有检查不代表全功能生产就绪。
+**1.0.1 候选版（预发布）面向 Mac Apple 芯片。** [下载安装包与校验文件](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)。本轮已用虚构资料验证本地核心流程和同机原路径恢复；各修订版的实际验收范围见发行说明。干净 Mac 安装、真实 AI 服务等仍未验收，不宣称全功能生产就绪。
 
 ## 先看看能帮你做什么
 
@@ -30,7 +30,7 @@
 
 | 电脑 | 当前状态 |
 |---|---|
-| Mac Apple 芯片（Apple Silicon / arm64） | 首发目标；候选包待完成验收和发布，未获 Apple 公证 |
+| Mac Apple 芯片（Apple Silicon / arm64） | [预发布安装包](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)；未获 Apple 公证 |
 | Mac Intel 芯片 | 仅源码，未验收，不提供已验证安装包 |
 | Windows x64 | 实验性源码；首发无安装包，本机录音与转写禁用 |
 | Linux | 未支持 |
@@ -76,7 +76,7 @@
 
 ## 求助与参与
 
-安装问题先看[常见问题](docs/GETTING_STARTED.md#help)。公开仓库启用 Issues 后，可通过中文缺陷或功能建议表单反馈；仅附虚构材料或脱敏日志。安全漏洞按[安全策略](SECURITY.md)私下报告。
+安装问题先看[常见问题](docs/GETTING_STARTED.md#help)。可通过[中文缺陷或功能建议表单](https://github.com/denggui-ai/zhaocai-guan/issues/new/choose)反馈；仅附虚构材料或脱敏日志。安全漏洞按[安全策略](SECURITY.md)私下报告。
 
 欢迎改进安装说明、提供合成复现和参与 Windows 真机验证。计划见[路线图](ROADMAP.md)，贡献前阅读[参与指南](CONTRIBUTING.md)和[行为准则](CODE_OF_CONDUCT.md)。
 

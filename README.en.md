@@ -6,7 +6,7 @@ Organize job requirements, résumés, candidates, and interview progress on your
 
 [中文](README.md) · [Getting started (Chinese)](docs/GETTING_STARTED.md) · [Fictional examples](docs/examples/README.md) · [Roadmap](ROADMAP.md)
 
-**Status: 1.0.1 public-release candidate, not yet published.** There is no public installer download URL. A complete packaged HR workflow, clean-Mac installation, and real AI-provider validation remain outstanding; existing checks do not establish production readiness.
+**Status: 1.0.1 prerelease for Mac Apple Silicon.** [Download installers and checksums](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1). Local core workflows and same-machine, same-path recovery have been checked with fictional materials; see the release notes for each revision’s verified scope. Clean-Mac installation and real AI-provider validation remain outstanding; this does not establish full production readiness.
 
 ## What it does
 
@@ -21,7 +21,7 @@ The app is independent of BOSS Zhipin and other recruiting platforms. It does no
 
 | Platform | Current scope |
 |---|---|
-| macOS Apple Silicon / arm64 | Initial-release target; candidate not published or notarized |
+| macOS Apple Silicon / arm64 | [Prerelease installers](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1); not Apple-notarized |
 | macOS Intel | Source only, not validated |
 | Windows x64 | Experimental source; no first-release installer; local recording and transcription disabled |
 | Linux | Unsupported |
