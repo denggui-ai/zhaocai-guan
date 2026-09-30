@@ -72,12 +72,14 @@ async function checkPdfToolRecovery() {
   assert.equal(noTextTool.extraction_source, 'none');
 
   // Simulate a clean host with no installed pdftotext, without moving any real tool.
-  const source = fs.readFileSync(path.join(PROJECT_ROOT, "src/manual-resume-import.js"), 'utf8');
+  const sourcePathForVm = path.join(PROJECT_ROOT, 'src/manual-resume-import.js');
+  const source = fs.readFileSync(sourcePathForVm, 'utf8');
+  const sourceRequire = require('node:module').createRequire(sourcePathForVm);
   const context = vm.createContext({ PROJECT_ROOT,
-    process, Buffer, __dirname: PROJECT_ROOT, module: { exports: {} },
+    process, Buffer, __dirname: path.dirname(sourcePathForVm), module: { exports: {} },
     require: (name) => name === 'fs' ? {
       ...fs, existsSync: (file) => /[\\/]pdftotext$/.test(String(file)) ? false : fs.existsSync(file),
-    } : require(name),
+    } : sourceRequire(name),
   });
   vm.runInContext(source, context);
   const absentTextTool = await context.module.exports.extractResumeDocumentText(sourcePath, '.pdf', options);
@@ -86,10 +88,10 @@ async function checkPdfToolRecovery() {
   // Node terminates a timed-out child with a signal, too. Preserve that reason
   // instead of telling HR to install a tool that did run successfully.
   const timeoutContext = vm.createContext({ PROJECT_ROOT,
-    process, Buffer, __dirname: PROJECT_ROOT, module: { exports: {} },
+    process, Buffer, __dirname: path.dirname(sourcePathForVm), module: { exports: {} },
     require: (name) => name === 'child_process' ? {
       spawnSync: () => ({ status: null, signal: 'SIGTERM', error: { code: 'ETIMEDOUT' }, stdout: '' }),
-    } : require(name),
+    } : sourceRequire(name),
   });
   vm.runInContext(source, timeoutContext);
   for (const timeoutOptions of [{}, options]) {
