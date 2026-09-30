@@ -1,16 +1,35 @@
 <picture>
   <source media="(max-width: 640px)" srcset="docs/brand/readme-hero-mobile.svg">
-  <img src="docs/brand/readme-hero.svg" alt="招才官——让招聘跟进，井井有条。简历、候选人、面试进度，一个工作台。" width="1280">
+  <img src="docs/brand/readme-hero.svg" alt="招才官——AI 帮你起草，招聘由你掌握。把招聘需求，整理成可编辑的 JD。" width="1280">
 </picture>
 
-<h1 align="center">HR 的本地招聘工作台</h1>
-<p align="center">简历与面试安排，集中在本机整理。<br>AI 可选，招聘决定由你做。</p>
+<h1 align="center">带 AI 起草的本地招聘工作台</h1>
+<p align="center">用自然语言描述需求，AI 整理成可编辑 JD。<br>简历、候选人和面试进度，继续在本机管理。</p>
 
 <p align="center">
   <a href="https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg"><img src="docs/brand/download-mac.svg" alt="下载 Mac Apple 芯片版 DMG" width="244" height="52"></a>
 </p>
 <p align="center"><strong>Mac Apple 芯片 · 1.0.1 候选版（rc.1）· 未获 Apple 公证</strong><br>
 <a href="docs/GETTING_STARTED.md#install">安装帮助</a> · <a href="https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1">发行说明与其他下载</a> · <a href="README.en.md">English</a></p>
+
+## 说清招聘需求，让 AI 起个草稿
+
+**不用从空白 JD 开始。** 写下实际工作、必须条件和加分项，AI 帮你整理结构，并把还需确认的信息列出来。
+
+> “必须会用 Excel 做数据透视，能解释报表数字从哪里来、怎样核对。有活动复盘经验是加分项，不是硬性要求。”
+
+| 你给出的需求 | 这次 AI 实际整理的结果 |
+|---|---|
+| 商品资料、活动排期、周报与沟通 | 4 条岗位职责 |
+| 数据透视、数据来源与核对 | 2 条必须条件 |
+| 复盘经验是加分项 | 单列加分项 |
+| 地点、薪资、作息、到岗时间未定 | 留作确认问题，没有编造到正文里 |
+
+**确认发送 → AI 起草 → 人工修改 → 保存草稿。** 保存后还需另行启用；招聘决定由你做。
+
+[**看完整输入、AI 原稿和人工修改结果 →**](docs/AI-DEMO.md)
+
+*已用虚构材料在实际 r5 应用中完成 DeepSeek `deepseek-flash` 的这一条 JD 流程。检查提示仍有两处误报，详见演示记录。其他 AI 场景和服务尚未验收；外部 AI 默认关闭，需自备服务配置，可能收费。*
 
 ## 打开工作台，跟进有条理
 
@@ -52,7 +71,7 @@
 | Windows x64 | 实验性源码，暂无安装包；本地录音与转写禁用 |
 | Linux | 未支持 |
 
-在苹果菜单“关于本机”查看芯片。下载后核对 SHA-256，把 `招才官.app` 放入“应用程序”，按[安装与首次打开指引](docs/GETTING_STARTED.md#install)操作。当前包采用 ad-hoc 本地签名；不要关闭全局系统安全保护。干净 Mac 安装、真实 AI 服务等未完成验收，完整范围见[发行说明](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)。
+在苹果菜单“关于本机”查看芯片。下载后核对 SHA-256，把 `招才官.app` 放入“应用程序”，按[安装与首次打开指引](docs/GETTING_STARTED.md#install)操作。当前包采用 ad-hoc 本地签名；不要关闭全局系统安全保护。干净 Mac 安装等仍未完成验收；AI 目前仅完成上述 JD 单场景实测，完整范围见[发行说明](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)。
 
 <a id="requirements"></a>
 **需要时再开启进阶能力。** Mac 截图识别需 Xcode 命令行工具或完整 Xcode；PDF 需 Poppler；录音/本地转写需 SoX、whisper-cli 和模型。这些依赖不随应用打包，详见[按需准备工具](docs/GETTING_STARTED.md#optional-tools)。截图识别后先校对再建档，转写和 AI 草稿也需人工核对。
@@ -64,7 +83,7 @@
 <details>
 <summary><strong>AI、资料存储与备份</strong></summary>
 
-- **不用 AI 也能开始。** 外部 AI 默认关闭，TXT 简历整理和手工跟进无需 AI Key。需要辅助起草或分析时，再配置自己的 HTTPS OpenAI-compatible 服务并验证模型；目前没有已完成真实服务验收的兼容名单。
+- **不用 AI 也能开始。** 外部 AI 默认关闭，TXT 简历整理和手工跟进无需 AI Key。需要辅助起草或分析时，再配置自己的 HTTPS OpenAI-compatible 服务并验证模型；已完成 DeepSeek `deepseek-flash` 的[一次 JD 起草实测](docs/AI-DEMO.md)，不代表其他功能或服务已通过验收。
 - **发送材料前逐次确认。** 核对用途、拟发送材料和服务后再批准；保存密钥不等于批准外发。服务方可能收费并按其规则处理材料。[AI 配置步骤](docs/GETTING_STARTED.md#optional-ai)
 - **招聘资料主要存于本机。** 批准外部 AI、授权飞书/Lark 导入时会联网。升级前退出应用并备份整套资料，而非只复制数据库主文件。[备份与恢复](docs/GETTING_STARTED.md#business-restore)
 

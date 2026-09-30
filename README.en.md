@@ -1,13 +1,30 @@
 <picture>
   <source media="(max-width: 640px)" srcset="docs/brand/readme-hero-en-mobile.svg">
-  <img src="docs/brand/readme-hero-en.svg" alt="Zhaocai Guan — Your hiring day, in one place. Resumes, candidates and interviews." width="1280">
+  <img src="docs/brand/readme-hero-en.svg" alt="Zhaocai Guan — AI drafts. You decide. Turn your hiring brief into an editable job description." width="1280">
 </picture>
 
-<h1 align="center">Zhaocai Guan · A local recruiting workspace</h1>
-<p align="center">Keep résumés and follow-up records together, with a clear next step.<br>Primarily local data. Optional AI. Human hiring decisions.</p>
+<h1 align="center">A local recruiting workspace with AI drafting</h1>
+<p align="center">Describe the role. Get an editable AI-assisted job description.<br>Keep résumés, candidates and interview progress together on your Mac.</p>
 <p align="center"><a href="https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg"><img src="docs/brand/download-mac-en.svg" alt="Download the Mac Apple Silicon DMG" width="244" height="52"></a></p>
 <p align="center"><strong>Apple Silicon · 1.0.1 prerelease (rc.1) · Not Apple-notarized</strong><br>
 <a href="docs/GETTING_STARTED.md#install">Installation help</a> · <a href="https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1">Release notes and other downloads</a> · <a href="README.md">中文</a></p>
+
+## Start with a hiring brief, get a JD draft
+
+Describe the work, required skills and preferences. AI organizes them into a draft and lists questions for HR to resolve.
+
+| What we supplied | What this run returned |
+|---|---|
+| Product data, campaign schedules, reports and collaboration | Four responsibilities |
+| Excel pivot tables, data sources and verification | Two required skills |
+| Campaign review experience as a preference | A separate nice-to-have |
+| Undecided location, pay, schedule and start date | Questions for HR, without inventing those facts in the draft |
+
+**Approve the send → Generate → Edit → Save a draft.** Activation is a separate step. Hiring decisions remain yours.
+
+[**See the actual input, AI draft and human edit →**](docs/AI-DEMO.md) *(Chinese)*
+
+*Completed in the real r5 app with a fictional brief and DeepSeek `deepseek-flash`. The review checks produced two false warnings, documented in the demo. This validates one JD workflow only; other AI tasks and providers remain unverified. External AI is off by default, requires your own service configuration and may incur charges.*
 
 ## See what needs your attention
 
@@ -49,7 +66,7 @@ The job should contain **two candidates**, with materials still accessible after
 | Windows x64 | Experimental source, no installer; local recording and transcription disabled |
 | Linux | Unsupported |
 
-Verify the downloaded file's SHA-256, then move `招才官.app` into Applications. The app uses ad-hoc signing; follow the [documented macOS opening steps](docs/GETTING_STARTED.md#install) without disabling system-wide protection. Clean-Mac installation and real AI-provider validation remain outstanding; see the [verified scope and limitations](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1).
+Verify the downloaded file's SHA-256, then move `招才官.app` into Applications. The app uses ad-hoc signing; follow the [documented macOS opening steps](docs/GETTING_STARTED.md#install) without disabling system-wide protection. Clean-Mac installation remains outstanding; AI verification is limited to the single JD workflow described above; see the [verified scope and limitations](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1).
 
 Mac screenshot OCR requires a working Xcode command-line toolchain or Xcode. PDF features use Poppler; local recording/transcription requires SoX, whisper-cli, and a model. These optional tools are not bundled. Start with TXT and add [tools as needed](docs/GETTING_STARTED.md#optional-tools).
 
@@ -59,7 +76,7 @@ Mac screenshot OCR requires a working Xcode command-line toolchain or Xcode. PDF
 <details>
 <summary><strong>Optional AI, local data and backups</strong></summary>
 
-AI is off by default. To enable it, configure your own HTTPS OpenAI-compatible Chat Completions service and verify a model. No real-provider compatibility list has been validated. Material transmission requires separate confirmation; providers may charge and process materials under their terms. See [AI setup](docs/GETTING_STARTED.md#optional-ai).
+AI is off by default. To enable it, configure your own HTTPS OpenAI-compatible Chat Completions service and verify a model. One JD workflow has been tested with DeepSeek `deepseek-flash`; see the [scope and known issues](docs/AI-DEMO.md). Other tasks and providers remain unverified. Material transmission requires separate confirmation; providers may charge and process materials under their terms. See [AI setup](docs/GETTING_STARTED.md#optional-ai).
 
 Recruiting data is primarily local. Approved AI requests and optional authorized Feishu/Lark imports use external services. Before upgrading, quit the app and back up the complete data and any externally configured material directories. See [backup and recovery](docs/GETTING_STARTED.md#business-restore).
 

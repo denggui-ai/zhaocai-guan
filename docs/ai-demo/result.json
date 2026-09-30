@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-30",
+  "application": "1.0.1 r5 macOS arm64",
+  "service": "https://api.deepseek.com/v1",
+  "model": "deepseek-flash",
+  "data": "fictional job brief only",
+  "model_test": "passed",
+  "generation": "passed",
+  "jd_versions_before_manual_save": 0,
+  "jd_versions_after_manual_save": 1,
+  "saved_status": "draft",
+  "saved_source": "manual",
+  "activated_at": null,
+  "manual_addition": "交付要求：每周提交一页运营小结，说明数据来源与待解决问题。",
+  "known_false_positive_warnings": [
+    "1 位 vs 1 人 treated as new numeric fact",
+    "Undecided salary/schedule treated as omitted established facts"
+  ],
+  "scope": "One JD drafting workflow; not acceptance of all AI functions or providers"
+}

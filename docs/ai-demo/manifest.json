@@ -1,0 +1,34 @@
+{
+  "captured": "2026-09-30",
+  "application": "Unmodified 1.0.1 r5 macOS arm64",
+  "source_commit": "93526d8b7b46116671e18ba7750e085902a55462",
+  "service": "https://api.deepseek.com/v1",
+  "model": "deepseek-flash",
+  "screenshots": "Raw native app screenshots; window zoom and page scroll only. Both published images were captured after manual save.",
+  "files": [
+    {
+      "name": "ai-output.txt",
+      "sha256": "d5d83fa0816ac4977a01a3b49e34c1ed4a1155062da0cc8a9fc2d30faaa668b3"
+    },
+    {
+      "name": "input-and-review.png",
+      "sha256": "8007abe2b1b6d3ee0c9fec42d45e1b9648f50166d9e837fded01c6be5e2e5026"
+    },
+    {
+      "name": "input.txt",
+      "sha256": "e5350c5cedcd8b7a5b47f6874679635657f7d42325353bee4994b344f88c8663"
+    },
+    {
+      "name": "manual-final.txt",
+      "sha256": "24453a54355342f407bc64b5d89911ae1648dc36665e64f5130680b242f7c081"
+    },
+    {
+      "name": "result.json",
+      "sha256": "c46da8f33f5dbe15bf7881117544f7e054727395377ce18c930b0ae428bca6eb"
+    },
+    {
+      "name": "saved-draft.png",
+      "sha256": "e0bdad6d6aadfa8d8c582e09e7d3efcd70e458ceec1331ac55ec65fb0268c066"
+    }
+  ]
+}
