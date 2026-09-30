@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-09-30",
+  "application": "ZhaocaiGuan 1.0.1 r5 / Apple Silicon",
+  "source_commit": "93526d8b7b46116671e18ba7750e085902a55462",
+  "method": "Native application screenshots; unchanged release binary, real IPC/server, isolated copy of previously UI-created fictional demo data. No replaced UI or network responses. Images are unmodified native window captures.",
+  "scope": "Product illustration only, not a new full-flow acceptance run. Demo records originated in an earlier candidate build; rendering captured in r5.",
+  "files": [
+    {
+      "name": "workbench.png",
+      "sha256": "fb09e1706bfb1b031875f1a30a0ee187cc7412930b953a8cd4a152091f046389"
+    },
+    {
+      "name": "candidate.png",
+      "sha256": "ef603903badeace784f10563b49d7603cb8f1e926e0552aeae828ab97e355fd0"
+    },
+    {
+      "name": "candidate-detail.png",
+      "sha256": "f581193c8dfc5c8db6f9252c08b70dbadcd586509d3fa6cf23f7b866c5e86633"
+    },
+    {
+      "name": "interview.png",
+      "sha256": "bfbe188383d2a8faae244af7f3965b4d2eee9efb75ef351a206c04594da14cf0"
+    }
+  ]
+}
