@@ -8,7 +8,6 @@ const os = require('os');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
 
-const BUNDLE_ID = 'io.talentbench.desktop';
 const EXECUTABLE_NAME = 'ZhaocaiGuan';
 const STARTUP_TIMEOUT_MS = 70_000;
 const SHUTDOWN_TIMEOUT_MS = 25_000;
@@ -525,9 +524,10 @@ async function startApplication(layout, runtime, evidenceDirectory, cycle) {
 
 async function stopApplication(layout, running, cycle) {
   assert.equal(running.child.exitCode, null, `cycle ${cycle} exited before normal quit`);
+  // A previously installed copy may share the bundle ID; quit only this child.
   const quit = command(
-    '/usr/bin/osascript',
-    ['-e', `tell application id "${BUNDLE_ID}" to quit`],
+    '/usr/bin/swift',
+    [path.join(__dirname, 'quit-macos-candidate.swift'), String(running.child.pid), layout.appRoot],
     { allowFailure: true },
   );
   if (quit.status !== 0) {
