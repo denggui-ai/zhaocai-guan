@@ -97,6 +97,8 @@ TXT 简历与基本管理无需安装下表工具。当前应用不打包这些�
 <a id="optional-ai"></a>
 ## 需要时再配置 AI
 
+先查看[五项 AI 能力、使用入口与验证状态](AI-CAPABILITIES.md)，按实际任务准备岗位、简历、访谈或已确认报告。设置页连接可用不代表每项业务材料都已准备好。
+
 外部 AI 默认关闭，手工流程可以继续使用。已用虚构材料完成 DeepSeek `deepseek-flash` 的一次 JD 起草实测，其他任务与服务尚未验收；不提供内置免费额度。见[实际输入、输出和已知误报](AI-DEMO.md)。
 
 1. 从你有权使用的服务取得 **HTTPS OpenAI-compatible API 根地址、访问密钥和模型 ID**。服务需要支持 Chat Completions；不要填写网页聊天页面地址。

@@ -1,30 +1,39 @@
 <picture>
   <source media="(max-width: 640px)" srcset="docs/brand/readme-hero-en-mobile.svg">
-  <img src="docs/brand/readme-hero-en.svg" alt="Zhaocai Guan — AI drafts. You decide. Turn your hiring brief into an editable job description." width="1280">
+  <img src="docs/brand/readme-hero-en.svg" alt="Zhaocai Guan — AI helps organize hiring evidence. From role requirements to interview review." width="1280">
 </picture>
 
-<h1 align="center">A local recruiting workspace with AI drafting</h1>
-<p align="center">Describe the role. Get an editable AI-assisted job description.<br>Keep résumés, candidates and interview progress together on your Mac.</p>
+<h1 align="center">Your local recruiting workspace, with AI</h1>
+<p align="center">Clarify role requirements. Review résumé evidence. Cross-check interviews and assessments.<br>Manage materials on your Mac. Keep hiring decisions in your hands.</p>
 <p align="center"><a href="https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg"><img src="docs/brand/download-mac-en.svg" alt="Download the Mac Apple Silicon DMG" width="244" height="52"></a></p>
 <p align="center"><strong>Apple Silicon · 1.0.1 prerelease (rc.1) · Not Apple-notarized</strong><br>
 <a href="docs/GETTING_STARTED.md#install">Installation help</a> · <a href="https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1">Release notes and other downloads</a> · <a href="README.md">中文</a></p>
 
-## Start with a hiring brief, get a JD draft
+## From role requirements to interview evidence
 
-Describe the work, required skills and preferences. AI organizes them into a draft and lists questions for HR to resolve.
+What does a hiring manager mean by “strong business understanding”? Which projects support a résumé's claims? What should HR ask when interviews and assessments disagree?
 
-| What we supplied | What this run returned |
+Use AI assistance at the stages where your materials are ready, with human review at each step.
+
+| Recruiting question | AI assistance |
 |---|---|
-| Product data, campaign schedules, reports and collaboration | Four responsibilities |
-| Excel pivot tables, data sources and verification | Two required skills |
-| Campaign review experience as a preference | A separate nice-to-have |
-| Undecided location, pay, schedule and start date | Questions for HR, without inventing those facts in the draft |
+| **Who does this role need?** · Role profiling | Turn manager interviews into requirements and résumé evidence criteria; separate stated facts from inference, ask follow-up questions and revise after answers |
+| **How do we describe the role?** · JD drafting | Organize responsibilities, required skills and preferences into an editable draft, with missing-information prompts |
+| **What supports the résumé?** · Candidate review | Compare job requirements with résumé evidence; show matches, mismatches, unknowns, a dimension radar and interview questions |
+| **What did the interview establish?** · Interview review | Organize transcripts and notes into facts, requirement checks, contradictions and unresolved items, with material references |
+| **Do the materials agree?** · Assessment analysis | Cross-check the role, résumé, confirmed assessments and interviews for strengths, risks, contradictions and verification questions |
 
-**Approve the send → Generate → Edit → Save a draft.** Activation is a separate step. Hiring decisions remain yours.
+**AI organizes evidence and provides a second opinion. HR verifies facts and makes hiring decisions.** Candidate review includes dimension scores; assessment analysis includes a separate reference score and recommendation. Neither automatically changes S/A/B/C or the default ordering.
 
-[**See the actual input, AI draft and human edit →**](docs/AI-DEMO.md) *(Chinese)*
+[**Capabilities, entry points and verification status →**](docs/AI-CAPABILITIES.md) *(Chinese)*
 
-*Completed in the real r5 app with a fictional brief and DeepSeek `deepseek-flash`. The review checks produced two false warnings, documented in the demo. This validates one JD workflow only; other AI tasks and providers remain unverified. External AI is off by default, requires your own service configuration and may incur charges.*
+*All five have UI entry points and external-model call implementations. Real-provider testing currently covers one JD workflow; the other capabilities remain unvalidated. External AI is off by default, requires your own configuration, may incur charges and asks for confirmation before sending materials.*
+
+## One real example: a hiring brief becomes a JD draft
+
+A fictional brief was processed by DeepSeek `deepseek-flash` into **four responsibilities, two requirements and a separate nice-to-have**. Undecided pay, location, schedule and start date became questions for HR. A human added a delivery requirement and saved an inactive draft.
+
+[See the input, original AI text, human edit and app screenshots](docs/AI-DEMO.md). The record also discloses two false warnings. This JD example does not validate the other AI workflows.
 
 ## See what needs your attention
 
