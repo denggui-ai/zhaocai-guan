@@ -4,9 +4,8 @@ name: Windows check
 # no Windows machine, and the screenshot import path written for it has never
 # run there. A hosted Windows runner cannot replace that entirely: it has no
 # usable desktop, so the Electron UI suites stay out, and real candidate
-# screenshots must never be uploaded here. What it can do is run the headless
-# gates, which is most of them, because the suite already runs its checks under
-# ELECTRON_RUN_AS_NODE.
+# screenshots must never be uploaded here. It can run headless checks and a
+# packaged Electron/SQLite smoke test without claiming desktop acceptance.
 
 on:
   push:
@@ -99,6 +98,47 @@ jobs:
               process.exit(1);
             }
           "
+
+  windows-packaged-smoke:
+    name: Windows 打包运行时与持久化
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 安装打包依赖
+        run: npm ci --ignore-scripts
+
+      - name: 下载 Electron 并重建 SQLite 原生模块
+        run: |
+          node node_modules/electron/install.js
+          npx --no-install electron-rebuild -f -w better-sqlite3
+
+      - name: 构建前端
+        run: |
+          npm ci --prefix frontend --ignore-scripts
+          npm run build:web
+
+      - name: 打包 Windows x64 应用
+        run: npx --no-install electron-forge package --platform=win32 --arch=x64
+
+      - name: 使用包内 Electron 验证 SQLite 跨进程持久化
+        run: node release/windows-packaged-headless-smoke.js "dist/招才官-win32-x64" windows-packaged-headless-smoke.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-packaged-headless-smoke-evidence
+          path: windows-packaged-headless-smoke.json
+          if-no-files-found: warn
+          retention-days: 14
 
   # Everything else, for information only. Sixteen checks touch darwin paths and
   # some will fail here; that is the platform gap this job is meant to measure,
