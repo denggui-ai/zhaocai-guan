@@ -430,7 +430,7 @@ function installRuntimeController({
         .some((element) => element.offsetParent !== null && element.textContent.trim() === '保存 JD 草稿'),
       active_jd_visible: document.querySelector('.job-management-shell')?.textContent.includes(${JSON.stringify(expected.jd_text)}) || false,
     }))()`);
-    assert.deepEqual(closedEditor.tags, ['已关闭', '正式数据', '只读']);
+    assert.deepEqual(closedEditor.tags, ['已关闭', '本地岗位', '只读']);
     assert.equal(closedEditor.jd_editor_present, false);
     assert.equal(closedEditor.save_jd_present, false);
     assert.equal(closedEditor.active_jd_visible, true);
