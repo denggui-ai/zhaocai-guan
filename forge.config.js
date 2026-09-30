@@ -35,18 +35,23 @@ function installTargetNativeBinary(_forgeConfig, { platform, arch, outputPaths }
 }
 
 module.exports = {
-  outDir: path.join(__dirname, 'dist'),
+  outDir: path.join(__dirname, "dist"),
   packagerConfig: {
     // 外部 Python/Swift/CLI 仍需读取资源真实路径；首个 Windows 验证版先不用 asar。
     asar: false,
     executableName: 'ZhaocaiGuan',
     appBundleId: 'io.talentbench.desktop',
     appCategoryType: 'public.app-category.business',
-    icon: path.join(__dirname, 'assets', 'app-icon.icns'),
+    icon: path.join(__dirname, "assets/app-icon.icns"),
     extendInfo: {
       NSMicrophoneUsageDescription: '用于经明确授权的本地面试录音和转写。',
     },
     ignore: [
+      /^\/tests(?:\/|$)/,
+      /^\/scripts(?:\/|$)/,
+      /^\/docs(?:\/|$)/,
+      /^\/\.superpowers(?:\/|$)/,
+
       /^\/data(?:\/|$)/,
       /^\/tmp(?:\/|$)/,
       /^\/deliverables(?:\/|$)/,
@@ -72,7 +77,7 @@ module.exports = {
       /^\/check-[^/]+\.js$/,
       /^\/create-ui-fixture-db\.js$/,
       /^\/rating-config\.json$/,
-      /^\/[^/]+\.md$/i,
+      /^\/(?!THIRD_PARTY_NOTICES\.md$)[^/]+\.md$/i,
     ],
   },
   rebuildConfig: {},

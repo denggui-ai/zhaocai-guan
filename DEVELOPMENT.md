@@ -27,7 +27,7 @@ npm run verify
 定位单项回归时可通过统一运行器选择已有检查，由它为原生模块选择匹配的运行时：
 
 ```bash
-node check-suite-runner.js files check-release-security.js
+node tests/check-suite-runner.js files tests/check-release-security.js
 npm run build:web
 ```
 
@@ -52,7 +52,7 @@ node release/generate-third-party-notices.js
 <a id="local-tools"></a>
 ## 本地工具
 
-macOS 的 Vision OCR 实际执行 `/usr/bin/swift vision-ocr.swift`，安装包也依赖本机 Swift 工具链与 macOS SDK。需安装并选用有效的 Xcode 命令行工具或完整 Xcode；检查 `/usr/bin/swift --version`，安装方式见 [Apple 官方说明](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools)。仅检测 `/usr/bin/swift` 路径存在，不能证明工具链已就绪。
+macOS 的 Vision OCR 实际执行 `/usr/bin/swift native/vision-ocr.swift`，安装包也依赖本机 Swift 工具链与 macOS SDK。需安装并选用有效的 Xcode 命令行工具或完整 Xcode；检查 `/usr/bin/swift --version`，安装方式见 [Apple 官方说明](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools)。仅检测 `/usr/bin/swift` 路径存在，不能证明工具链已就绪。
 
 Mac 可按 [README 的依赖表](README.md#requirements) 安装 Poppler、SoX 和 whisper.cpp。默认模型为 `~/.cache/whisper.cpp/ggml-base.bin`，`WHISPER_CPP_MODEL` 可覆盖。音视频转换优先使用系统 `afconvert`，`ffmpeg` 为可选后备。
 
@@ -107,7 +107,7 @@ Electron 主进程持有本地服务令牌，renderer 通过受信 IPC 访问服
 | `npm run package:local` | 完整验证后运行 Forge，普通输出在 `dist/` |
 | `npm run package:mac:arm64` | 干净提交的隔离 macOS 候选构建与自测；候选保留于命令报告的临时目录 |
 | `npm run release:mac:internal` | 本地候选归档模式，成功产物放入 `dist/`；历史脚本名保留 |
-| `npm run release:source` | 导出源码 ZIP 到 `dist/`，排除运行数据、依赖和旧产物 |
+| `npm run release:source -- <commit>` | 从指定提交导出源码 ZIP、提交/文件清单和 SHA-256 到 `dist/`；省略提交时冻结 HEAD |
 
 构建不等于上传或发布。macOS 候选需要干净提交并在隔离目录复验；既定首版允许未公证的 Apple Silicon 包，须完成人工业务与安装验收，并由负责人对最终产物明确决定发布。后续候选仍须取得对应版本的发布决定，详见[首发渠道与验收说明](release/FIRST-RELEASE-POLICY.md)。Developer ID 与公证属于后续渠道，使用时须通过 [正式包说明模板](release/MACOS-OFFICIAL-README.md) 中的全部门禁。Windows 构建器仅留给后续技术验收，见 [Windows 候选构建](release/WINDOWS-CANDIDATE-BUILD.md)，当前首发不提供 Windows 包。
 
@@ -116,3 +116,5 @@ Electron 主进程持有本地服务令牌，renderer 通过受信 IPC 访问服
 ## 提交与定位
 
 架构入口见 [源码导览](SOURCE-DEVELOPMENT-TUTORIAL.md)。贡献前阅读 [CONTRIBUTING](CONTRIBUTING.md)。缺陷报告只附合成复现与脱敏日志；漏洞按 [SECURITY](SECURITY.md) 处理。
+
+源码包只读取指定提交；未提交修改、未跟踪和忽略文件不会进入归档。若提交中含运行数据、依赖、产物或敏感配置，导出失败。解压后从 `app/DEVELOPMENT.md` 开始；同名产物不会覆盖。ZIP 的 Git 注释与旁置 `-manifest.json` 同时记录完整提交身份，清单记录每个最终归档文件的 SHA-256。

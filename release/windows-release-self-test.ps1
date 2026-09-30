@@ -410,8 +410,8 @@ try {
   $script:ExecutablePath = $layout.Executable
   $resourceDirectory = Join-Path $script:PackageDirectory 'resources\app'
   $packageJsonPath = Join-Path $resourceDirectory 'package.json'
-  $mainSourcePath = Join-Path $resourceDirectory 'candidate-main.js'
-  $preloadSourcePath = Join-Path $resourceDirectory 'preload.js'
+  $mainSourcePath = Join-Path $resourceDirectory 'src/candidate-main.js'
+  $preloadSourcePath = Join-Path $resourceDirectory 'src/preload.js'
   $nativeModulePath = Join-Path $resourceDirectory 'node_modules\better-sqlite3\build\Release\better_sqlite3.node'
   foreach ($required in @($packageJsonPath, $mainSourcePath, $preloadSourcePath, $nativeModulePath, (Join-Path $resourceDirectory 'frontend\dist\index.html'))) {
     if (-not (Test-Path -LiteralPath $required -PathType Leaf)) { throw "Windows 包缺少必要文件：$required" }
@@ -469,7 +469,7 @@ try {
   if ($mainSource -match 'ELECTRON_RUN_AS_NODE' -and $mainSource -match 'availableLocalPort' -and $mainSource -notmatch 'spawn\([''"]node[''"]') {
     Add-Check PASS 'PKG-RUNTIME' '包内服务使用 Electron 与动态端口' '未调用系统 node；包含动态空闲端口分配。'
   } else {
-    Add-Check FAIL 'PKG-RUNTIME' '包内服务使用 Electron 与动态端口' 'candidate-main.js 未满足运行时静态门禁。'
+    Add-Check FAIL 'PKG-RUNTIME' '包内服务使用 Electron 与动态端口' 'src/candidate-main.js 未满足运行时静态门禁。'
   }
   if ($mainSource -match 'assertTrustedRenderer' -and $preloadSource -notmatch 'getSession|local-api:session') {
     Add-Check PASS 'PKG-TOKEN' '本地令牌不暴露给 renderer' 'IPC 校验存在，preload 未暴露 session。'

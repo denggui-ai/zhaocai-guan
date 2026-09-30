@@ -1,0 +1,4031 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "path": "tests/check-action-server-assessment-backup-policy.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-action-server-guard.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ai-authored-draft-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ai-commit-context-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ai-failure-matrix-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ai-failure-matrix-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ai-first-use-return-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ai-native-approval-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ai-native-approval-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ai-value-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-app-context-commit-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ],
+      "manualReason": "Known baseline failure at 11ba96f: asserts the old refreshCandidateDetail call spelling. Retained for manual review; committed-refresh and context runtime gates remain in the default suites."
+    },
+    {
+      "path": "tests/check-assessment-actor-context.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-ai-analysis.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-archive-service.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-backup-retention.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-batch-import.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-closed-job-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-controlled-store.js",
+      "kind": "check",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-file-intake.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-file-selection.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-fit-ranking.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-lifecycle-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-lifecycle-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-migration-recovery.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-parser-runner.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-pdf-probe.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-physical-delete.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-product-service.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-raster-preview.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-report-analysis.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-scanned-pdf-ocr-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-schema.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-status-truth-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-store-backup.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-assessment-workbench-integration-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-candidate-communication-drawer-state-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-candidate-detail-r1.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ],
+      "manualReason": "Known baseline failure at 11ba96f: asserts an obsolete dirty-guard expression. Retained for manual review; candidate workspace and dirty-state runtime gates remain enabled."
+    },
+    {
+      "path": "tests/check-candidate-disposition-tabs-runtime-main.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-candidate-disposition-tabs-runtime.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ],
+      "manualReason": "On-demand native Electron desktop scenario; requires a GUI session and builds the frontend. Run explicitly before release when candidate disposition changes."
+    },
+    {
+      "path": "tests/check-candidate-list-r1.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-candidate-operations-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-candidate-operations-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-candidate-scale-race-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-candidate-seven-stage-e2e-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-closed-job-activity-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-closed-job-history-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-closed-job-todo-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-committed-write-refresh-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-dashboard-work-first-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-data-lifecycle-fault-matrix-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-data-lifecycle-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-db.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-deep-profile-generation-readiness-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-deep-profile-ui-truth-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-desktop-user-data-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ecommerce-job-template-catalog.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ecommerce-job-template-flow-ui.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ecommerce-job-template-flow.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-external-ai-gateway-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-external-ai-material-preview-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-external-ai-user-approval.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f006-interview-session.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f007-interview-adapters.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f008-interview-report.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f009-interview-llm.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f010-db-retention.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f010-f011-integration.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f010-lifecycle.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f010-product-wiring.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f010-ui-contract.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f011-backup-recovery.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f012-ui-contract.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f012-workbench.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f014-screenshot-observability.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f017-assessment-joint-backup-gate.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f017-assessment-lifecycle.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f017-assessment-migration-gate.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f017-assessment-ui-contract.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f017-pilot-launch.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f017-product-wiring.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f018-application.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f018-final-review.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f018-migration-gate.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f018-product-wiring.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f018-ui-contract.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f018-workbench.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-f019-gate-a-product-wiring.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-function-close-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-hold-queue.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-hr-flow-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-hr-journey-operations-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-hr-journey-operations-frontend-state-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-hr-journey-operations-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-hr-workflow-guide-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-asr-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-asr-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-consent-revocation-latch-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-demo-fixture.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-invitation-copy.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-logistics-data-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-logistics-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-logistics-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-logistics-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-manual-action-routes-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-material-paths.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-phone-truth-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-preview-responsive-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-recording-consent-withdrawal-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-recording.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-report-confirmation-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-report-confirmation-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-report-review-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-report-review-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-schedule.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-transcript-cues-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-version-conflict-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-version-conflict-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-interview-workflow-ui-state-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-jd-profile-binding.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-context-race-runtime-main.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-context-race-runtime.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-jd-ai.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-lifecycle-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-lifecycle-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-multi-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-multi-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-priority-button-runtime-main.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-job-priority-button-runtime.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ],
+      "manualReason": "On-demand native Electron desktop scenario; requires a GUI session and builds the frontend. Run explicitly before release when job-priority interactions change."
+    },
+    {
+      "path": "tests/check-lark-import-guard.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-live-audio-telemetry-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-local-directory-selection.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-local-interview-guardian-fault-injection-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-local-interview-tool-discovery-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-local-principal.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-macos-asr-failure-recovery-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-macos-official-release-gate.js",
+      "kind": "check",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-macos-single-instance-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-manual-resume-upload-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-native-file-selection-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-native-file-selection-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ocr-review-load-state-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ocr-unsaved-guard-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-orphan-service-on-force-quit-001.js",
+      "kind": "check",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-pilot-opt-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-pilot-ux-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-pilot-ux-min-002.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-profile-truth-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-quality-score-isolation.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-queue-truth.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-readonly-f018-projection.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-registration-001.js",
+      "kind": "check",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-release-security.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-restore-hr-action-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-resume-candidate-intake-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-resume-structure-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-rule-rating.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-schema-migration.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-ai-approval-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-ai-fill-approval-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-ai-fill.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-ai-import-state-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-ai-reader-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-ai-reads-handoff-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-evidence-store.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-import-task-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-import.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-ingest.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-normalization.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-stitch-fallback-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-screenshot-task-projection-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-secure-llm-config-store-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-secure-llm-startup-fail-closed-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-security-p0.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-sensitive-read-audit-permissions-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-settings-native-close-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-settings-state-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-settings-ux-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-sort-neutral.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-suite-runner.js",
+      "kind": "runner",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-talent-final-offer-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-talent-final-offer-test-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-talent-pool-reentry-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-talent-pool.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-task-diagnostics.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-task-error-policy.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-task-run-state.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-test-pipeline.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-a11y-copy-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-filters.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-fixture-safety-gate-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-job-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-job-context-isolation.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-local-service-error-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-readonly.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-remaining-ux-fixes-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-responsive-surfaces-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-suite.js",
+      "kind": "runner",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-ux-failure-states-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-visual-polish-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-visual-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-visual-runtime-main.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ui-visual-runtime-preload.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-unified-ai-config-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-g0-a-timeline-visibility.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-g0-b-shell-safety-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ],
+      "args": [
+        "--runtime"
+      ]
+    },
+    {
+      "path": "tests/check-ux-g0-b2-lazy-failure-matrix-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ],
+      "args": [
+        "--runtime"
+      ]
+    },
+    {
+      "path": "tests/check-ux-g0-c-destructive-action-safety.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-g0-d-readonly-history-optional.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-g0-d2-operational-readonly.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w1-a-job-parity.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w1-a-shell-integration.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w1-a-topbar-ownership.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w2-a-candidate-workspace.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w2-b-talent-resume.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w3-a-interview-workspace.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w4-a-settings-assessment.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w4-b-deep-profile-recovery.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-ux-w4-c-guide-ledger.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-windows-accessibility-runtime-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-windows-asr-degradation.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-windows-assessment-guard.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-windows-candidate-contract.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-windows-equivalent-ui-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-windows-private-dir-sqlite-probe-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-windows-release-readiness-contract.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-withdrawal-semantics.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-workbench-target-id-001.js",
+      "kind": "check",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ],
+      "manualReason": "Known baseline failure at 11ba96f: asserts the old candidate navigation expression. Retained for manual review; workbench and job-context race checks remain enabled."
+    },
+    {
+      "path": "tests/support/registry.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/run-npm-check.js",
+      "kind": "runner",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-ai-failure-matrix/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-ai-failure-matrix/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-ai-failure-matrix/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-ai-failure-matrix/signed-plan.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-ai-native-approval/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-ai-native-approval/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-ai-native-approval/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-ai-native-approval/signed-plan.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-assessment-lifecycle-journey/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-assessment-lifecycle-journey/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-assessment-lifecycle-journey/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-candidate-operations/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-candidate-operations/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-candidate-operations/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-candidate-scale/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-candidate-scale/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-candidate-scale/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-asr-runtime/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-asr-runtime/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-asr-runtime/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-logistics-runtime/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-logistics-runtime/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-logistics-runtime/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-report-confirmation/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-report-confirmation/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-report-confirmation/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-report-review/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-report-review/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-report-review/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-version-conflict/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-version-conflict/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-interview-version-conflict/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-job-lifecycle/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-job-lifecycle/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-job-lifecycle/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-native-file-selection/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-native-file-selection/create-synthetic-assets-main.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-native-file-selection/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-native-file-selection/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-native-file-selection/signed-plan.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-talent-final-offer/bootstrap.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-talent-final-offer/runtime-controller.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/support/test-talent-final-offer/runtime-db.js",
+      "kind": "helper",
+      "runtime": "not-executable",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/fixtures/create-ui-fixture-db.js",
+      "kind": "fixture",
+      "runtime": "electron-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-repository-layout-001.js",
+      "kind": "check",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    },
+    {
+      "path": "tests/check-source-export-001.js",
+      "kind": "check",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
+    }
+  ],
+  "groups": {
+    "hr-acceptance": [
+      "tests/check-candidate-seven-stage-e2e-001.js",
+      "tests/check-hr-journey-operations-001.js",
+      "tests/check-hr-journey-operations-ui-001.js",
+      "tests/check-hr-journey-operations-frontend-state-001.js",
+      "tests/check-committed-write-refresh-ui-001.js",
+      "tests/check-job-multi-001.js",
+      "tests/check-assessment-file-intake.js",
+      "tests/check-assessment-report-analysis.js",
+      "tests/check-assessment-product-service.js",
+      "tests/check-assessment-workbench-integration-001.js",
+      "tests/check-assessment-archive-service.js",
+      "tests/check-assessment-closed-job-gate-001.js",
+      "tests/check-assessment-pdf-probe.js",
+      "tests/check-assessment-raster-preview.js",
+      "tests/check-assessment-scanned-pdf-ocr-001.js",
+      "tests/check-external-ai-user-approval.js",
+      "tests/check-assessment-ai-analysis.js",
+      "tests/check-ai-commit-context-gate-001.js",
+      "tests/check-ai-value-001.js",
+      "tests/check-f009-interview-llm.js",
+      "tests/check-schema-migration.js",
+      "tests/check-assessment-migration-recovery.js",
+      "tests/check-assessment-backup-retention.js",
+      "tests/check-f011-backup-recovery.js",
+      "tests/check-windows-release-readiness-contract.js",
+      "tests/check-macos-official-release-gate.js",
+      "tests/check-ui-fixture-safety-gate-001.js"
+    ],
+    "precheck": [
+      "tests/check-repository-layout-001.js",
+      "tests/check-registration-001.js",
+      "tests/check-test-pipeline.js",
+      "tests/check-macos-single-instance-001.js",
+      "tests/check-local-principal.js",
+      "tests/check-external-ai-user-approval.js",
+      "tests/check-external-ai-gateway-001.js",
+      "tests/check-desktop-user-data-001.js",
+      "tests/check-ai-first-use-return-001.js",
+      "tests/check-external-ai-material-preview-001.js",
+      "tests/check-f010-product-wiring.js",
+      "tests/check-f010-ui-contract.js",
+      "tests/check-assessment-file-selection.js",
+      "tests/check-assessment-batch-import.js",
+      "tests/check-f017-assessment-lifecycle.js",
+      "tests/check-assessment-parser-runner.js",
+      "tests/check-assessment-report-analysis.js",
+      "tests/check-assessment-fit-ranking.js",
+      "tests/check-assessment-ai-analysis.js",
+      "tests/check-assessment-workbench-integration-001.js",
+      "tests/check-hr-journey-operations-001.js",
+      "tests/check-hr-journey-operations-ui-001.js",
+      "tests/check-hr-journey-operations-frontend-state-001.js",
+      "tests/check-assessment-raster-preview.js",
+      "tests/check-assessment-controlled-store.js",
+      "tests/check-assessment-physical-delete.js",
+      "tests/check-assessment-product-service.js",
+      "tests/check-f019-gate-a-product-wiring.js",
+      "tests/check-f017-assessment-migration-gate.js",
+      "tests/check-assessment-store-backup.js",
+      "tests/check-assessment-backup-retention.js",
+      "tests/check-f017-assessment-joint-backup-gate.js",
+      "tests/check-f017-product-wiring.js",
+      "tests/check-f017-assessment-ui-contract.js",
+      "tests/check-f017-pilot-launch.js",
+      "tests/check-f018-application.js",
+      "tests/check-f018-final-review.js",
+      "tests/check-f018-migration-gate.js",
+      "tests/check-f018-product-wiring.js",
+      "tests/check-f018-workbench.js",
+      "tests/check-f018-ui-contract.js",
+      "tests/check-windows-candidate-contract.js",
+      "tests/check-windows-release-readiness-contract.js",
+      "tests/check-source-export-001.js"
+    ],
+    "check": [
+      "tests/check-security-p0.js",
+      "tests/check-sensitive-read-audit-permissions-001.js",
+      "tests/check-release-security.js",
+      "tests/check-macos-official-release-gate.js",
+      "tests/check-schema-migration.js",
+      "tests/check-assessment-schema.js",
+      "tests/check-assessment-actor-context.js",
+      "tests/check-assessment-file-intake.js",
+      "tests/check-assessment-archive-service.js",
+      "tests/check-assessment-workbench-integration-001.js",
+      "tests/check-hr-journey-operations-001.js",
+      "tests/check-hr-journey-operations-ui-001.js",
+      "tests/check-hr-journey-operations-frontend-state-001.js",
+      "tests/check-assessment-migration-recovery.js",
+      "tests/check-assessment-pdf-probe.js",
+      "tests/check-windows-assessment-guard.js",
+      "tests/check-f010-lifecycle.js",
+      "tests/check-f010-db-retention.js",
+      "tests/check-f011-backup-recovery.js",
+      "tests/check-f010-f011-integration.js",
+      "tests/check-data-lifecycle-fault-matrix-001.js",
+      "tests/check-task-run-state.js",
+      "tests/check-task-error-policy.js",
+      "tests/check-task-diagnostics.js",
+      "tests/check-f014-screenshot-observability.js",
+      "tests/check-windows-asr-degradation.js",
+      "tests/check-db.js",
+      "tests/check-ai-commit-context-gate-001.js",
+      "tests/check-closed-job-activity-gate-001.js",
+      "tests/check-screenshot-normalization.js",
+      "tests/check-resume-structure-001.js",
+      "tests/check-screenshot-import.js",
+      "tests/check-screenshot-evidence-store.js",
+      "tests/check-screenshot-ingest.js",
+      "tests/check-screenshot-ai-fill.js",
+      "tests/check-screenshot-ai-fill-approval-001.js",
+      "tests/check-screenshot-stitch-fallback-001.js",
+      "tests/check-ai-authored-draft-gate-001.js",
+      "tests/check-screenshot-ai-reader-001.js",
+      "tests/check-screenshot-ai-import-state-001.js",
+      "tests/check-screenshot-import-task-ui-001.js",
+      "tests/check-screenshot-task-projection-001.js",
+      "tests/check-screenshot-ai-approval-001.js",
+      "tests/check-screenshot-ai-reads-handoff-001.js",
+      "tests/check-action-server-guard.js",
+      "tests/check-lark-import-guard.js",
+      "tests/check-interview-material-paths.js",
+      "tests/check-interview-logistics-data-001.js",
+      "tests/check-interview-phone-truth-001.js",
+      "tests/check-f006-interview-session.js",
+      "tests/check-f007-interview-adapters.js",
+      "tests/check-f008-interview-report.js",
+      "tests/check-interview-manual-action-routes-001.js",
+      "tests/check-f009-interview-llm.js",
+      "tests/check-interview-transcript-cues-001.js",
+      "tests/check-f012-workbench.js",
+      "tests/check-f012-ui-contract.js",
+      "tests/check-interview-demo-fixture.js",
+      "tests/check-ui-fixture-safety-gate-001.js",
+      "tests/check-interview-recording.js",
+      "tests/check-macos-asr-failure-recovery-001.js",
+      "tests/check-candidate-seven-stage-e2e-001.js",
+      "tests/check-interview-recording-consent-withdrawal-001.js",
+      "tests/check-interview-consent-revocation-latch-001.js",
+      "tests/check-local-interview-guardian-fault-injection-001.js",
+      "tests/check-live-audio-telemetry-001.js",
+      "tests/check-quality-score-isolation.js",
+      "tests/check-rule-rating.js",
+      "tests/check-talent-pool.js",
+      "tests/check-ai-value-001.js",
+      "tests/check-closed-job-todo-001.js",
+      "tests/check-committed-write-refresh-ui-001.js",
+      "tests/check-job-multi-001.js",
+      "tests/check-ui-job-context-isolation.js",
+      "tests/check-ux-g0-a-timeline-visibility.js",
+      "tests/check-ux-g0-b-shell-safety-001.js",
+      "tests/check-ux-g0-b2-lazy-failure-matrix-001.js",
+      "tests/check-ux-g0-c-destructive-action-safety.js",
+      "tests/check-ux-g0-d-readonly-history-optional.js",
+      "tests/check-ux-g0-d2-operational-readonly.js",
+      "tests/check-ux-w1-a-job-parity.js",
+      "tests/check-ux-w1-a-topbar-ownership.js",
+      "tests/check-ux-w1-a-shell-integration.js",
+      "tests/check-ux-w2-a-candidate-workspace.js",
+      "tests/check-ux-w2-b-talent-resume.js",
+      "tests/check-ux-w3-a-interview-workspace.js",
+      "tests/check-ux-w4-a-settings-assessment.js",
+      "tests/check-ux-w4-b-deep-profile-recovery.js",
+      "tests/check-ux-w4-c-guide-ledger.js"
+    ],
+    "ui": [
+      "tests/fixtures/create-ui-fixture-db.js",
+      "tests/check-ui-readonly.js",
+      "tests/check-ui-filters.js",
+      "tests/check-interview-logistics-ui-001.js",
+      "tests/check-interview-preview-responsive-ui-001.js",
+      "tests/check-ocr-review-load-state-001.js",
+      "tests/check-ocr-unsaved-guard-ui-001.js",
+      "tests/check-deep-profile-ui-truth-001.js",
+      "tests/check-deep-profile-generation-readiness-001.js",
+      "tests/check-assessment-status-truth-ui-001.js",
+      "tests/check-ux-g0-b-shell-safety-001.js",
+      "tests/check-ux-g0-b2-lazy-failure-matrix-001.js",
+      "tests/check-ux-g0-d-readonly-history-optional.js",
+      "tests/check-ux-w1-a-shell-integration.js",
+      "tests/check-ux-w2-a-candidate-workspace.js",
+      "tests/check-candidate-communication-drawer-state-001.js",
+      "tests/check-ux-w2-b-talent-resume.js",
+      "tests/check-ux-w3-a-interview-workspace.js",
+      "tests/check-interview-workflow-ui-state-001.js",
+      "tests/check-ux-w4-a-settings-assessment.js",
+      "tests/check-ux-w4-b-deep-profile-recovery.js",
+      "tests/check-ux-w4-c-guide-ledger.js",
+      "tests/check-ui-a11y-copy-001.js",
+      "tests/check-ui-remaining-ux-fixes-001.js",
+      "tests/check-ui-responsive-surfaces-001.js",
+      "tests/check-windows-equivalent-ui-001.js",
+      "tests/check-ui-visual-polish-001.js",
+      "tests/check-job-context-race-runtime.js",
+      "tests/check-ui-visual-runtime-001.js"
+    ],
+    "ci-core": [
+      "tests/check-local-principal.js",
+      "tests/check-external-ai-user-approval.js",
+      "tests/check-external-ai-gateway-001.js",
+      "tests/check-secure-llm-config-store-001.js",
+      "tests/check-secure-llm-startup-fail-closed-001.js",
+      "tests/check-desktop-user-data-001.js",
+      "tests/check-schema-migration.js",
+      "tests/check-f011-backup-recovery.js",
+      "tests/check-resume-structure-001.js",
+      "tests/check-manual-resume-upload-001.js",
+      "tests/check-resume-candidate-intake-001.js",
+      "tests/check-job-multi-001.js",
+      "tests/check-interview-material-paths.js",
+      "tests/check-task-run-state.js",
+      "tests/check-task-error-policy.js",
+      "tests/check-screenshot-normalization.js",
+      "tests/check-screenshot-evidence-store.js",
+      "tests/check-hr-workflow-guide-001.js",
+      "tests/check-registration-001.js",
+      "tests/check-repository-layout-001.js",
+      "tests/check-source-export-001.js"
+    ],
+    "ci-macos": [
+      "tests/check-macos-single-instance-001.js"
+    ],
+    "ci-windows": [
+      "tests/check-screenshot-stitch-fallback-001.js",
+      "tests/check-screenshot-ai-reader-001.js",
+      "tests/check-screenshot-ai-reads-handoff-001.js",
+      "tests/check-ai-authored-draft-gate-001.js",
+      "tests/check-screenshot-ai-fill.js",
+      "tests/check-screenshot-import.js",
+      "tests/check-screenshot-ingest.js",
+      "tests/check-screenshot-evidence-store.js",
+      "tests/check-screenshot-normalization.js",
+      "tests/check-registration-001.js",
+      "tests/check-repository-layout-001.js",
+      "tests/check-source-export-001.js"
+    ],
+    "ci-windows-probe": [
+      "tests/check-windows-private-dir-sqlite-probe-001.js"
+    ],
+    "extended": [
+      "tests/check-action-server-assessment-backup-policy.js",
+      "tests/check-candidate-list-r1.js",
+      "tests/check-closed-job-history-001.js",
+      "tests/check-dashboard-work-first-001.js",
+      "tests/check-function-close-001.js",
+      "tests/check-hold-queue.js",
+      "tests/check-hr-flow-001.js",
+      "tests/check-jd-profile-binding.js",
+      "tests/check-local-directory-selection.js",
+      "tests/check-pilot-opt-001.js",
+      "tests/check-pilot-ux-001.js",
+      "tests/check-profile-truth-001.js",
+      "tests/check-queue-truth.js",
+      "tests/check-readonly-f018-projection.js",
+      "tests/check-sort-neutral.js",
+      "tests/check-ui-ux-failure-states-001.js"
+    ]
+  },
+  "commands": {
+    "check:sensitive-audit": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-sensitive-read-audit-permissions-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:ui-local-service-error": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ui-local-service-error-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:hr-acceptance": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "hr-acceptance"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "npm",
+        "args": [
+          "run",
+          "check:ui:fixture"
+        ],
+        "env": {}
+      }
+    ],
+    "check:screenshot-evidence": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-screenshot-evidence-store.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:screenshot-ocr-review": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-screenshot-ingest.js"
+        ],
+        "env": {
+          "HRBOSS_SKIP_LOCAL_SERVER": "1"
+        }
+      }
+    ],
+    "check:screenshot-normalization": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-screenshot-normalization.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:schema-migration": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-schema-migration.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-schema": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-assessment-schema.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-actor": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-assessment-actor-context.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-file-intake": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-assessment-file-intake.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-archive": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-assessment-archive-service.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-migration-recovery": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-assessment-migration-recovery.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-backup-retention": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-assessment-backup-retention.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-pdf-probe": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-assessment-pdf-probe.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-report-analysis": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-assessment-report-analysis.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-ai-analysis": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-assessment-ai-analysis.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:task-run-state": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-task-run-state.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:task-error-policy": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-task-error-policy.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:task-diagnostics": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-task-diagnostics.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:f014-screenshot-observability": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-f014-screenshot-observability.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:f010-lifecycle": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-f010-lifecycle.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:f011-backup-recovery": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-f011-backup-recovery.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:f010-f011-integration": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-f010-f011-integration.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:windows-asr-degradation": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-windows-asr-degradation.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:lark-import": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-lark-import-guard.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-material-paths": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-interview-material-paths.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-session": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-f006-interview-session.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-adapters": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-f007-interview-adapters.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-report": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-f008-interview-report.js",
+          "tests/check-interview-manual-action-routes-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:f009": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-f009-interview-llm.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:settings-ux": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-settings-state-001.js",
+          "tests/check-secure-llm-config-store-001.js",
+          "tests/check-secure-llm-startup-fail-closed-001.js",
+          "tests/check-settings-ux-001.js",
+          "tests/check-settings-native-close-001.js",
+          "tests/check-windows-asr-degradation.js",
+          "tests/check-local-interview-tool-discovery-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:macos-single-instance": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-macos-single-instance-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:orphan-service": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-orphan-service-on-force-quit-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:native-file-selection-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-native-file-selection-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:native-file-selection-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-native-file-selection-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:ai-native-approval-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ai-native-approval-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:ai-native-approval-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ai-native-approval-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:candidate-operations-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-candidate-operations-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:candidate-operations-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-candidate-operations-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:job-lifecycle-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-job-lifecycle-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:job-lifecycle-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-job-lifecycle-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-logistics-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-logistics-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-logistics-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-logistics-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-asr-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-asr-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-asr-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-asr-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-report-review-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-report-review-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-report-review-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-report-review-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-version-conflict-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-version-conflict-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-version-conflict-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-version-conflict-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-report-confirmation-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-report-confirmation-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-report-confirmation-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-report-confirmation-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-lifecycle-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-assessment-lifecycle-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:assessment-lifecycle-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-assessment-lifecycle-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:ai-failure-matrix-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ai-failure-matrix-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:ai-failure-matrix-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ai-failure-matrix-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:talent-final-offer-test-gate": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-talent-final-offer-test-gate-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:talent-final-offer-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-talent-final-offer-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:data-lifecycle-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-data-lifecycle-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:candidate-scale-race-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-candidate-scale-race-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:windows-accessibility-runtime": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-windows-accessibility-runtime-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:workbench": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-f012-workbench.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-f012-ui-contract.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:restore-hr-action": [
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-restore-hr-action-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      }
+    ],
+    "check:withdrawal-semantics": [
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-withdrawal-semantics.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      }
+    ],
+    "check:restore-job-draft": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ui-job-001.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-job-jd-ai.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:jr-job-optimization": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ecommerce-job-template-catalog.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-ecommerce-job-template-flow.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ecommerce-job-template-flow-ui.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ui-job-001.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-job-jd-ai.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-external-ai-user-approval.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-job-multi-ui-001.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-committed-write-refresh-ui-001.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ai-value-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:restore-interview-copy": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-interview-invitation-copy.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:job-multi": [
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-job-multi-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-job-multi-ui-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:hr-workflow-guide": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-hr-workflow-guide-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:ai-value": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ai-value-001.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ai-first-use-return-001.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-external-ai-material-preview-001.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:internal-usability": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-unified-ai-config-001.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-f017-assessment-ui-contract.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-f017-pilot-launch.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-f018-ui-contract.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "npm",
+        "args": [
+          "run",
+          "check:settings-ux"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-f009-interview-llm.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      },
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-talent-pool-reentry-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      },
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-manual-resume-upload-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      },
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-resume-candidate-intake-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      },
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-assessment-scanned-pdf-ocr-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      }
+    ],
+    "check:manual-resume-upload": [
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-manual-resume-upload-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      }
+    ],
+    "check:resume-candidate-intake": [
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-resume-candidate-intake-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      }
+    ],
+    "check:assessment-scanned-ocr": [
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-assessment-scanned-pdf-ocr-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      }
+    ],
+    "check:talent-pool-reentry": [
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-talent-pool-reentry-001.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      }
+    ],
+    "check:pilot-ux-min": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-pilot-ux-min-002.js"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "electron",
+        "args": [
+          "tests/check-interview-schedule.js"
+        ],
+        "env": {
+          "ELECTRON_RUN_AS_NODE": "1"
+        }
+      }
+    ],
+    "check:restored-workflows": [
+      {
+        "executable": "npm",
+        "args": [
+          "run",
+          "check:restore-hr-action"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "npm",
+        "args": [
+          "run",
+          "check:restore-job-draft"
+        ],
+        "env": {}
+      },
+      {
+        "executable": "npm",
+        "args": [
+          "run",
+          "check:restore-interview-copy"
+        ],
+        "env": {}
+      }
+    ],
+    "check:interview-demo-fixture": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-interview-demo-fixture.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:quality-score-isolation": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-suite-runner.js",
+          "files",
+          "tests/check-quality-score-isolation.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:rule-rating": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-rule-rating.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:ui": [
+      {
+        "executable": "node",
+        "args": [
+          "tests/check-ui-suite.js"
+        ],
+        "env": {}
+      }
+    ],
+    "check:ui:fixture": [
+      {
+        "executable": "npm",
+        "args": [
+          "run",
+          "check:ui"
+        ],
+        "env": {}
+      }
+    ]
+  }
+}

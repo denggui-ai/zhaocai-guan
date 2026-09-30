@@ -172,26 +172,29 @@ validate_packaged_app() {
   local required_runtime_file
   for required_runtime_file in \
     release-build.json \
-    resume-structure.js \
-    screenshot-ai-fill-approval.js \
-    screenshot-ai-import-state.js \
-    screenshot-ai-native-approval.js \
-    screenshot-draft-preview.js \
-    screenshot-import-task-public.js \
-    action-server.js \
-    candidate-main.js \
-    preload.js \
-    external-ai-user-approval.js \
-    f009-interview-llm.js \
-    screenshot-ai-reader.js \
-    screenshot-ai-fill-runner.js \
-    screenshot-field-ai.js \
-    start-screenshot-import.js \
-    local-vision-preflight.js \
-    import-boss-screenshots.js \
-    ingest-screenshot-drafts.js \
-    resume-candidate-intake.js \
-    manual-resume-import.js; do
+    src/resume-structure.js \
+    src/screenshot-ai-fill-approval.js \
+    src/screenshot-ai-import-state.js \
+    src/screenshot-ai-native-approval.js \
+    src/screenshot-draft-preview.js \
+    src/screenshot-import-task-public.js \
+    src/action-server.js \
+    src/candidate-main.js \
+    src/preload.js \
+    src/external-ai-user-approval.js \
+    src/f009-interview-llm.js \
+    src/screenshot-ai-reader.js \
+    src/screenshot-ai-fill-runner.js \
+    src/screenshot-field-ai.js \
+    src/start-screenshot-import.js \
+    src/local-vision-preflight.js \
+    src/import-boss-screenshots.js \
+    src/ingest-screenshot-drafts.js \
+    src/resume-candidate-intake.js \
+    src/manual-resume-import.js \
+    src/paths.js \
+    native/vision-ocr.swift \
+    native/stitch-screenshot-drafts.py; do
     if [[ ! -f "$resources_root/$required_runtime_file" ]]; then
       printf 'Required current-release module is missing from packaged app: %s\n' "$required_runtime_file" >&2
       return 1
@@ -224,11 +227,11 @@ validate_packaged_app() {
     printf 'Packaged release-build.json is missing or invalid.\n' >&2
     return 1
   fi
-  if ! grep -q 'resume_structure_v1' "$resources_root/resume-structure.js" \
-    || ! grep -q 'screenshot_ai_import_state_v1' "$resources_root/screenshot-ai-import-state.js" \
-    || ! grep -q 'SCREENSHOT_EXTERNAL_AI_APPROVAL_REQUIRED' "$resources_root/action-server.js" \
-    || ! grep -q 'screenshot-import:approve-retry' "$resources_root/candidate-main.js" \
-    || ! grep -q 'name_verified_by_hr' "$resources_root/action-server.js"; then
+  if ! grep -q 'resume_structure_v1' "$resources_root/src/resume-structure.js" \
+    || ! grep -q 'screenshot_ai_import_state_v1' "$resources_root/src/screenshot-ai-import-state.js" \
+    || ! grep -q 'SCREENSHOT_EXTERNAL_AI_APPROVAL_REQUIRED' "$resources_root/src/action-server.js" \
+    || ! grep -q 'screenshot-import:approve-retry' "$resources_root/src/candidate-main.js" \
+    || ! grep -q 'name_verified_by_hr' "$resources_root/src/action-server.js"; then
     printf 'Packaged backend does not contain the current screenshot/resume contracts.\n' >&2
     return 1
   fi
@@ -261,7 +264,11 @@ validate_packaged_app() {
     "$resources_root/release" \
     "$resources_root/handoff" \
     "$resources_root/checks" \
-    "$resources_root/create-ui-fixture-db.js"; do
+    "$resources_root/tests" \
+    "$resources_root/scripts" \
+    "$resources_root/docs" \
+    "$resources_root/.superpowers" \
+    "$resources_root/tests/fixtures/create-ui-fixture-db.js"; do
     if [[ -e "$excluded" ]]; then
       printf 'Packaged application contains forbidden development/runtime material: %s\n' "$excluded" >&2
       return 1
@@ -419,9 +426,9 @@ SQLITE_BINARY="$CANDIDATE_APP/Contents/Resources/app/node_modules/better-sqlite3
     "$PRODUCT_NAME.app/Contents/MacOS/ZhaocaiGuan" \
     "$PRODUCT_NAME.app/Contents/Resources/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node" \
     "$PRODUCT_NAME.app/Contents/Resources/app/release-build.json" \
-    "$PRODUCT_NAME.app/Contents/Resources/app/resume-structure.js" \
-    "$PRODUCT_NAME.app/Contents/Resources/app/screenshot-ai-import-state.js" \
-    "$PRODUCT_NAME.app/Contents/Resources/app/screenshot-import-task-public.js" \
+    "$PRODUCT_NAME.app/Contents/Resources/app/src/resume-structure.js" \
+    "$PRODUCT_NAME.app/Contents/Resources/app/src/screenshot-ai-import-state.js" \
+    "$PRODUCT_NAME.app/Contents/Resources/app/src/screenshot-import-task-public.js" \
     "$PRODUCT_NAME.app/Contents/Resources/app/frontend/dist/index.html" \
     > SHA256SUMS.txt
   shasum -a 256 -c SHA256SUMS.txt

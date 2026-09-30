@@ -1,0 +1,70 @@
+'use strict';
+const { PROJECT_ROOT } = require("../src/paths");
+
+
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+
+const panel = fs.readFileSync(path.join(PROJECT_ROOT, 'frontend/src/components/ApplicationFinalReviewPanel.jsx'), 'utf8');
+const detail = fs.readFileSync(path.join(PROJECT_ROOT, 'frontend/src/components/CandidateDetail.jsx'), 'utf8');
+const app = fs.readFileSync(path.join(PROJECT_ROOT, 'frontend/src/App.jsx'), 'utf8');
+const api = fs.readFileSync(path.join(PROJECT_ROOT, 'frontend/src/api.js'), 'utf8');
+const server = fs.readFileSync(path.join(PROJECT_ROOT, "src/action-server.js"), 'utf8');
+const loadStart = panel.indexOf('async function load');
+const contextEffectStart = panel.indexOf('useEffect(() => {', loadStart);
+assert.ok(loadStart >= 0 && contextEffectStart > loadStart, 'F018 state loader must remain discoverable');
+const loadContract = panel.slice(loadStart, contextEffectStart);
+
+assert.match(panel, /通用申请轮次与独立人工终评/);
+assert.match(panel, /终评确认与最终处置仍是两个独立人工动作/);
+assert.match(panel, /不自动评分、排序、录用或淘汰/);
+assert.match(panel, /expectedContext !== contextRef\.current/);
+assert.match(panel, /sequenceRef/);
+assert.match(panel, /review_history/);
+assert.match(panel, /disposition_history/);
+assert.match(panel, /历史留痕/);
+assert.match(panel, /confirmed_interview_report_id/);
+assert.match(panel, /assessment_requirement_met/);
+assert.match(panel, /assessment_document_ids/);
+assert.match(panel, /HR 已确认的岗位画像、面试报告和测评报告/);
+assert.match(panel, /confirmed: true/);
+assert.match(panel, /continue_process/);
+assert.match(panel, /talent_pool/);
+assert.doesNotMatch(panel, /value:\s*['"]hired['"]|自动建议|测评权重|综合分|雷达/);
+assert.match(detail, /title="HR 人工处置"/);
+assert.match(detail, /是否需要测评或面试报告以岗位画像和当前待办为准/);
+assert.match(detail, /applyManualCandidateAction/);
+assert.match(detail, /ApplicationFinalReviewPanel/);
+assert.match(detail, /value:\s*['"]final-review['"]/);
+assert.match(detail, /activeDomain === 'final-review'/);
+assert.match(detail, /<strong>终评<\/strong>/);
+assert.match(detail, /onDirtyChange=\{handleFinalReviewDirtyChange\}/);
+assert.match(panel, /draftFingerprint/);
+assert.match(panel, /function dispositionFingerprint/);
+assert.match(panel, /savedDispositionFingerprintRef/);
+assert.match(panel, /const workspaceDirty = draftDirty \|\| dispositionDirty/);
+assert.match(panel, /onDirtyChange\?\.\(workspaceDirty\)/);
+assert.match(panel, /currentFingerprint !== savedDraftFingerprintRef\.current/);
+assert.match(panel, /currentFingerprint !== savedDispositionFingerprintRef\.current/);
+assert.match(panel, /stateContextRef\.current = expectedContext/);
+assert.doesNotMatch(loadContract, /setState\(null\)/,
+  'a read refresh failure must preserve the last-known-good form state');
+assert.match(panel, /committedForm: 'draft', committedValue: input\.review_json/);
+assert.match(panel, /committedForm: 'disposition', committedValue: submittedDisposition/);
+assert.match(panel, /!canConfirm \|\| draftDirty/);
+assert.match(app, /open_candidate_final_review:\s*\{\s*domain:\s*'final-review'/);
+assert.match(app, /initialDomain:\s*candidateTarget\.domain/);
+assert.match(api, /getF018Status/);
+assert.match(api, /recordF018Disposition/);
+assert.match(server, /scope: 'universal_application_and_manual_final_review'/);
+assert.match(server, /release_allowed: false/);
+assert.match(server, /decision_use_allowed: false/);
+assert.match(server, /assessment_evidence_allowed: true/);
+assert.match(server, /assessment_influence_enabled: ASSESSMENT_INTERNAL_AVAILABLE/);
+assert.match(server, /\? 'hr_confirmed_reference_only'/);
+assert.match(server, /assessment_automatic_decision_enabled: false/);
+assert.match(server, /hired_enabled: false/);
+assert.match(server, /automatic_disposition_enabled: false/);
+
+console.log('check-f018-ui-contract ok');
