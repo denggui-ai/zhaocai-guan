@@ -18,6 +18,8 @@ node release/build-windows-candidate.js
 node tests/check-suite-runner.js files tests/check-windows-candidate-contract.js
 ```
 
+仓库的 Windows CI 还会在托管 runner 上打包应用，并用包内 `ZhaocaiGuan.exe` 的 Electron Node 模式分别启动两个进程：先写入隔离 SQLite，再由第二个进程读取。结果保存在 `windows-packaged-headless-smoke-evidence`；此检查不打开桌面窗口，也不上传二进制。它只证明打包运行时、Windows 原生模块与跨进程数据持久化，不证明安装、人工 GUI、签名或 SmartScreen 体验。
+
 后续实际候选仍须在 Windows x64 真机完成 [验收清单](windows-release-acceptance-checklist.md)。本地录音与 ASR 当前禁用，招聘平台账号通道已删除，不应为了凑齐历史验收项重新启用。签名、安装/卸载、备份恢复和当前支持功能需要实际证据。
 
 任何构建成功都不构成公开发布授权。保留的历史发布证据工具另有不适用于当前候选的前提，见 [说明](WINDOWS-RELEASE-READINESS.md)。
