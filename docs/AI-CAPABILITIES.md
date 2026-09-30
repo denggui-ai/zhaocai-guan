@@ -80,9 +80,9 @@ HR 选择本次发送的面试转写、笔记和相关已确认材料。模型�
 <summary>查看代码核对依据</summary>
 
 - [五项能力的界面定义](../frontend/src/components/WorkflowGuidePanel.jsx)与[首次启用说明](../frontend/src/components/ExternalAiFirstUsePrompt.jsx)。
-- [统一模型调用与可用条件](../f009-interview-llm.js)、[实际操作路由及规则面试脚本](../action-server.js)、[画像及候选人分析保存路径](../db.js)。
-- [深度画像规则](../rating-llm.js)、[候选人报告结构](../candidate-report-v1.js)、[测评分析结构](../assessment-ai-analysis.js)。
-- [截图读取](../screenshot-ai-reader.js)、[字段补全](../screenshot-field-ai.js)、[终评复用](../frontend/src/components/ApplicationFinalReviewPanel.jsx)。
+- [统一模型调用与可用条件](../src/f009-interview-llm.js)、[实际操作路由及规则面试脚本](../src/action-server.js)、[画像及候选人分析保存路径](../src/db.js)。
+- [深度画像规则](../src/rating-llm.js)、[候选人报告结构](../src/candidate-report-v1.js)、[测评分析结构](../src/assessment-ai-analysis.js)。
+- [截图读取](../src/screenshot-ai-reader.js)、[字段补全](../src/screenshot-field-ai.js)、[终评复用](../frontend/src/components/ApplicationFinalReviewPanel.jsx)。
 
 </details>
 

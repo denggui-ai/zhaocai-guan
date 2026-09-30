@@ -27,7 +27,7 @@ npm run verify
 定位单项回归时可通过统一运行器选择已有检查，由它为原生模块选择匹配的运行时：
 
 ```bash
-node check-suite-runner.js files check-release-security.js
+node tests/check-suite-runner.js files tests/check-release-security.js
 npm run build:web
 ```
 
@@ -52,7 +52,7 @@ node release/generate-third-party-notices.js
 <a id="local-tools"></a>
 ## 本地工具
 
-macOS 的 Vision OCR 实际执行 `/usr/bin/swift vision-ocr.swift`，安装包也依赖本机 Swift 工具链与 macOS SDK。需安装并选用有效的 Xcode 命令行工具或完整 Xcode；检查 `/usr/bin/swift --version`，安装方式见 [Apple 官方说明](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools)。仅检测 `/usr/bin/swift` 路径存在，不能证明工具链已就绪。
+macOS 的 Vision OCR 实际执行 `/usr/bin/swift native/vision-ocr.swift`，安装包也依赖本机 Swift 工具链与 macOS SDK。需安装并选用有效的 Xcode 命令行工具或完整 Xcode；检查 `/usr/bin/swift --version`，安装方式见 [Apple 官方说明](https://developer.apple.com/documentation/xcode/installing-the-command-line-tools)。仅检测 `/usr/bin/swift` 路径存在，不能证明工具链已就绪。
 
 Mac 可按 [README 的依赖表](README.md#requirements) 安装 Poppler、SoX 和 whisper.cpp。默认模型为 `~/.cache/whisper.cpp/ggml-base.bin`，`WHISPER_CPP_MODEL` 可覆盖。音视频转换优先使用系统 `afconvert`，`ffmpeg` 为可选后备。
 

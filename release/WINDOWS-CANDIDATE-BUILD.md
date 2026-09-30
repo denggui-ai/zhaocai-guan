@@ -15,7 +15,7 @@ node release/build-windows-candidate.js
 本地契约检查使用临时合成 PE 文件，不启动应用：
 
 ```bash
-node check-suite-runner.js files check-windows-candidate-contract.js
+node tests/check-suite-runner.js files tests/check-windows-candidate-contract.js
 ```
 
 后续实际候选仍须在 Windows x64 真机完成 [验收清单](windows-release-acceptance-checklist.md)。本地录音与 ASR 当前禁用，招聘平台账号通道已删除，不应为了凑齐历史验收项重新启用。签名、安装/卸载、备份恢复和当前支持功能需要实际证据。

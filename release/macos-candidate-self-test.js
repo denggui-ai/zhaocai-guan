@@ -150,11 +150,11 @@ function packageLayout(appInput) {
   const required = [
     executable,
     nativeModule,
-    path.join(resources, 'candidate-main.js'),
-    path.join(resources, 'preload.js'),
-    path.join(resources, 'resume-structure.js'),
-    path.join(resources, 'screenshot-ai-import-state.js'),
-    path.join(resources, 'screenshot-import-task-public.js'),
+    path.join(resources, "src/candidate-main.js"),
+    path.join(resources, "src/preload.js"),
+    path.join(resources, "src/resume-structure.js"),
+    path.join(resources, "src/screenshot-ai-import-state.js"),
+    path.join(resources, "src/screenshot-import-task-public.js"),
     releaseBuildPath,
     path.join(resources, 'frontend', 'dist', 'index.html'),
   ];
@@ -211,7 +211,7 @@ function inspectPackage(layout) {
 
   const forbidden = [];
   const topLevelForbidden = [
-    'data', 'checks', 'handoff', 'release', 'rating-config.json', '.env',
+    'data', 'tests', 'scripts', 'docs', '.superpowers', 'handoff', 'release', 'rating-config.json', '.env',
     '.github', '.impeccable', '.gitattributes', 'forge.config.js',
   ];
   for (const name of topLevelForbidden) {

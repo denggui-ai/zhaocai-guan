@@ -72,7 +72,7 @@ jobs:
       # Run this before the screenshot gates: their known copyfile EPERM would
       # otherwise hide whether hardenPrivateDir itself prevents SQLite startup.
       - name: 私密目录 ACL 与 SQLite 探针
-        run: node check-suite-runner.js ci-windows-probe 2>&1 | tee windows-private-dir-probe.log
+        run: node tests/check-suite-runner.js ci-windows-probe 2>&1 | tee windows-private-dir-probe.log
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -84,7 +84,7 @@ jobs:
       # Windows-relevant contracts, each self-contained and offline.
       - name: 截图导入相关门禁
         run: |
-          node check-suite-runner.js ci-windows
+          node tests/check-suite-runner.js ci-windows
 
       # The interpreter resolution is the reason Windows imports used to fail
       # outright, so it is exercised on the platform it was written for.
@@ -143,8 +143,8 @@ jobs:
         # precheck lifecycle hook aborts the run before the 101-check suite
         # starts as soon as precheck reports a failure — which on Windows it does.
         run: |
-          node check-suite-runner.js precheck 2>&1 | tee windows-check-full.log || true
-          node check-suite-runner.js check 2>&1 | tee -a windows-check-full.log || true
+          node tests/check-suite-runner.js precheck 2>&1 | tee windows-check-full.log || true
+          node tests/check-suite-runner.js check 2>&1 | tee -a windows-check-full.log || true
 
       - name: 汇总失败用例
         if: always()
