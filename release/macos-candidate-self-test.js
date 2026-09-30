@@ -335,7 +335,7 @@ async function main() {
     if (recoveryIds.length !== 1) throw new Error(\`expected one recovery package, got \${recoveryIds.length}\`);
     const recoveryId = recoveryIds[0];
     const manifest = JSON.parse(fs.readFileSync(path.join(recoveryRoot, recoveryId, 'manifest.json'), 'utf8'));
-    const { restoreSqliteBackup } = require(path.join(resources, 'sqlite-backup-recovery'));
+    const { restoreSqliteBackup } = require(path.join(resources, 'src', 'sqlite-backup-recovery'));
     const result = await restoreSqliteBackup({
       recoveryRoot,
       recoveryId,

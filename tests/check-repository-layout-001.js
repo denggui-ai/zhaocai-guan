@@ -33,3 +33,8 @@ assert.equal(outcome.stdout, path.join(root, 'data', 'interviews'), 'Default dat
 const { resolveElectronRuntime } = require("../src/start-candidate-ui");
 assert.ok(fs.existsSync(resolveElectronRuntime().electron), 'Relocated launcher resolves the pinned Electron');
 console.log('check-repository-layout-001: PASS (entry, resources, package filtering, stable data root)');
+
+const packageProbe = fs.readFileSync(path.join(root, 'release/macos-candidate-self-test.js'), 'utf8');
+assert.match(packageProbe, /path\.join\(resources, 'src', 'sqlite-backup-recovery'\)/,
+  'Generated packaged recovery probe must resolve the migrated runtime module');
+assert.ok(fs.existsSync(path.join(root, 'src/sqlite-backup-recovery.js')));
