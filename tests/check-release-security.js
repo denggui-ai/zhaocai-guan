@@ -335,27 +335,10 @@ async function waitForServer(child, marker) {
   assert.doesNotMatch(macReleaseSource, /APP_ROOT\/out/, 'Mac release must not use repository out');
   assert.match(macReleaseSource, /HRBOSS_RELEASE_DATE must contain exactly 8 digits/, 'Mac release filenames must reject path-like dates');
   assert.match(macReleaseSource, /HRBOSS_RELEASE_REVISION must be empty or match r1, r2/, 'Mac release revisions must reject path-like suffixes');
-  for (const [label, releaseSource] of [
-    ['development source', developmentSourceRelease],
-  ]) {
-    assert.match(releaseSource, /HRBOSS_RELEASE_DATE must contain exactly 8 digits/, `${label} filenames must reject path-like dates`);
-    for (const excludedDirectory of ['tmp', 'deliverables', 'data', 'out', 'dist', '\\.runtime']) {
-      assert.match(releaseSource, new RegExp(`--exclude='${excludedDirectory}/'`), `${label} must exclude ${excludedDirectory}`);
-    }
-    for (const excludedSensitiveName of [
-      '.npmrc', '*.db-wal', '*.db-shm', '*.sqlite-wal', '*.sqlite-shm',
-      '*.sqlite3-wal', '*.sqlite3-shm', '*.mobileprovision',
-    ]) {
-      assert.ok(
-        releaseSource.includes(`--exclude='${excludedSensitiveName}'`),
-        `${label} must exclude ${excludedSensitiveName}`,
-      );
-      assert.ok(
-        releaseSource.includes(`-name '${excludedSensitiveName}'`),
-        `${label} post-copy scan must reject ${excludedSensitiveName}`,
-      );
-    }
-  }
+  // The behavior check exercises the final ZIP, frozen identity and every
+  // former exclusion category, including committed forbidden files.
+  assert.match(developmentSourceRelease, /export-source\.js/);
+  require('./check-source-export-001');
   if (process.platform === 'win32') {
     console.log('SKIP POSIX release-shell runtime assertions on Windows');
   } else {

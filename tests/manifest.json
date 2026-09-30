@@ -2751,6 +2751,16 @@
         "linux",
         "win32"
       ]
+    },
+    {
+      "path": "tests/check-source-export-001.js",
+      "kind": "check",
+      "runtime": "system-node",
+      "platforms": [
+        "darwin",
+        "linux",
+        "win32"
+      ]
     }
   ],
   "groups": {
@@ -2826,7 +2836,8 @@
       "tests/check-f018-workbench.js",
       "tests/check-f018-ui-contract.js",
       "tests/check-windows-candidate-contract.js",
-      "tests/check-windows-release-readiness-contract.js"
+      "tests/check-windows-release-readiness-contract.js",
+      "tests/check-source-export-001.js"
     ],
     "check": [
       "tests/check-security-p0.js",
