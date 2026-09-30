@@ -47,11 +47,10 @@ for (const target of TARGETS) {
   const source = fs.readFileSync(path.join(ROOT, target), 'utf8');
   const gateCall = source.indexOf('assertUiFixtureEnvironment()');
   assert.ok(gateCall >= 0, `${target} must invoke the fixture safety gate`);
-  for (const databaseImport of ["require('./db')", "require('better-sqlite3')"]) {
-    const importPosition = source.indexOf(databaseImport);
-    if (importPosition >= 0) {
-      assert.ok(gateCall < importPosition, `${target} must gate before ${databaseImport}`);
-    }
+  const databaseImports = [...source.matchAll(/require\(['"](?:[^'"]*\/db(?:\.js)?|better-sqlite3)['"]\)/g)];
+  assert.ok(databaseImports.length > 0, `${target} must expose its database import to the safety check`);
+  for (const databaseImport of databaseImports) {
+    assert.ok(gateCall < databaseImport.index, `${target} must gate before ${databaseImport[0]}`);
   }
 }
 

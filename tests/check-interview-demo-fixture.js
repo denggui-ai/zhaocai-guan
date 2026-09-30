@@ -19,8 +19,9 @@ function assertNoSensitiveText(value, label) {
 }
 
 const fixtureSource = fs.readFileSync(FIXTURE_SOURCE, 'utf8');
-for (const forbidden of ["require('./rating-llm')", "require('./minutes-fetch')", "src/local-interview-p0.js"]) {
-  assert.ok(!fixtureSource.includes(forbidden), `fixture generator must not invoke ${forbidden}`);
+for (const moduleName of ['rating-llm', 'minutes-fetch', 'local-interview-p0']) {
+  assert.doesNotMatch(fixtureSource, new RegExp(`require\\(['"](?:[^'"]*/)?${moduleName}(?:\\.js)?['"]\\)`),
+    `fixture generator must not invoke ${moduleName} from any relative location`);
 }
 assert.ok(!/\bspawn(?:Sync)?\s*\(/.test(fixtureSource), 'fixture generator must not start recording, transcription, AI, or external commands');
 

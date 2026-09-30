@@ -91,7 +91,7 @@ jobs:
       - name: 拼合降级在 Windows 上的真实行为
         run: |
           node -e "
-            const { resolvePythonForStitching } = require('./start-screenshot-import');
+            const { resolvePythonForStitching } = require('./src/start-screenshot-import');
             const result = resolvePythonForStitching();
             console.log(JSON.stringify(result, null, 2));
             if (!result.ok && !Array.isArray(result.rejected)) {

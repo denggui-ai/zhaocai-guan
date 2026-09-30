@@ -71,7 +71,7 @@ try {
     fallbackDirectories: [],
   });
   assert.equal(result.schemaVersion, 'local_interview_doctor_v2');
-  assert.equal(result.ready, true);
+  assert.equal(result.ready, true, `synthetic doctor readiness: ${JSON.stringify(result)}`);
   assert.equal(result.toolchainReady, true);
   assert.equal(result.readyScope, 'software_only');
   assert.equal(result.capabilities.micCheck.ready, true);
