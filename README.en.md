@@ -1,67 +1,56 @@
-<picture>
-  <source media="(max-width: 640px)" srcset="docs/brand/readme-hero-en-mobile.svg">
-  <img src="docs/brand/readme-hero-en.svg" alt="Zhaocai Guan — AI helps organize hiring evidence. From role requirements to interview review." width="1280">
-</picture>
+# Zhaocai Guan · 招才官
 
-<h1 align="center">Your local recruiting workspace, with AI</h1>
-<p align="center">Clarify role requirements. Review résumé evidence. Cross-check interviews and assessments.<br>Manage materials on your Mac. Keep hiring decisions in your hands.</p>
-<p align="center"><a href="https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg"><img src="docs/brand/download-mac-en.svg" alt="Download the Mac Apple Silicon DMG" width="244" height="52"></a></p>
-<p align="center"><strong>Apple Silicon · 1.0.1 prerelease (rc.1) · Not Apple-notarized</strong><br>
-<a href="docs/GETTING_STARTED.md#install">Installation help</a> · <a href="https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1">Release notes and other downloads</a> · <a href="README.md">中文</a></p>
+**From role requirements to interview review, give hiring decisions a traceable basis.**
 
-## From role requirements to interview evidence
+A recruiting workspace for HR to organize roles, résumés, interviews and assessments. Materials are managed locally; optional AI connects to your configured external service.
 
-What does a hiring manager mean by “strong business understanding”? Which projects support a résumé's claims? What should HR ask when interviews and assessments disagree?
+[**Download for Mac**](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg) · [Quick start](docs/GETTING_STARTED.md#first-use) · [Installation help](docs/GETTING_STARTED.md#install) · [中文](README.md)
 
-Use AI assistance at the stages where your materials are ready, with human review at each step.
+Apple Silicon · **1.0.1-rc.1 prerelease** · Not Apple-notarized · **Chinese UI, samples and guide** · [Release notes and other downloads](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)
 
-| Recruiting question | AI assistance |
+[![Actual r5 Mac workspace showing job-specific tasks, candidates and interviews; all people and roles are fictional](docs/showcase/workbench.png)](docs/DEMO.md)
+
+*An unmodified application screenshot using fictional materials. [Explore candidate and interview views →](docs/DEMO.md)*
+
+## From a hiring brief to a reviewable JD
+
+This example comes from one real DeepSeek `deepseek-flash` call in the application, using a completely fictional role.
+
+1. **Provide the brief.** An e-commerce operations specialist needs Excel pivot-table skills; campaign review experience is a preference. Pay and location are undecided.
+2. **Review the AI draft.** Four responsibilities, two requirements, a separate preference and questions about missing information.
+3. **Confirm the human edit.** Add a weekly one-page operations summary requirement and save version 1 as a draft, without activating it.
+
+[![Actual JD draft after a human added the delivery requirement; activation remains a separate manual action](docs/ai-demo/saved-draft.png)](docs/AI-DEMO.md)
+
+[Input](docs/ai-demo/input.txt) · [Original AI text](docs/ai-demo/ai-output.txt) · [Human edit](docs/ai-demo/manual-final.txt) · [Full record and two false warnings](docs/AI-DEMO.md)
+
+**Only this JD scenario has real-provider workflow evidence. Other AI scenarios remain unvalidated.** External AI is off by default, requires your own configuration, may incur charges and asks for confirmation before sending materials.
+
+## Find evidence throughout recruiting
+
+| Your task | What the workspace can provide |
 |---|---|
-| **Who does this role need?** · Role profiling | Turn manager interviews into requirements and résumé evidence criteria; separate stated facts from inference, ask follow-up questions and revise after answers |
-| **How do we describe the role?** · JD drafting | Organize responsibilities, required skills and preferences into an editable draft, with missing-information prompts |
-| **What supports the résumé?** · Candidate review | Compare job requirements with résumé evidence; show matches, mismatches, unknowns, a dimension radar and interview questions |
-| **What did the interview establish?** · Interview review | Organize transcripts and notes into facts, requirement checks, contradictions and unresolved items, with material references |
-| **Do the materials agree?** · Assessment analysis | Cross-check the role, résumé, confirmed assessments and interviews for strengths, risks, contradictions and verification questions |
+| **Clarify the role** | Turn manager interviews into a hiring profile, separate statements from inference, identify evidence criteria and follow-up questions |
+| **Draft a job description** | Organize responsibilities, requirements and preferences into an editable JD |
+| **Review résumé evidence** | Compare matches, mismatches and unknowns against the role, with source evidence, a dimension radar and interview questions |
+| **Review an interview** | Organize transcripts and notes into facts, requirement checks, contradictions and unresolved items, with material references |
+| **Cross-check assessments** | Combine the role, résumé, confirmed assessments and interviews to identify strengths, risks, contradictions and verification questions |
 
-**AI organizes evidence and provides a second opinion. HR verifies facts and makes hiring decisions.** Candidate review includes dimension scores; assessment analysis includes a separate reference score and recommendation. Neither automatically changes S/A/B/C or the default ordering.
+All five have UI entry points and external-model call implementations. Real-provider workflow testing covers only the JD example above. [Capabilities, entry points and verification status →](docs/AI-CAPABILITIES.md) *(Chinese)*
 
-[**Capabilities, entry points and verification status →**](docs/AI-CAPABILITIES.md) *(Chinese)*
+AI organizes materials and provides a second opinion; HR verifies facts and makes hiring decisions. Candidate dimension scores and separate assessment reference scores/recommendations do not automatically change S/A/B/C or the default ordering.
 
-*All five have UI entry points and external-model call implementations. Real-provider testing currently covers one JD workflow; the other capabilities remain unvalidated. External AI is off by default, requires your own configuration, may incur charges and asks for confirmation before sending materials.*
+## Start with two fictional résumés
 
-## One real example: a hiring brief becomes a JD draft
+**No AI key or recruiting-platform account required.** Try local material management and manual follow-up first.
 
-A fictional brief was processed by DeepSeek `deepseek-flash` into **four responsibilities, two requirements and a separate nice-to-have**. Undecided pay, location, schedule and start date became questions for HR. A human added a delivery requirement and saved an inactive draft.
+[Download sample ZIP](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-demo-materials-1.0.1.zip) · [Step-by-step guide](docs/GETTING_STARTED.md#first-use)
 
-[See the input, original AI text, human edit and app screenshots](docs/AI-DEMO.md). The record also discloses two false warnings. This JD example does not validate the other AI workflows.
-
-## See what needs your attention
-
-Review candidate records, pending tasks and interview progress in the context of one job.
-
-[![Actual r5 Mac application: two fictional candidates, three tasks and one scheduled interview](docs/showcase/workbench.png)](docs/showcase/workbench.png)
-
-*The app, sample materials and full guide are in Chinese. All people and jobs shown are fictional. [Explore the candidate and interview views →](docs/DEMO.md)*
-
-### From incoming résumés to interview follow-up
-
-**Keep materials with the job.** Import authorized résumés, review them before confirming records, and retain the originals.
-
-**Follow each candidate.** Review known facts, missing information and manual follow-up records. HR decides what happens next.
-
-**Record interview arrangements.** Manually record times, interviewers and candidate responses, with a history for each round.
-
-## Try two fictional résumés first
-
-**No AI key or recruiting-platform account required.** Start with TXT materials and manual follow-up.
-
-[**Download sample ZIP →**](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-demo-materials-1.0.1.zip) · [Step-by-step guide](docs/GETTING_STARTED.md#first-use)
-
-1. Create a job, activate its JD, and confirm its hiring profile.
+1. Create a job, activate its JD and confirm its hiring profile.
 2. Import two TXT résumés, checking names, job and original text before confirming.
-3. Open the candidates and their original materials; optionally record an interview manually.
+3. Open the candidates and original materials; optionally record an interview manually.
 
-The job should contain **two candidates**, with materials still accessible after restarting. [Sample contents and checksum](docs/examples/README.md)
+The correct job should contain **two candidates**, with original materials still accessible after restarting. [Sample contents and checksum](docs/examples/README.md)
 
 ## Before you start
 

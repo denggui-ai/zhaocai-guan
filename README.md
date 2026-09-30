@@ -1,70 +1,56 @@
-<picture>
-  <source media="(max-width: 640px)" srcset="docs/brand/readme-hero-mobile.svg">
-  <img src="docs/brand/readme-hero.svg" alt="招才官——AI 帮你梳理招聘证据。从岗位需求到面试复盘。" width="1280">
-</picture>
+# 招才官 · Zhaocai Guan
 
-<h1 align="center">本地 AI 招聘工作台</h1>
-<p align="center">提炼岗位要求，核对简历、面试与测评。<br>材料在本机管理，招聘判断由你掌握。</p>
+**从岗位要求到面试复盘，让招聘判断有据可查。**
 
-<p align="center">
-  <a href="https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg"><img src="docs/brand/download-mac.svg" alt="下载 Mac Apple 芯片版 DMG" width="244" height="52"></a>
-</p>
-<p align="center"><strong>Mac Apple 芯片 · 1.0.1 候选版（rc.1）· 未获 Apple 公证</strong><br>
-<a href="docs/GETTING_STARTED.md#install">安装帮助</a> · <a href="https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1">发行说明与其他下载</a> · <a href="README.en.md">English</a></p>
+为 HR 整理岗位、简历、面试和测评材料。资料本地管理，AI 按需连接外部服务。
 
-## 从岗位需求到面试复盘，AI 帮你梳理证据
+[**下载 Mac 版**](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg) · [快速开始](docs/GETTING_STARTED.md#first-use) · [安装帮助](docs/GETTING_STARTED.md#install) · [English](README.en.md)
 
-用人经理说的“要懂业务”，怎样变成可核对的要求？简历上的“精通”，有没有项目支撑？面试与测评说法不一致，下一步该问什么？
+Mac Apple 芯片 · **1.0.1-rc.1 预发布版** · 未获 Apple 公证 · [发行说明与其他下载](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)
 
-招才官把 AI 辅助放进这些具体工作里。你按材料准备情况选择使用，每一步保留人工核对。
+[![招才官实际工作台：按岗位查看待办、候选人与面试进度，图中人物与岗位均为虚构](docs/showcase/workbench.png)](docs/DEMO.md)
 
-| 招聘中的问题 | AI 如何帮你处理 |
+*实际 r5 Mac 应用截图，使用虚构资料。[查看候选人资料与面试界面 →](docs/DEMO.md)*
+
+## 一段招聘需求，怎样变成可核对的 JD
+
+这条案例来自实际应用中的一次 DeepSeek `deepseek-flash` 调用，使用完全虚构的岗位需求。
+
+1. **输入需求。** 招电商运营专员，会用 Excel 做数据透视；活动复盘经验为加分项，薪资、地点等暂未确定。
+2. **AI 整理。** 生成 4 条职责、2 条必须条件及独立加分项，并列出待确认的信息。
+3. **人工确认。** 补充“每周提交一页运营小结”的交付要求，保存为第 1 版草稿，尚未启用。
+
+[![真实 JD 草稿：人工补充交付要求后保存，启用版本仍是单独的人工操作](docs/ai-demo/saved-draft.png)](docs/AI-DEMO.md)
+
+[实际输入](docs/ai-demo/input.txt) · [AI 原稿](docs/ai-demo/ai-output.txt) · [人工修改](docs/ai-demo/manual-final.txt) · [完整过程与两处提示误报](docs/AI-DEMO.md)
+
+**这是 JD 单场景实测，其他 AI 场景仍待验收。** 外部 AI 默认关闭，需自备配置，可能收费；每次发送材料前确认。
+
+## 在招聘的每一步，找到材料依据
+
+| 你要完成的工作 | 可以得到什么 |
 |---|---|
-| **究竟要招什么人？** · 深度岗位画像 | 从负责人访谈提炼能力要求，区分原话与推断，列出简历证据标准和待追问问题；补答后可重新生成 |
-| **怎样把需求写清楚？** · JD 起草 | 整理职责、必须条件与加分项，提示信息缺口，生成可编辑草稿 |
-| **简历有哪些依据？** · 候选人初评 | 对照岗位逐项查看匹配、不匹配和未知，附简历证据、维度雷达与面试追问 |
-| **面试到底验证了什么？** · 面试复盘 | 从转写和笔记整理关键事实、岗位要求核对、矛盾与待确认项，保留材料引用 |
-| **多份材料能否相互印证？** · 测评综合分析 | 联合岗位、简历、已确认测评及面试，整理优势、风险、矛盾和补充核验问题 |
+| **明确用人要求** | 从负责人访谈提炼岗位画像，区分原话与推断，列出证据标准和待追问问题 |
+| **起草职位描述** | 整理职责、必须条件与加分项，生成可编辑的 JD 草稿 |
+| **核对候选人简历** | 对照岗位查看匹配、不匹配和未知项，附原文依据、能力维度雷达与面试追问 |
+| **复盘面试** | 从转写与笔记整理关键事实、岗位核对、矛盾与待确认事项，保留材料引用 |
+| **交叉核验测评** | 联合岗位、简历、已确认测评及面试，整理优势、风险、矛盾和补充核验问题 |
 
-**AI 整理材料、提出第二意见；HR 核对事实并作招聘决定。** 初评含能力维度参考分，测评分析含独立匹配参考分与建议，均不自动改变 S/A/B/C 或默认排序。
+五项均有界面入口与外部模型调用实现，真实服务实测目前仅覆盖上述 JD 流程。[完整能力、入口与验证状态 →](docs/AI-CAPABILITIES.md)
 
-[**查看完整能力、入口与验证状态 →**](docs/AI-CAPABILITIES.md)
+AI 整理材料、提供第二意见，HR 核对事实并作招聘决定。初评的能力维度分、测评分析的独立匹配分与建议，均不自动改变 S/A/B/C 或默认排序。
 
-*五项均有界面入口与外部模型调用实现；目前真实服务实测覆盖一条 JD 流程，其余能力仍待验收。外部 AI 默认关闭，需自备配置，可能收费；每次发送材料前确认。*
+## 用两份虚构简历开始
 
-## 先看一条真实案例：招聘需求 → JD 草稿
+**不需要 AI Key，也不用连接招聘平台账号。** 先体验本地资料整理与手工跟进。
 
-一段虚构电商招聘需求，经 DeepSeek `deepseek-flash` 整理为 **4 条职责、2 条必须条件和独立加分项**；未定的薪资、地点、作息、到岗时间列为确认问题。人工补充交付要求后，保存为未启用的草稿。
+[下载体验材料 ZIP](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-demo-materials-1.0.1.zip) · [跟着图文步骤操作](docs/GETTING_STARTED.md#first-use)
 
-[查看实际输入、AI 原稿、人工修改与应用截图](docs/AI-DEMO.md)。记录同时保留了本次发现的两处提示误报。这个案例展示 JD 能力，不代表其他 AI 场景已通过实测。
+1. 建一个岗位：复制样例 JD，启用并确认岗位画像。
+2. 导入两份简历：核对姓名、岗位与原文，再确认建档。
+3. 打开候选人：回看原始材料，需要时手工记录面试安排。
 
-## 打开工作台，跟进有条理
-
-谁还需要核对资料，谁已经排好面试，下一步该做什么——放在同一个岗位下查看。
-
-[![招才官 r5 实际工作台：两位虚构候选人、三项待办和一次人工面试安排](docs/showcase/workbench.png)](docs/showcase/workbench.png)
-
-*真实 Mac 应用截图，岗位和人物均为虚构。点击图片可查看大图。[查看候选人和面试界面 →](docs/DEMO.md)*
-
-### 从收到简历，到跟进面试
-
-**资料归到岗位里。** 导入你有权使用的简历，核对后确认建档，原始材料保留供回看。
-
-**候选人进度看得清。** 已知事实、待补资料、跟进记录集中查看；下一步由 HR 决定。
-
-**面试安排有记录。** 手工记录时间、面试官与候选人反馈，保留每一轮的处理历史。
-
-## 用两份虚构简历，走完第一次体验
-
-**不需要 AI Key，也不用连接招聘平台账号。** 从 TXT 简历开始，就能体验本地整理与手工跟进。
-
-[**下载体验材料 ZIP →**](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-demo-materials-1.0.1.zip)　[跟着图文步骤操作](docs/GETTING_STARTED.md#first-use)
-
-1. **建一个岗位** — 复制样例 JD，启用并确认岗位画像。
-2. **导入两份简历** — 核对姓名、岗位与原文，再确认建档。
-3. **打开候选人** — 回看原始材料，需要时手工记录面试安排。
-
-完成后，岗位下应有 **2 位候选人**，重开应用后资料仍保留。[材料清单与校验](docs/examples/README.md)
+完成后，正确岗位下应有 **2 位候选人**，原始材料可打开，重开应用后仍保留。[材料清单与校验](docs/examples/README.md)
 
 ## 开始之前，你可能想了解
 
