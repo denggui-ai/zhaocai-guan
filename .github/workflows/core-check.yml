@@ -62,29 +62,11 @@ jobs:
       # The PDF recovery check injects tools: Poppler/Swift/ASR are not required.
       - name: Offline core checks
         run: |
-          node check-suite-runner.js files \
-            check-local-principal.js \
-            check-external-ai-user-approval.js \
-            check-external-ai-gateway-001.js \
-            check-secure-llm-config-store-001.js \
-            check-secure-llm-startup-fail-closed-001.js \
-            check-desktop-user-data-001.js \
-            check-schema-migration.js \
-            check-f011-backup-recovery.js \
-            check-resume-structure-001.js \
-            check-manual-resume-upload-001.js \
-            check-resume-candidate-intake-001.js \
-            check-job-multi-001.js \
-            check-interview-material-paths.js \
-            check-task-run-state.js \
-            check-task-error-policy.js \
-            check-screenshot-normalization.js \
-            check-screenshot-evidence-store.js \
-            check-hr-workflow-guide-001.js 2>&1 | tee core-check.log
+          node check-suite-runner.js ci-core 2>&1 | tee core-check.log
 
       - name: macOS launcher contracts (no GUI)
         if: runner.os == 'macOS'
-        run: node check-suite-runner.js files check-macos-single-instance-001.js 2>&1 | tee macos-launcher-check.log
+        run: node check-suite-runner.js ci-macos 2>&1 | tee macos-launcher-check.log
 
       - name: Skip macOS launcher contracts on Linux
         if: runner.os != 'macOS'

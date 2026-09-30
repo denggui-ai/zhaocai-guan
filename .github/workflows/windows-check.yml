@@ -72,7 +72,7 @@ jobs:
       # Run this before the screenshot gates: their known copyfile EPERM would
       # otherwise hide whether hardenPrivateDir itself prevents SQLite startup.
       - name: 私密目录 ACL 与 SQLite 探针
-        run: node check-suite-runner.js files check-windows-private-dir-sqlite-probe-001.js 2>&1 | tee windows-private-dir-probe.log
+        run: node check-suite-runner.js ci-windows-probe 2>&1 | tee windows-private-dir-probe.log
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -84,16 +84,7 @@ jobs:
       # Windows-relevant contracts, each self-contained and offline.
       - name: 截图导入相关门禁
         run: |
-          node check-suite-runner.js files \
-            check-screenshot-stitch-fallback-001.js \
-            check-screenshot-ai-reader-001.js \
-            check-screenshot-ai-reads-handoff-001.js \
-            check-ai-authored-draft-gate-001.js \
-            check-screenshot-ai-fill.js \
-            check-screenshot-import.js \
-            check-screenshot-ingest.js \
-            check-screenshot-evidence-store.js \
-            check-screenshot-normalization.js
+          node check-suite-runner.js ci-windows
 
       # The interpreter resolution is the reason Windows imports used to fail
       # outright, so it is exercised on the platform it was written for.

@@ -5,6 +5,15 @@ const fs = require('fs');
 const path = require('path');
 
 const packageJson = require('./package.json');
+const { manifest, renderCommand, validateRepository } = require('./checks/registry');
+validateRepository();
+for (const name of Object.keys(manifest.commands)) {
+  assert.equal(packageJson.scripts[name], `node checks/run-npm-check.js ${name}`,
+    `${name} must execute its registered command`);
+}
+const effectiveScripts = { ...packageJson.scripts,
+  ...Object.fromEntries(Object.keys(manifest.commands).map(name => [name, renderCommand(name)])),
+};
 const {
   SUITES,
   SUITE_ENV_OVERRIDES,
@@ -174,14 +183,14 @@ function assertReleaseSecurityDatabaseIsolation(source) {
 assert.equal(packageJson.scripts.precheck, 'node check-suite-runner.js precheck');
 assert.equal(packageJson.scripts.check, 'node check-suite-runner.js check');
 assert.equal(
-  packageJson.scripts['check:settings-ux'],
+  effectiveScripts['check:settings-ux'],
   'node check-suite-runner.js files check-settings-state-001.js check-secure-llm-config-store-001.js check-secure-llm-startup-fail-closed-001.js check-settings-ux-001.js check-settings-native-close-001.js check-windows-asr-degradation.js check-local-interview-tool-discovery-001.js',
 );
 assert.equal(
-  packageJson.scripts['check:hr-acceptance'],
+  effectiveScripts['check:hr-acceptance'],
   'node check-suite-runner.js hr-acceptance && npm run check:ui:fixture',
 );
-assert.equal(packageJson.scripts['check:ui'], 'node check-ui-suite.js');
+assert.equal(effectiveScripts['check:ui'], 'node check-ui-suite.js');
 assert.ok(packageJson.scripts.verify.includes('npm run check'));
 assert.ok(packageJson.scripts.verify.includes('npm run check:ui'));
 
@@ -193,7 +202,8 @@ assert.ok(
 );
 const windowsCoreSection = windowsWorkflowSource.slice(windowsCoreStart, windowsSurveyStart);
 const windowsSurveySection = windowsWorkflowSource.slice(windowsSurveyStart);
-const windowsProbeCommand = 'node check-suite-runner.js files check-windows-private-dir-sqlite-probe-001.js';
+const windowsProbeCommand = 'node check-suite-runner.js ci-windows-probe';
+assert.deepEqual(SUITES['ci-windows-probe'], ['check-windows-private-dir-sqlite-probe-001.js']);
 assert.equal(
   windowsWorkflowSource.split(windowsProbeCommand).length - 1,
   1,
@@ -313,7 +323,7 @@ assert.equal(runtimeFor('check-macos-official-release-gate.js'), 'system-node');
 assert.equal(runtimeFor('check-schema-migration.js'), 'electron-node');
 assert.equal(runtimeFor('check-closed-job-todo-001.js'), 'electron-node');
 
-for (const [scriptName, command] of Object.entries(packageJson.scripts)) {
+for (const [scriptName, command] of Object.entries(effectiveScripts)) {
   if (!scriptName.startsWith('check:')) continue;
   for (const testFile of systemNodeCheckFiles(command)) {
     assert.equal(
@@ -323,8 +333,8 @@ for (const [scriptName, command] of Object.entries(packageJson.scripts)) {
     );
   }
 }
-assert.match(packageJson.scripts['check:workbench'], /check-suite-runner\.js files check-f012-workbench\.js/);
-assert.match(packageJson.scripts['check:schema-migration'], /check-suite-runner\.js files check-schema-migration\.js/);
+assert.match(effectiveScripts['check:workbench'], /check-suite-runner\.js files check-f012-workbench\.js/);
+assert.match(effectiveScripts['check:schema-migration'], /check-suite-runner\.js files check-schema-migration\.js/);
 
 assert.doesNotMatch(
   assessmentMigrationRecoverySource,

@@ -11,37 +11,8 @@ const {
 } = require('./start-candidate-ui');
 
 const ROOT = __dirname;
-const UI_CHECK_STEPS = Object.freeze([
-  'create-ui-fixture-db.js',
-  'check-ui-readonly.js',
-  'check-ui-filters.js',
-  'check-interview-logistics-ui-001.js',
-  'check-interview-preview-responsive-ui-001.js',
-  'check-ocr-review-load-state-001.js',
-  'check-ocr-unsaved-guard-ui-001.js',
-  'check-deep-profile-ui-truth-001.js',
-  'check-deep-profile-generation-readiness-001.js',
-  'check-assessment-status-truth-ui-001.js',
-  'check-ux-g0-b-shell-safety-001.js',
-  'check-ux-g0-b2-lazy-failure-matrix-001.js',
-  'check-ux-g0-d-readonly-history-optional.js',
-  'check-ux-w1-a-shell-integration.js',
-  'check-ux-w2-a-candidate-workspace.js',
-  'check-candidate-communication-drawer-state-001.js',
-  'check-ux-w2-b-talent-resume.js',
-  'check-ux-w3-a-interview-workspace.js',
-  'check-interview-workflow-ui-state-001.js',
-  'check-ux-w4-a-settings-assessment.js',
-  'check-ux-w4-b-deep-profile-recovery.js',
-  'check-ux-w4-c-guide-ledger.js',
-  'check-ui-a11y-copy-001.js',
-  'check-ui-remaining-ux-fixes-001.js',
-  'check-ui-responsive-surfaces-001.js',
-  'check-windows-equivalent-ui-001.js',
-  'check-ui-visual-polish-001.js',
-  'check-job-context-race-runtime.js',
-  'check-ui-visual-runtime-001.js',
-]);
+const { getGroup, validateRepository } = require('./checks/registry');
+const UI_CHECK_STEPS = Object.freeze(getGroup('ui'));
 
 function createManagedRoot() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hrboss-ui-check-'));
@@ -62,6 +33,7 @@ function assertManagedRoot(root) {
 }
 
 function runUiChecks() {
+  validateRepository();
   const workRoot = createManagedRoot();
   const tempParent = fs.realpathSync(os.tmpdir());
   const keepArtifacts = process.env.HRBOSS_KEEP_UI_CHECK_ARTIFACTS === '1';
