@@ -2979,7 +2979,10 @@
       "tests/check-task-error-policy.js",
       "tests/check-screenshot-normalization.js",
       "tests/check-screenshot-evidence-store.js",
-      "tests/check-hr-workflow-guide-001.js"
+      "tests/check-hr-workflow-guide-001.js",
+      "tests/check-registration-001.js",
+      "tests/check-repository-layout-001.js",
+      "tests/check-source-export-001.js"
     ],
     "ci-macos": [
       "tests/check-macos-single-instance-001.js"
@@ -2993,7 +2996,10 @@
       "tests/check-screenshot-import.js",
       "tests/check-screenshot-ingest.js",
       "tests/check-screenshot-evidence-store.js",
-      "tests/check-screenshot-normalization.js"
+      "tests/check-screenshot-normalization.js",
+      "tests/check-registration-001.js",
+      "tests/check-repository-layout-001.js",
+      "tests/check-source-export-001.js"
     ],
     "ci-windows-probe": [
       "tests/check-windows-private-dir-sqlite-probe-001.js"

@@ -68,7 +68,8 @@ function exportSource({ root, ref = 'HEAD', date = new Date().toISOString().slic
     if (forbiddenPath(match[4])) throw new Error(`Forbidden committed source path: ${match[4]}`);
     return { path: match[4], mode: match[1], git_blob: match[3] };
   });
-  const archive = git('archive', '--format=zip', `--prefix=${prefix}`, commit);
+  // Export committed bytes regardless of the host's checkout line-ending policy.
+  const archive = git('-c', 'core.autocrlf=false', '-c', 'core.eol=lf', 'archive', '--format=zip', `--prefix=${prefix}`, commit);
   const unpacked = inspectZip(archive);
   if (unpacked.comment !== commit || unpacked.files.length !== entries.length) throw new Error('Source ZIP identity/inventory mismatch');
   const expected = new Map(entries.map(entry => [prefix + entry.path, entry]));

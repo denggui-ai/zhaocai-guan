@@ -8,7 +8,7 @@ const { exportSource, inspectZip, forbiddenPath } = require('../release/export-s
 const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hrboss-source-export-'));
 const git = (...args) => execFileSync('git', ['-C', root, ...args], { encoding: 'utf8' }).trim();
 try {
-  git('init', '-q'); git('config', 'user.email', 'fixture@example.invalid'); git('config', 'user.name', 'Synthetic Fixture');
+  git('init', '-q'); git('config', 'core.autocrlf', 'true'); git('config', 'user.email', 'fixture@example.invalid'); git('config', 'user.name', 'Synthetic Fixture');
   fs.writeFileSync(path.join(root, 'package.json'), '{"version":"1.2.3"}');
   fs.writeFileSync(path.join(root, '.gitignore'), 'ignored.txt\ndist/\n');
   fs.writeFileSync(path.join(root, '说明.txt'), 'committed synthetic content\n');
@@ -45,4 +45,4 @@ try {
   const corrupted = Buffer.from(fs.readFileSync(result.zipPath)); corrupted[0] = 0;
   assert.throws(() => inspectZip(corrupted), /ZIP/);
   console.log('check-source-export-001: PASS (frozen commit, dirty/untracked isolation, inventory, hashes, no-clobber, forbidden inputs)');
-} finally { fs.rmSync(root, { recursive: true, force: true }); }
+} finally { fs.rmSync(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }); }
