@@ -1,0 +1,174 @@
+name: Windows check
+
+# Windows is the platform this project cannot validate locally — the Owner has
+# no Windows machine, and the screenshot import path written for it has never
+# run there. A hosted Windows runner cannot replace that entirely: it has no
+# usable desktop, so the Electron UI suites stay out, and real candidate
+# screenshots must never be uploaded here. What it can do is run the headless
+# gates, which is most of them, because the suite already runs its checks under
+# ELECTRON_RUN_AS_NODE.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-check-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # The gates that decide whether the Windows import path is sound. These are
+  # expected to pass; a failure here is a real defect, not a platform gap.
+  windows-core:
+    name: Windows 核心门禁
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # The repo's postinstall installs the frontend and electron-spike
+      # sub-projects, which fails here and which none of the headless gates
+      # need — check:ui and build:web are deliberately out of scope. Scripts are
+      # skipped and the two things that are actually required are put back: the
+      # Electron binary, and the native module built for Electron's ABI.
+      - name: 安装依赖（跳过 postinstall）
+        run: npm ci --ignore-scripts
+
+      - name: 下载 Electron 二进制
+        run: node node_modules/electron/install.js
+
+      # The check suite runs almost everything under ELECTRON_RUN_AS_NODE, so
+      # the native module has to match Electron's ABI, not Node's. npm builds it
+      # for Node; this puts it back. Getting this wrong is the single most
+      # confusing failure mode in this repo — it reads as a broken environment.
+      - name: 将 better-sqlite3 重建为 Electron ABI
+        run: npx --no-install electron-rebuild -f -w better-sqlite3
+
+      - name: 记录环境
+        run: |
+          node -e "console.log('node', process.version, 'abi', process.versions.modules)"
+          node -e "console.log('electron', require('electron/package.json').version)"
+          node -e "console.log('forge-meta', require('fs').readFileSync('node_modules/better-sqlite3/build/Release/.forge-meta','utf8').trim())"
+          python --version || echo "无 python"
+          python -c "import PIL; print('Pillow 可用')" || echo "无 Pillow（拼合预览会被跳过，这是预期的降级）"
+
+      # Run this before the screenshot gates: their known copyfile EPERM would
+      # otherwise hide whether hardenPrivateDir itself prevents SQLite startup.
+      - name: 私密目录 ACL 与 SQLite 探针
+        run: node check-suite-runner.js files check-windows-private-dir-sqlite-probe-001.js 2>&1 | tee windows-private-dir-probe.log
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-private-dir-probe-log
+          path: windows-private-dir-probe.log
+          retention-days: 14
+
+      # Windows-relevant contracts, each self-contained and offline.
+      - name: 截图导入相关门禁
+        run: |
+          node check-suite-runner.js files \
+            check-screenshot-stitch-fallback-001.js \
+            check-screenshot-ai-reader-001.js \
+            check-screenshot-ai-reads-handoff-001.js \
+            check-ai-authored-draft-gate-001.js \
+            check-screenshot-ai-fill.js \
+            check-screenshot-import.js \
+            check-screenshot-ingest.js \
+            check-screenshot-evidence-store.js \
+            check-screenshot-normalization.js
+
+      # The interpreter resolution is the reason Windows imports used to fail
+      # outright, so it is exercised on the platform it was written for.
+      - name: 拼合降级在 Windows 上的真实行为
+        run: |
+          node -e "
+            const { resolvePythonForStitching } = require('./start-screenshot-import');
+            const result = resolvePythonForStitching();
+            console.log(JSON.stringify(result, null, 2));
+            if (!result.ok && !Array.isArray(result.rejected)) {
+              console.error('不可用时必须说明每个候选为什么被拒');
+              process.exit(1);
+            }
+          "
+
+  # Everything else, for information only. Sixteen checks touch darwin paths and
+  # some will fail here; that is the platform gap this job is meant to measure,
+  # not a regression to block on. Read the artifact, do not read the colour.
+  windows-survey:
+    name: Windows 全量普查（不阻塞）
+    runs-on: windows-latest
+    timeout-minutes: 60
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # The repo's postinstall installs the frontend and electron-spike
+      # sub-projects, which fails here and which none of the headless gates
+      # need — check:ui and build:web are deliberately out of scope. Scripts are
+      # skipped and the two things that are actually required are put back: the
+      # Electron binary, and the native module built for Electron's ABI.
+      - name: 安装依赖（跳过 postinstall）
+        run: npm ci --ignore-scripts
+
+      - name: 下载 Electron 二进制
+        run: node node_modules/electron/install.js
+
+      - name: 将 better-sqlite3 重建为 Electron ABI
+        run: npx --no-install electron-rebuild -f -w better-sqlite3
+
+      # HRBOSS_CHECK_SURVEY makes the runner work through every check instead of
+      # stopping at the first failure. Without it this step only ever reported
+      # the earliest Windows failure and said nothing about the ~97 behind it.
+      - name: 全量 check（失败不阻塞，只为看清 Windows 上还差什么）
+        continue-on-error: true
+        env:
+          HRBOSS_CHECK_SURVEY: '1'
+        # Both suites run explicitly rather than through `npm run check`, whose
+        # precheck lifecycle hook aborts the run before the 101-check suite
+        # starts as soon as precheck reports a failure — which on Windows it does.
+        run: |
+          node check-suite-runner.js precheck 2>&1 | tee windows-check-full.log || true
+          node check-suite-runner.js check 2>&1 | tee -a windows-check-full.log || true
+
+      - name: 汇总失败用例
+        if: always()
+        run: |
+          echo "### Windows 全量 check 结果" >> "$GITHUB_STEP_SUMMARY"
+          grep -E "^\[check-suite\] (pre)?check: (PASS|FAIL)" windows-check-full.log >> "$GITHUB_STEP_SUMMARY" || true
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          grep -E "^\[check-suite\] survey failed: " windows-check-full.log >> "$GITHUB_STEP_SUMMARY" \
+            || grep -E "failed \(exit|AssertionError" windows-check-full.log | head -40 >> "$GITHUB_STEP_SUMMARY" \
+            || echo "无失败记录" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-check-full-log
+          path: windows-check-full.log
+          retention-days: 14

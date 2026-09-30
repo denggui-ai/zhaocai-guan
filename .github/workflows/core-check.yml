@@ -1,0 +1,117 @@
+name: Core check
+
+# Hosted runners validate offline modules and the web build, not an installed
+# desktop app. Linux is a test host only; it is not a supported app platform.
+# Do not add real candidate data, AI keys, microphone access or signing secrets.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: core-check-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  core:
+    name: Core (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            frontend/package-lock.json
+
+      # Root postinstall also installs electron-spike. These headless checks
+      # resolve the pinned root Electron, so install only the required projects.
+      - name: Install locked dependencies
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          node node_modules/electron/install.js
+          npx --no-install electron-rebuild -f -w better-sqlite3
+          npm --prefix frontend ci --no-audit --no-fund
+
+      - name: Record runtime
+        run: |
+          node -e "console.log('host', process.platform, process.arch, process.version); console.log('electron', require('electron/package.json').version)"
+          node -e "console.log('native build', require('fs').readFileSync('node_modules/better-sqlite3/build/Release/.forge-meta', 'utf8').trim())"
+
+      # All fixtures are synthetic. Secure storage and AI transports use mocks;
+      # SQLite, filesystem operations and loopback HTTP use the real local code.
+      # The PDF recovery check injects tools: Poppler/Swift/ASR are not required.
+      - name: Offline core checks
+        run: |
+          node check-suite-runner.js files \
+            check-local-principal.js \
+            check-external-ai-user-approval.js \
+            check-external-ai-gateway-001.js \
+            check-secure-llm-config-store-001.js \
+            check-secure-llm-startup-fail-closed-001.js \
+            check-desktop-user-data-001.js \
+            check-schema-migration.js \
+            check-f011-backup-recovery.js \
+            check-resume-structure-001.js \
+            check-manual-resume-upload-001.js \
+            check-resume-candidate-intake-001.js \
+            check-job-multi-001.js \
+            check-interview-material-paths.js \
+            check-task-run-state.js \
+            check-task-error-policy.js \
+            check-screenshot-normalization.js \
+            check-screenshot-evidence-store.js \
+            check-hr-workflow-guide-001.js 2>&1 | tee core-check.log
+
+      - name: macOS launcher contracts (no GUI)
+        if: runner.os == 'macOS'
+        run: node check-suite-runner.js files check-macos-single-instance-001.js 2>&1 | tee macos-launcher-check.log
+
+      - name: Skip macOS launcher contracts on Linux
+        if: runner.os != 'macOS'
+        run: echo 'SKIP macOS-only launcher contracts on Linux; this is not a Linux desktop acceptance run.'
+
+      - name: Build web interface
+        run: npm run build:web 2>&1 | tee web-build.log
+
+      - name: Record coverage boundaries
+        if: always()
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'SUMMARY'
+          ### Scope of this run
+          - Offline core module checks and the Vite build; see step results for actual pass/fail.
+          - macOS launcher contracts run only on macOS and use mocked app APIs.
+          - Screenshot stitching may explicitly skip when Python/Pillow is absent.
+          - NOT RUN: Electron GUI, clean installation, packaging/signing/notarization, system Keychain, real OCR/PDF tools, recording/ASR, paid AI or platform accounts.
+          - Linux is a headless test host, not a supported desktop release. This workflow does not replace the release gates or HR acceptance checklist.
+          SUMMARY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: core-check-${{ matrix.os }}-logs
+          path: |
+            core-check.log
+            macos-launcher-check.log
+            web-build.log
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,47 @@
+title = "Zhaocai Guan source secret scan"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Deterministic synthetic approval secret for the assessment route regression"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(?:^|/)check-assessment-ai-analysis\.js$''']
+regexes = ['''^synthetic-assessment-route-approval-secret-0001$''']
+
+# Exact, reviewed false positives only. No whole test directories are skipped.
+[[allowlists]]
+description = "Synthetic fixture instance identifiers"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(?:^|/)check-f01[78]-product-wiring\.js$''']
+regexes = ['''^synthetic-f01[78]-instance$''']
+
+[[allowlists]]
+description = "Offline synthetic HTTPS server credentials"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(?:^|/)checks/test-ai-(?:native-approval|failure-matrix)/runtime-controller\.js$''']
+regexes = ['''^synthetic-b(?:2|11)-api-key$''']
+
+[[allowlists]]
+description = "Public localStorage preference names, never credentials"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(?:^|/)(?:frontend/src/App\.jsx|check-ux-g0-d2-operational-readonly\.js|check-settings-state-001\.js)$''']
+regexes = ['''^hrboss\.ui\.(?:brandMark|appNavCollapsed)\.v1$''']
+
+[[allowlists]]
+description = "Public CSS custom-property names"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(?:^|/)frontend/src/theme\.js$''']
+regexes = ['''^--hb-v2-(?:surface-muted|ink-secondary|brand-subtle)$''']
+
+[[allowlists]]
+description = "Deterministic owner-token fixtures for local fsync failure tests"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(?:^|/)check-interview-recording-consent-withdrawal-001\.js$''']
+regexes = ['''^(?:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef|abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890)$''']

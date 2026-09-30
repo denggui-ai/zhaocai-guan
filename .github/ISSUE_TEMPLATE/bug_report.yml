@@ -1,0 +1,61 @@
+name: 缺陷报告
+description: 应用的行为和预期不一致
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交前请确认：截图和描述里不包含真实候选人的姓名、电话、简历内容、访问密钥或令牌。安全漏洞请先阅读 SECURITY.md，不在此公开细节。
+  - type: textarea
+    id: steps
+    attributes:
+      label: 操作步骤
+      description: 从打开应用开始，一步一步写出你做了什么
+      placeholder: |
+        1. 打开应用，进入「候选人」
+        2. 点击「导入截图」
+        3. ……
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+      description: 有报错文案请原样粘贴
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      options:
+        - macOS（Apple 芯片）
+        - macOS（Intel 芯片）
+        - Windows x64（实验性源码）
+        - Linux（未支持）
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: 系统版本
+      placeholder: 例如 macOS 15.2
+  - type: dropdown
+    id: install
+    attributes:
+      label: 安装方式
+      options:
+        - 本地构建的技术候选包（非已发布版本）
+        - 从源码启动
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 应用版本或提交号

@@ -1,0 +1,25 @@
+name: 功能建议
+description: 希望应用增加或改进某项能力
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        本项目不会加入自动操作招聘平台账号、自动联系候选人、由 AI 直接决定候选人去留的功能。其余方向都欢迎讨论。
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你在招聘工作里遇到了什么问题
+      description: 先讲问题，再讲方案。问题讲清楚了，往往能找到更好的方案
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你希望应用怎么帮你
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: 你现在是怎么解决的

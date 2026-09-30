@@ -1,0 +1,38 @@
+/*
+ * Shared native foundation.
+ *
+ * Ant Design control appearance is owned by theme.js component tokens. This
+ * layer deliberately avoids Ant's internal DOM so a library patch cannot
+ * silently invalidate our control states.
+ */
+
+html {
+  color-scheme: light;
+  background: var(--hb-v2-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--hb-v2-canvas);
+  color: var(--hb-v2-ink);
+  font-family: var(--hb-font-family);
+  font-size: var(--hb-type-body);
+  font-feature-settings: "kern" 1, "tnum" 1;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  letter-spacing: 0;
+}
+
+::selection {
+  background: var(--hb-primary-soft);
+  color: var(--hb-v2-ink);
+}

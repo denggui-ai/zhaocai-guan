@@ -1,0 +1,25 @@
+# 中转 API 配置：含明文 key，绝不进版本库 / 不外发
+rating-config.json
+
+# 本地数据库（含候选人 PII）
+data/
+.dev-data/
+
+node_modules/
+frontend/dist/
+.runtime/
+out/
+dist/
+
+# 运行日志、环境变量和任何意外落在 data/ 外的数据库均不得进入源码基线
+*.log
+.env
+.env.*
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+.DS_Store
+
+# 本地评审工具目录（critique 等工作产物，不属于源码基线）
+.impeccable/

@@ -1,0 +1,12 @@
+{
+  "name": "zhaocai-guan-electron-runtime",
+  "version": "1.0.0",
+  "description": "Pins the Electron runtime used to launch Zhaocai Guan from source.",
+  "keywords": [],
+  "author": "Zhaocai Guan contributors",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^42.5.1"
+  }
+}

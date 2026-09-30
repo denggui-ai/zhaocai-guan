@@ -1,0 +1,912 @@
+/* --------------------------------------------------------------------------
+   Decision UI system
+   Quiet desktop shell, scan-friendly summaries, and one surface per task.
+   -------------------------------------------------------------------------- */
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 212px;
+  z-index: 9999;
+  padding: 8px 12px;
+  border: 2px solid var(--hb-primary);
+  border-radius: 6px;
+  background: var(--hb-surface);
+  color: var(--hb-primary-dark);
+  font-size: 13px;
+  font-weight: 600;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--hb-primary);
+  outline-offset: 2px;
+}
+
+/* VL P0 surface levels (VL-001 §容器层级). Section is the only bordered
+   card level and inset the borderless tinted level below it; a page shows at
+   most two nested bordered containers, so anything a third level deep must
+   use inset or move to its own page. Adopted per module during the P1
+   migrations — new containers pick one of these instead of hand-rolling
+   border/background combinations. */
+.vl-surface-section {
+  border: 1px solid var(--hb-border);
+  border-radius: var(--hb-radius);
+  background: var(--hb-surface);
+}
+
+.vl-surface-inset {
+  border: 0;
+  border-radius: var(--hb-radius-sm);
+  background: var(--hb-surface-soft);
+}
+
+/* VL P0 shared page header (PageHeader.jsx). */
+.vl-page-header-kicker {
+  color: var(--hb-primary-dark);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* VL P0 shared empty surface (EmptyState.jsx). */
+.vl-empty-state-description {
+  display: grid;
+  gap: 4px;
+  max-width: 520px;
+}
+
+.vl-empty-state-title {
+  color: var(--hb-text);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.vl-empty-state-hint {
+  color: var(--hb-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.vl-empty-state-compact {
+  margin-block: 16px;
+}
+
+.deep-profile-modal-introduction:focus,
+.deep-profile-modal-introduction:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--hb-primary);
+  /* Inset: the block is the first child of the modal's overflow:auto body,
+     so an outward ring gets clipped on the top/left/right container edges
+     and renders as a bare bottom line (verified in a real focused window). */
+  outline-offset: -2px;
+}
+
+.app-nav {
+  padding: 16px 11px 13px;
+  border-right: 1px solid var(--hb-border);
+  background: var(--hb-shell);
+  transition: width 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    min-width 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    flex-basis 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.app-nav.app-nav-collapsed {
+  padding-inline: 0;
+  border-right: 0;
+}
+
+.app-nav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.app-nav-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 19px;
+}
+
+.brand-mark {
+  flex: 1 1 auto;
+  height: 38px;
+  margin: 0 0 0 6px;
+  color: var(--hb-text);
+}
+
+.app-nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 6px;
+  color: var(--hb-muted);
+}
+
+.app-nav-toggle:hover,
+.app-nav-toggle:focus-visible {
+  background: var(--hb-control-item-hover-bg);
+  color: var(--hb-text);
+}
+
+.app-nav-toggle:focus-visible {
+  outline: 2px solid var(--hb-primary);
+  outline-offset: 1px;
+}
+
+.app-nav-collapse-toggle {
+  flex: 0 0 44px;
+}
+
+.brand-mark span {
+  width: 32px;
+  height: 32px;
+  border-color: var(--hb-primary-hover);
+  border-radius: 8px;
+  background: var(--hb-primary);
+  box-shadow: var(--hb-v2-shadow-primary);
+}
+
+.brand-mark strong {
+  color: var(--hb-text);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.nav-primary {
+  gap: 3px;
+}
+
+.nav-utility {
+  display: flex;
+  align-items: center;
+  min-height: 62px;
+  margin-top: auto;
+  padding-top: 9px;
+  border-top: 1px solid var(--hb-border);
+}
+
+.app-nav-footer-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 44px;
+  height: 44px;
+  padding-inline: 10px;
+  overflow: hidden;
+  border-radius: 6px;
+  color: var(--hb-muted);
+  font-size: 13px;
+  font-weight: 550;
+  text-align: left;
+}
+
+.app-nav-footer-label {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-nav-footer-disclosure {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--hb-faint);
+  font-size: 10px;
+  transition: transform 150ms ease;
+}
+
+.app-nav-footer-disclosure.open {
+  transform: rotate(180deg);
+}
+
+.app-nav-utility-dropdown {
+  width: 252px;
+  max-width: calc(100vw - 16px);
+}
+
+.app-nav-utility-menu-item {
+  min-height: 52px;
+}
+
+.app-nav-utility-menu-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+  line-height: 1.25;
+}
+
+.app-nav-utility-menu-title {
+  color: var(--hb-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.app-nav-utility-menu-description {
+  overflow: hidden;
+  color: var(--hb-faint);
+  font-size: 11px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-nav-footer-main:hover,
+.app-nav-footer-main:focus-visible {
+  background: var(--hb-control-item-hover-bg);
+  color: var(--hb-text);
+}
+
+.app-nav-footer-main.active {
+  background: var(--hb-primary-soft);
+  color: var(--hb-primary-active);
+}
+
+.app-nav-footer-main:focus-visible {
+  outline: 2px solid var(--hb-primary);
+  outline-offset: -2px;
+}
+
+.nav-item {
+  min-height: 36px;
+  height: 36px;
+  padding-inline: 10px;
+  border-radius: 6px;
+  color: var(--hb-muted);
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 120ms ease, background-color 120ms ease;
+}
+
+.nav-item-icon {
+  color: var(--hb-faint);
+  font-size: 15px;
+}
+
+.nav-item.active {
+  background: var(--hb-primary-soft);
+  color: var(--hb-primary-active);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.nav-item.active .nav-item-icon {
+  color: var(--hb-primary);
+}
+
+.nav-item.active::before,
+.nav-item.active::after {
+  display: none;
+  animation: none;
+}
+
+.nav-item:hover,
+.nav-item:focus-visible {
+  background: var(--hb-table-row-hover-bg);
+  color: var(--hb-text);
+}
+
+.nav-item.active:hover,
+.nav-item.active:focus-visible {
+  background: var(--hb-primary-soft);
+  color: var(--hb-primary-active);
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid var(--hb-primary);
+  outline-offset: -2px;
+}
+
+.top-header {
+  min-height: 54px;
+  border-bottom: 1px solid var(--hb-border);
+  background: var(--hb-surface-soft);
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.top-header-app-nav-collapsed {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: start;
+}
+
+.app-nav-restore-toggle {
+  margin: 11px 0 0 12px;
+}
+
+.top-header-app-nav-collapsed .topbar {
+  min-width: 0;
+}
+
+.app-nav-is-collapsed .skip-link {
+  left: 12px;
+}
+
+.topbar {
+  min-height: 54px;
+  padding: 7px 16px;
+}
+
+.topbar-source {
+  grid-column: 2;
+}
+
+.topbar-actions {
+  grid-column: 3;
+}
+
+.topbar-job-context {
+  border-color: var(--hb-control-border);
+  border-radius: 7px;
+  background: var(--hb-neutral-soft);
+}
+
+.detail-content {
+  padding: 20px 22px 28px;
+  background: var(--hb-bg);
+}
+
+.detail-content:focus-visible {
+  outline: 2px solid var(--hb-primary);
+  outline-offset: -3px;
+}
+
+.candidate-sider-heading {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 4px;
+}
+
+.candidate-sider-heading .candidate-sider-title {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.candidate-list-panel-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 1px solid var(--hb-control-border);
+  border-radius: 6px;
+  background: var(--hb-surface);
+  color: var(--hb-muted);
+  box-shadow: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.candidate-sider-toolbar .candidate-list-collapse-toolbar {
+  width: 44px;
+  min-height: 44px;
+  height: 44px;
+  padding: 0;
+}
+
+.candidate-list-restore-control {
+  width: auto;
+  max-width: 100%;
+  padding-inline: 10px;
+  color: var(--hb-primary-active);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.candidate-list-panel-toggle:hover,
+.candidate-list-panel-toggle:focus-visible {
+  border-color: var(--hb-primary);
+  background: var(--hb-primary-soft);
+  color: var(--hb-primary-active);
+}
+
+.candidate-list-panel-toggle:focus-visible {
+  outline: 2px solid var(--hb-primary);
+  outline-offset: 2px;
+}
+
+.candidate-list-panel-toggle-icon {
+  transition: transform 160ms ease;
+}
+
+.candidate-list-collapse-toolbar:hover .candidate-list-panel-toggle-icon,
+.candidate-list-collapse-toolbar:focus-visible .candidate-list-panel-toggle-icon {
+  transform: translateX(-1px);
+}
+
+.candidate-list-restore-control:hover .candidate-list-panel-toggle-icon,
+.candidate-list-restore-control:focus-visible .candidate-list-panel-toggle-icon {
+  transform: translateX(1px);
+}
+
+.candidate-list-panel-toggle:active .candidate-list-panel-toggle-icon {
+  transform: translateX(0);
+}
+
+.candidate-detail-content {
+  padding: 0;
+  background: var(--hb-surface);
+}
+
+.candidate-focus-bar {
+  min-height: 42px;
+  margin: 0;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--hb-border);
+  border-radius: 0;
+  background: var(--hb-surface-soft);
+}
+
+.candidate-focus-identity {
+  overflow: hidden;
+}
+
+.candidate-focus-identity strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.job-ledger-page,
+.talent-pool-page,
+.interview-schedule-panel,
+.settings-panel,
+.workflow-guide-page {
+  width: 100%;
+  max-width: 1320px;
+}
+
+.job-ledger-hero,
+.talent-pool-hero,
+.interview-schedule-head,
+.settings-head {
+  min-height: 64px;
+  padding: 3px 1px 13px;
+  border: 0;
+  border-bottom: 1px solid var(--hb-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.job-ledger-hero h2,
+.talent-pool-hero h2,
+.interview-schedule-head h2,
+.settings-head h2 {
+  font-size: var(--hb-type-title);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.interview-schedule-canonical > .interview-schedule-head > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.interview-schedule-canonical .interview-schedule-title,
+.interview-schedule-canonical .interview-schedule-title h2 {
+  min-width: 0;
+  margin: 0;
+}
+
+.job-ledger-summary,
+.talent-pool-overview,
+.interview-schedule-stats,
+.settings-state-grid.settings-overview-grid {
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid var(--hb-border);
+  border-radius: 8px;
+  background: var(--hb-surface);
+  box-shadow: none;
+}
+
+.job-ledger-summary .job-ledger-summary-card,
+.talent-pool-stat,
+.interview-schedule-stat,
+.settings-state-grid.settings-overview-grid .settings-state-card {
+  min-height: 84px;
+  border: 0;
+  border-right: 1px solid var(--hb-v2-stroke-subtle);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.job-ledger-summary .job-ledger-summary-card:last-child,
+.talent-pool-stat:last-child,
+.interview-schedule-stat:last-child,
+.settings-state-grid.settings-overview-grid .settings-state-card:nth-child(3n),
+.settings-state-grid.settings-overview-grid .settings-state-card:last-child {
+  border-right: 0;
+}
+
+.settings-state-grid.settings-overview-grid .settings-state-card:nth-child(2n) {
+  border-right: 0;
+}
+
+.settings-state-grid.settings-overview-grid .settings-state-card {
+  border-bottom: 1px solid var(--hb-v2-stroke-subtle);
+}
+
+.settings-state-grid.settings-overview-grid .settings-state-card:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.job-ledger-summary strong,
+.talent-pool-stat strong,
+.interview-schedule-stat strong,
+.settings-state-card strong {
+  font-size: 23px;
+  font-weight: 640;
+  font-variant-numeric: tabular-nums;
+}
+
+.talent-pool-stat span,
+.talent-pool-stat em,
+.interview-schedule-stat em,
+.interview-schedule-stat small,
+.settings-state-card em,
+.settings-state-card small {
+  font-size: 13px;
+}
+
+.job-ledger-table-card,
+.talent-pool-panel,
+.interview-schedule-boundary,
+.interview-schedule-queue,
+.settings-card,
+.settings-section-nav {
+  border-color: var(--hb-border);
+  box-shadow: none;
+}
+
+.talent-pool-panel,
+.interview-schedule-queue,
+.settings-card {
+  border-radius: 8px;
+}
+
+.talent-pool-overview,
+.interview-schedule-stats {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.talent-pool-stat,
+.interview-schedule-stat {
+  padding: 12px 13px;
+}
+
+.interview-schedule-stat {
+  grid-template-columns: 24px minmax(0, 1fr);
+}
+
+.interview-schedule-stat > span,
+.settings-state-card > span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.interview-schedule-queue.pending,
+.interview-schedule-queue.week,
+.interview-schedule-queue.prep,
+.interview-schedule-queue.feedback,
+.interview-schedule-queue.review,
+.interview-schedule-queue.exception {
+  border-left: 1px solid var(--hb-border);
+}
+
+.interview-schedule-queue.pending,
+.interview-schedule-queue.week,
+.interview-schedule-queue.prep,
+.interview-schedule-queue.feedback,
+.interview-schedule-queue.review {
+  background: var(--hb-surface);
+}
+
+.interview-schedule-queue.exception {
+  border-color: var(--hb-error-border);
+  background: var(--hb-error-soft);
+}
+
+.settings-section-nav {
+  position: static;
+  padding: 5px;
+  background: var(--hb-neutral-soft);
+}
+
+.settings-section-nav button {
+  min-height: 34px;
+  font-size: 13px;
+}
+
+.settings-state-grid.settings-overview-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.settings-state-grid.settings-overview-grid .settings-state-card {
+  padding: 13px 14px;
+}
+
+@media (max-width: 1100px) {
+  .detail-content {
+    padding: 18px;
+  }
+
+  .talent-pool-overview,
+  .interview-schedule-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .talent-pool-stat,
+  .interview-schedule-stat {
+    border-bottom: 1px solid var(--hb-v2-stroke-subtle);
+  }
+
+  .talent-pool-stat:nth-child(3n),
+  .interview-schedule-stat:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .talent-pool-stat:nth-last-child(-n + 3),
+  .interview-schedule-stat:nth-last-child(-n + 3) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .skip-link {
+    left: 12px;
+  }
+
+  .detail-content {
+    padding: 14px;
+  }
+
+  .job-ledger-summary,
+  .talent-pool-overview,
+  .interview-schedule-stats,
+  .settings-state-grid.settings-overview-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .job-ledger-summary .job-ledger-summary-card,
+  .talent-pool-stat,
+  .interview-schedule-stat,
+  .settings-state-grid.settings-overview-grid .settings-state-card {
+    border-right: 1px solid var(--hb-v2-stroke-subtle);
+    border-bottom: 1px solid var(--hb-v2-stroke-subtle);
+  }
+
+  .job-ledger-summary .job-ledger-summary-card:nth-child(2n),
+  .talent-pool-stat:nth-child(2n),
+  .interview-schedule-stat:nth-child(2n),
+  .settings-state-grid.settings-overview-grid .settings-state-card:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .job-ledger-summary .job-ledger-summary-card:nth-last-child(-n + 2),
+  .talent-pool-stat:nth-last-child(-n + 2),
+  .interview-schedule-stat:nth-last-child(-n + 2),
+  .settings-state-grid.settings-overview-grid .settings-state-card:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .settings-state-grid.settings-overview-grid .settings-state-card {
+    border-right: 0;
+  }
+
+  .settings-state-grid.settings-overview-grid .settings-state-card:not(:last-child) {
+    border-bottom: 1px solid var(--hb-v2-stroke-subtle);
+  }
+}
+
+@media (max-width: 900px) {
+  .top-header-app-nav-collapsed {
+    display: block;
+  }
+
+  .app-nav-restore-toggle {
+    display: none;
+  }
+
+  .mobile-module-nav {
+    min-height: 52px;
+    border-bottom: 1px solid var(--hb-border);
+    background: var(--hb-shell);
+  }
+
+  .mobile-module-brand,
+  .mobile-module-brand > strong {
+    color: var(--hb-text);
+  }
+
+  .mobile-module-brand > span {
+    border-color: var(--hb-primary-hover);
+    background: var(--hb-primary);
+    color: var(--hb-surface);
+  }
+
+  .mobile-module-field {
+    color: var(--hb-faint);
+  }
+
+  .mobile-module-field select {
+    border-color: var(--hb-control-border);
+    background: var(--hb-surface);
+    color: var(--hb-text);
+  }
+
+  .mobile-module-field select:focus-visible {
+    border-color: var(--hb-primary);
+    outline: 2px solid var(--hb-primary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-nav,
+  .app-nav-footer-disclosure,
+  .candidate-list-panel-toggle,
+  .candidate-list-panel-toggle-icon {
+    transition: none;
+  }
+}
+
+/* Assessment decisions stay evidence-first; scores are neutral metadata. */
+.assessment-archive-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.assessment-evidence-overview,
+.assessment-evidence-block,
+.assessment-secondary-score,
+.assessment-decision-support,
+.assessment-archive-skeleton-card {
+  border: 1px solid var(--hb-border);
+  border-radius: 8px;
+  background: var(--hb-surface);
+}
+
+.assessment-evidence-overview,
+.assessment-evidence-block,
+.assessment-decision-support {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+}
+
+.assessment-evidence-overview {
+  border-color: var(--hb-primary-border);
+  background: var(--hb-primary-subtle);
+}
+
+.assessment-evidence-overview h3,
+.assessment-evidence-block h3,
+.assessment-secondary-score h3,
+.assessment-decision-support h3 {
+  margin: 0;
+  color: var(--hb-text);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.assessment-evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.assessment-evidence-block-warning {
+  border-color: var(--hb-warning);
+  background: var(--hb-warning-subtle);
+}
+
+.assessment-evidence-block-info {
+  border-color: var(--hb-primary-border);
+  background: var(--hb-primary-subtle);
+}
+
+.assessment-evidence-items {
+  display: grid;
+  gap: 7px;
+}
+
+.assessment-career-match-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.assessment-secondary-score {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.65fr) max-content minmax(240px, 1.35fr);
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--hb-neutral-soft);
+  color: var(--hb-muted);
+}
+
+.assessment-secondary-score-value {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  color: var(--hb-text);
+}
+
+.assessment-secondary-score-value strong {
+  font-size: 20px;
+  font-weight: 650;
+}
+
+.assessment-decision-support {
+  background: var(--hb-neutral-soft);
+}
+
+.assessment-decision-support-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.assessment-archive-skeleton {
+  display: grid;
+  gap: 10px;
+  min-height: 320px;
+}
+
+.assessment-archive-skeleton-copy {
+  color: var(--hb-faint);
+  font-size: 13px;
+}
+
+.assessment-archive-skeleton-card {
+  min-height: 132px;
+  padding: 16px;
+}
+
+@media (max-width: 760px) {
+  .assessment-evidence-grid,
+  .assessment-secondary-score {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .assessment-career-match-row,
+  .assessment-decision-support-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@container candidate-workspace (max-width: 620px) {
+  .assessment-evidence-grid,
+  .assessment-secondary-score {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .assessment-career-match-row,
+  .assessment-decision-support-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

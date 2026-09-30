@@ -1,0 +1,9 @@
+# Windows checks out with core.autocrlf on by default, and several checks locate
+# blocks in the frontend sources with literal \n needles — styles.indexOf(
+# '.topbar-actions {\n  display: grid') and friends. A CRLF working tree turns
+# those into -1, so the check slices an empty string and asserts against '',
+# which reads as a UI regression rather than as a line-ending difference.
+#
+# Nothing in this repository is generated on a platform that needs CRLF, so the
+# simplest correct answer is to never translate.
+* -text

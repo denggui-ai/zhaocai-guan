@@ -1,0 +1,11 @@
+{
+  "base_url": "https://你的中转地址/v1",
+  "api_key": "sk-你的key",
+  "provider": "已完成数据处理审批的服务商名称",
+  "allowed_hosts": ["你的中转地址"],
+  "data_processing_approved": false,
+  "cost_acknowledged": false,
+  "model": "gpt-5.5",
+  "reasoning_effort": "high",
+  "timeout_ms": 180000
+}

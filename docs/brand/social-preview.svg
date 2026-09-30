@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title description">
+  <title id="title">招才官 · HR 的招聘桌面助手</title>
+  <desc id="description">简历整理、候选人评估、面试跟进。本机管理，AI 可选，人工决策。</desc>
+  <rect width="1280" height="640" fill="#F6F8F6"/>
+  <rect x="0" y="0" width="1280" height="12" fill="#0C514C"/>
+  <g font-family="PingFang SC, Microsoft YaHei, sans-serif">
+    <text x="80" y="92" font-size="21" font-weight="600" letter-spacing="3" fill="#41736B">ZHAOCAI GUAN</text>
+    <text x="78" y="265" font-size="100" font-weight="700" letter-spacing="4" fill="#0C3434">招才官</text>
+    <text x="83" y="336" font-size="34" font-weight="500" fill="#385A55">HR 的招聘桌面助手</text>
+    <rect x="878" y="132" width="334" height="316" rx="44" fill="#EAF0EB"/>
+<svg xmlns="http://www.w3.org/2000/svg" x="922" y="167" width="246" height="246" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="100" x2="880" y2="930" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B2A30"/>
+      <stop offset="0.55" stop-color="#0C3B3C"/>
+      <stop offset="1" stop-color="#0A1F2B"/>
+    </linearGradient>
+    <linearGradient id="figure" x1="300" y1="250" x2="720" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#BFEFE7"/>
+    </linearGradient>
+    <linearGradient id="bench" x1="232" y1="0" x2="792" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2DD4BF"/>
+      <stop offset="1" stop-color="#0E9F8E"/>
+    </linearGradient>
+    <clipPath id="above-bench">
+      <rect x="0" y="0" width="1024" height="742"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1024" height="1024" rx="228" fill="url(#bg)"/>
+  <rect x="60" y="60" width="904" height="904" rx="180" fill="none" stroke="#FFFFFF" stroke-opacity="0.07" stroke-width="12"/>
+
+  <!-- person: head and shoulders, cut flat where they meet the bench -->
+  <g clip-path="url(#above-bench)">
+    <circle cx="476" cy="382" r="122" fill="url(#figure)"/>
+    <path d="M232 800c0-150 108-246 244-246s244 96 244 246z" fill="url(#figure)"/>
+  </g>
+
+  <!-- bench -->
+  <rect x="200" y="742" width="624" height="58" rx="29" fill="url(#bench)"/>
+
+  <!-- spark: the moment of spotting talent -->
+  <path d="M742 176c10 66 34 90 100 100-66 10-90 34-100 100-10-66-34-90-100-100 66-10 90-34 100-100z" fill="#F5D36B"/>
+  <circle cx="846" cy="408" r="17" fill="#F5D36B" opacity="0.8"/>
+</svg>
+
+    <line x1="80" y1="465" x2="1200" y2="465" stroke="#CDDCD5" stroke-width="1"/>
+    <text x="82" y="524" font-size="25" font-weight="600" fill="#143F39">简历整理</text>
+    <circle cx="242" cy="515" r="3" fill="#8BA59B"/>
+    <text x="269" y="524" font-size="25" font-weight="600" fill="#143F39">候选人评估</text>
+    <circle cx="455" cy="515" r="3" fill="#8BA59B"/>
+    <text x="482" y="524" font-size="25" font-weight="600" fill="#143F39">面试跟进</text>
+    <text x="82" y="580" font-size="19" fill="#57736C">本机管理 · AI 可选 · 人工决策</text>
+    <text x="1200" y="580" text-anchor="end" font-size="17" letter-spacing="1.5" fill="#57736C">OPEN SOURCE</text>
+  </g>
+</svg>

@@ -1,0 +1,104 @@
+{
+  "title": "招才官四步图解演示",
+  "captured_on": "2026-09-30",
+  "type": "Original still screenshots, not a screen recording",
+  "application": {
+    "name": "招才官",
+    "version": "1.0.1",
+    "platform": "macOS arm64",
+    "source_commit": "c7c91f52af3e11f67023006c2edc6f3f441d1dde",
+    "package_channel": "local candidate, unpublished"
+  },
+  "capture": {
+    "method": "CUA screenshots of the actual unmodified packaged native app",
+    "isolated_initially_empty_data": true,
+    "synthetic_input_material_only": true,
+    "fixture_mode": false,
+    "ipc_or_network_responses_replaced": false,
+    "external_ai_calls": false,
+    "messages_sent": false
+  },
+  "privacy_review": {
+    "method": "Visual inspection of all four original frames and comparison with synthetic input/journey record; image metadata reviewed",
+    "real_candidate_material": false,
+    "real_contact_details": false,
+    "visible_secrets_or_local_account_paths": false,
+    "metadata": "EXIF contains image width/height only. Empty IPTC, standard JFIF and embedded display ICC profile retained. No author, GPS, username or file path metadata observed.",
+    "meeting_link": "Reserved example.invalid domain; not a real meeting"
+  },
+  "known_limitations": [
+    "These captures predate the source fix for resume experience section parsing; the affected experience body is not visible in the selected candidate frame. These images are not validation evidence for the fix; consult each release note for its actual validation scope.",
+    "Screenshots do not prove complete HR acceptance, clean-system installation, real AI compatibility, microphone operation or system Keychain behavior.",
+    "Boss App in the screenshot workspace name describes a source category; no platform login, connection, scraping or messaging was used."
+  ],
+  "frames": [
+    {
+      "step": 1,
+      "file": "01-job-ledger.jpg",
+      "title_zh": "两个独立本地岗位",
+      "media_type": "image/jpeg",
+      "width": 2720,
+      "height": 1758,
+      "bytes": 368945,
+      "sha256": "b6882f3cc03b4804f62cd9cfba5d8a82e9ee9f0ce80f76d19cc7fc147e791e4b",
+      "source_capture_file": "01-job-ledger.png",
+      "transformations": [
+        "Filename extension corrected from .png to .jpg; source was already JPEG."
+      ],
+      "pixel_edits": false,
+      "reencoded": false,
+      "original_bytes_preserved": true
+    },
+    {
+      "step": 2,
+      "file": "02-candidate-records.jpg",
+      "title_zh": "简历确认建档与已知字段",
+      "media_type": "image/jpeg",
+      "width": 2720,
+      "height": 1758,
+      "bytes": 516468,
+      "sha256": "12276133379e218245d291ef30ec6db142137a08ef32dda68354a74dce22545f",
+      "source_capture_file": "02-candidate-records.png",
+      "transformations": [
+        "Filename extension corrected from .png to .jpg; source was already JPEG."
+      ],
+      "pixel_edits": false,
+      "reencoded": false,
+      "original_bytes_preserved": true
+    },
+    {
+      "step": 3,
+      "file": "03-interview-scheduled.jpg",
+      "title_zh": "人工排期，邀约未发送",
+      "media_type": "image/jpeg",
+      "width": 2720,
+      "height": 1758,
+      "bytes": 423886,
+      "sha256": "b034052537f9bc8e2971f83f0b4a753120fc392c750a6e59023796ab1d0fabd6",
+      "source_capture_file": "03-interview-scheduled.png",
+      "transformations": [
+        "Filename extension corrected from .png to .jpg; source was already JPEG."
+      ],
+      "pixel_edits": false,
+      "reencoded": false,
+      "original_bytes_preserved": true
+    },
+    {
+      "step": 4,
+      "file": "06-ocr-rejected.jpg",
+      "title_zh": "OCR 驳回不进入正式候选人",
+      "media_type": "image/jpeg",
+      "width": 2720,
+      "height": 1758,
+      "bytes": 295123,
+      "sha256": "5602ea48d0ee5a3337c3dba699ba2ae7e97b4f1ab3b4282f3ea621c15b687c93",
+      "source_capture_file": "06-ocr-rejected.png",
+      "transformations": [
+        "Filename extension corrected from .png to .jpg; source was already JPEG."
+      ],
+      "pixel_edits": false,
+      "reencoded": false,
+      "original_bytes_preserved": true
+    }
+  ]
+}

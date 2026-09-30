@@ -1,0 +1,1134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boss 候选人只读浏览</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --panel: #fff;
+      --line: #dfe3ea;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --soft: #f1f3f5;
+      --green: #0f8b61;
+      --red: #c2413b;
+      --blue: #2764c7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+    .top {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    select, input {
+      height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0 10px;
+      background: #fff;
+      color: var(--text);
+    }
+    select:disabled { color: #9ca3af; background: var(--soft); }
+    .source { margin-left: auto; color: var(--muted); font-size: 13px; }
+    .layout {
+      height: calc(100vh - 56px);
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      overflow: hidden;
+    }
+    .side {
+      border-right: 1px solid var(--line);
+      background: var(--panel);
+      overflow: auto;
+    }
+    .filters {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .filter-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .card {
+      display: grid;
+      gap: 7px;
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+    }
+    .card:hover, .card.active { background: #eef4ff; }
+    .card-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .name { font-weight: 700; font-size: 16px; }
+    .desc {
+      color: #374151;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .badge-pending {
+      border: 1px dashed #aeb6c2;
+      background: #fff;
+      color: #9ca3af;
+      font-style: italic;
+    }
+    .badge-s { background: #111827; color: #fff; }
+    .badge-a { background: #e8f6ef; color: var(--green); }
+    .badge-b { background: #edf4ff; color: var(--blue); }
+    .badge-c { background: #fff1f0; color: var(--red); }
+    .badge-d { background: #f3f4f6; color: #6b7280; }
+    .score-tag { background: #eef2ff; color: #4338ca; font-weight: 600; }
+    .expert { line-height: 1.75; white-space: pre-wrap; background: #fafafa; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+    .modal textarea { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; resize: vertical; }
+    .small { color: var(--muted); font-size: 12px; }
+    main { overflow: auto; padding: 18px; }
+    .empty {
+      min-height: calc(100vh - 92px);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+    }
+    .detail {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      min-width: 0;
+    }
+    h2, h3 { margin: 0 0 10px; line-height: 1.2; }
+    h2 { font-size: 24px; }
+    h3 { font-size: 15px; }
+    .block { margin-top: 14px; }
+    .full-desc { white-space: pre-wrap; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .field {
+      min-height: 48px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+    }
+    .label { display: block; color: var(--muted); font-size: 12px; }
+    .placeholder { color: #9ca3af; font-style: italic; }
+    .empty-box {
+      min-height: 96px;
+      display: grid;
+      place-items: center;
+      padding: 14px;
+      border: 1px dashed #c7cdd7;
+      border-radius: 8px;
+      background: #fafbfc;
+      color: #8b95a3;
+      text-align: center;
+    }
+    .resume-section { margin-top: 14px; }
+    .resume-item {
+      margin-top: 8px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+    }
+    .resume-title { font-weight: 700; }
+    .resume-meta, .resume-text { margin-top: 4px; color: #374151; white-space: pre-wrap; }
+    details {
+      margin-top: 14px;
+      border: 1px dashed #c7cdd7;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fafbfc;
+    }
+    summary { cursor: pointer; color: var(--muted); }
+    code {
+      display: block;
+      overflow-wrap: anywhere;
+      margin-top: 6px;
+      color: #4b5563;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
+    mark { background: #fff2a8; padding: 0 2px; border-radius: 2px; }
+    .btn {
+      height: 32px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--soft); }
+    .btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .btn-primary:hover { filter: brightness(1.05); }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.35);
+      display: none;
+      place-items: center;
+      z-index: 10;
+    }
+    .overlay.open { display: grid; }
+    .modal {
+      width: min(680px, 92vw);
+      max-height: 88vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .modal h2 { font-size: 20px; }
+    .modal .hint { color: var(--muted); font-size: 13px; margin: -4px 0 12px; }
+    .modal .row { display: grid; gap: 6px; margin-bottom: 14px; }
+    .modal label.inline { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+    .modal input[type=text], .modal input[type=number] { width: 100%; }
+    .group {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: grid;
+      gap: 8px;
+    }
+    .group-head { display: flex; align-items: center; gap: 10px; }
+    .group-head input[type=text] { flex: 1; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+    .link-btn { background: none; border: none; color: var(--red); cursor: pointer; font-size: 13px; }
+    .modal-wide { width: min(880px, 94vw); }
+    /* 深度画像条目：绿=负责人明说（引原话），橙=AI推断（给依据）——负责人核对时一眼分清 */
+    .dp-item {
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--green);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-top: 8px;
+      background: #fff;
+    }
+    .dp-item.inferred { border-left-color: #d97706; }
+    .dp-badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: #e8f6ef;
+      color: var(--green);
+      margin-left: 6px;
+      vertical-align: 1px;
+    }
+    .dp-item.inferred .dp-badge { background: #fef3c7; color: #b45309; }
+    .dp-quote { color: #4b5563; font-size: 12px; margin-top: 4px; }
+    .dp-basis { color: #92400e; font-size: 12px; margin-top: 4px; }
+    .dp-item textarea { width: 100%; box-sizing: border-box; margin-top: 6px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; font: inherit; resize: vertical; }
+    /* 第二意见：紫色系，跟档位色系错开，强调它不参与评级 */
+    .second-opinion {
+      border: 1px solid #ddd6fe;
+      border-left: 4px solid #7c3aed;
+      background: #faf8ff;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-top: 8px;
+    }
+    .so-banner {
+      background: #fef9c3;
+      border: 1px solid #facc15;
+      color: #854d0e;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .deep-status { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0; }
+    .login-state {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      color: #6b7280;
+      background: #f9fafb;
+      white-space: nowrap;
+    }
+    .login-state.ok { border-color: #86efac; color: #166534; background: #f0fdf4; }
+    .login-state.off { border-color: #fca5a5; color: #991b1b; background: #fef2f2; }
+    @media (max-width: 1180px) {
+      .detail { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <select id="jobSelect" aria-label="岗位"></select>
+    <select id="sabcFilter" title="按评级筛选">
+      <option value="">评级：全部</option>
+      <option value="S">S</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+      <option value="__none">未评级</option>
+    </select>
+    <button id="editProfile" class="btn">编辑招聘画像</button>
+    <button id="deepProfile" class="btn">访谈与深度画像</button>
+    <button id="rateJob" class="btn btn-primary">重新评级本岗位</button>
+    <button id="autoGreet" class="btn">启动自动打招呼</button>
+    <button id="autoResume" class="btn">启动自动求简历</button>
+    <button id="bossLoginBtn" class="btn">登录 Boss</button>
+    <span id="bossLoginState" class="login-state">登录状态查询中…</span>
+    <div id="source" class="source">读取中...</div>
+  </div>
+  <div class="layout">
+    <aside class="side">
+      <div class="filters">
+        <input id="search" placeholder="搜索姓名或自述">
+        <div class="filter-row">
+          <select id="commFilter"></select>
+          <select id="dispFilter"></select>
+        </div>
+      </div>
+      <div id="list"></div>
+    </aside>
+    <main id="main">
+      <div class="empty">从左侧选一个候选人查看详情</div>
+    </main>
+  </div>
+
+  <div id="profileOverlay" class="overlay">
+    <div class="modal">
+      <h2>招聘画像 · <span id="profileJobName"></span></h2>
+      <div class="hint">用大白话说清楚这个岗位要什么样的人，专家会照着它逐个点评、打分排序。改完保存后点顶部"重新评级本岗位"生效。</div>
+      <div class="row">
+        <strong>想要什么样的人（大白话）</strong>
+        <textarea id="rubric" rows="8" placeholder="例：招一个能独立搭 AI Agent 的后端。最好做过跨境电商 / ERP，懂供应链更好。要能自己啃需求、扛项目，稳定性重要。只会写普通增删改、没碰过大模型的一般般。"></textarea>
+        <div class="hint">留空也行——专家会按候选人本身的含金量给通用评价。</div>
+      </div>
+      <div class="row">
+        <strong>硬性要求（客观门槛，不符的排最后、不送专家打分）</strong>
+        <label class="inline"><input type="checkbox" id="degreeEnabled"> 学历门槛</label>
+        <input type="text" id="degreeAllowed" placeholder="允许的学历，逗号分隔，如 本科,硕士,博士,研究生">
+        <div class="hint">候选人学历都不在这里 → 判为不符硬性要求；学历取不到不误杀，只标待确认。</div>
+        <label class="inline"><input type="checkbox" id="salaryEnabled"> 薪资上限</label>
+        <input type="number" id="salaryCap" placeholder="上限（K），如 30">
+        <div class="hint">期望薪资上限超过它 → 不符硬性要求；"面议"不算超。</div>
+      </div>
+      <div class="modal-actions">
+        <button id="profileCancel" class="btn">取消</button>
+        <button id="profileSave" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="deepOverlay" class="overlay">
+    <div class="modal modal-wide">
+      <h2>访谈与深度画像 · <span id="deepJobName"></span></h2>
+      <div class="hint">把和用人部门负责人聊「要招什么人」的访谈转写丢进来，AI 会整理成一份 HR 能照着筛简历的深度画像。生成后复制给负责人核对确认。</div>
+      <div id="deepBody"><div class="small">读取中…</div></div>
+      <div class="modal-actions">
+        <button id="deepClose" class="btn">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API = 'http://127.0.0.1:17732/api';
+    const ACTION = 'http://127.0.0.1:17733/api';
+    const state = { jobs: [], candidates: [], selectedId: null, jobId: null, query: '', comm: '', disp: '', sabc: '', editing: null };
+
+    const el = (id) => document.getElementById(id);
+    const clean = (value) => value == null ? '' : String(value).trim();
+    const has = (value) => clean(value) !== '';
+    const escapeHtml = (value) => clean(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const pending = (text) => `<span class="placeholder">-- ${text}</span>`;
+
+    async function get(path) {
+      const res = await fetch(API + path);
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || path);
+      return data;
+    }
+
+    async function actionGet(path) {
+      const res = await fetch(ACTION + path);
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || path);
+      return data;
+    }
+
+    async function actionPost(path, body) {
+      const res = await fetch(ACTION + path, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || path);
+      return data;
+    }
+
+    function recLabel(raw) {
+      const text = clean(raw);
+      const match = text.match(/index=(\d+)/);
+      return match ? `推荐·第${match[1]}位` : '推荐';
+    }
+
+    function fmtTime(value) {
+      if (!has(value)) return '未知时间';
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? clean(value) : date.toLocaleString('zh-CN');
+    }
+
+    function sabcBadge(value) {
+      const v = clean(value).toUpperCase();
+      if (!v) return '<span class="tag badge-pending">未评级</span>';
+      return `<span class="tag badge-${v.toLowerCase()}">${escapeHtml(v)}</span>`;
+    }
+
+    function highlight(text) {
+      const source = escapeHtml(text);
+      const q = clean(state.query);
+      if (!q) return source;
+      return source.replaceAll(escapeHtml(q), `<mark>${escapeHtml(q)}</mark>`);
+    }
+
+    function optionSet(values, first) {
+      return `<option value="">${first}</option>` + [...new Set(values.filter(has))]
+        .map((v) => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+    }
+
+    function matchSabc(c) {
+      if (!state.sabc) return true;
+      if (state.sabc === '__none') return !has(c.sabc);
+      return clean(c.sabc).toUpperCase() === state.sabc;
+    }
+
+    function filteredCandidates() {
+      const q = clean(state.query).toLowerCase();
+      return state.candidates.filter((c) => {
+        const text = `${clean(c.name)} ${clean(c.geek_desc)}`.toLowerCase();
+        return (!q || text.includes(q))
+          && (!state.comm || c.comm_status === state.comm)
+          && (!state.disp || c.disposition_status === state.disp)
+          && matchSabc(c);
+      });
+    }
+
+    function renderFilters() {
+      el('commFilter').innerHTML = optionSet(state.candidates.map((c) => c.comm_status), '沟通状态：全部');
+      el('dispFilter').innerHTML = optionSet(state.candidates.map((c) => c.disposition_status), '处置状态：全部');
+      el('commFilter').value = state.comm;
+      el('dispFilter').value = state.disp;
+    }
+
+    function renderList() {
+      const list = filteredCandidates();
+      el('list').innerHTML = list.map((c) => `
+        <article class="card ${c.internal_id === state.selectedId ? 'active' : ''}" data-id="${escapeHtml(c.internal_id)}">
+          <div class="card-title">
+            <span class="name">${escapeHtml(c.name || '未命名候选人')}</span>
+            <span class="tag">${recLabel(c.rec_position)}</span>
+          </div>
+          <div class="desc">${highlight(c.geek_desc || '') || pending('待02b补全（在线简历）')}</div>
+          <div class="tags">
+            ${sabcBadge(c.sabc)}
+            ${has(c.verdict_label) ? `<span class="tag">${escapeHtml(c.verdict_label)}</span>` : ''}
+            <span class="tag">${escapeHtml(c.comm_status || '未打招呼')}</span>
+            <span class="tag">${escapeHtml(c.disposition_status || '新入库')}</span>
+          </div>
+          <div class="small">入库：${fmtTime(c.created_at)}</div>
+        </article>
+      `).join('');
+      el('list').querySelectorAll('.card').forEach((node) => {
+        node.addEventListener('click', () => selectCandidate(node.dataset.id));
+      });
+    }
+
+    function field(label, value, fill) {
+      return `<div class="field"><span class="label">${label}</span>${has(value) ? escapeHtml(value) : pending(fill)}</div>`;
+    }
+
+    function emptyBox(text) {
+      return `<div class="empty-box">${escapeHtml(text)}</div>`;
+    }
+
+    function parseSections(row) {
+      try {
+        return row && row.sections_json ? JSON.parse(row.sections_json) : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function joinParts(parts) {
+      return parts.filter(has).map(escapeHtml).join(' · ');
+    }
+
+    function resumeSection(title, rows, render) {
+      const list = Array.isArray(rows) ? rows : [];
+      const body = list.length ? list.map(render).join('') : '<div class="resume-item placeholder">暂无</div>';
+      return `<div class="resume-section"><h3>${escapeHtml(title)}</h3>${body}</div>`;
+    }
+
+    function resumeItem(title, meta, text) {
+      return `<div class="resume-item">
+        ${has(title) ? `<div class="resume-title">${escapeHtml(title)}</div>` : ''}
+        ${has(meta) ? `<div class="resume-meta">${meta}</div>` : ''}
+        ${has(text) ? `<div class="resume-text">${escapeHtml(text)}</div>` : ''}
+      </div>`;
+    }
+
+    function renderResume(children) {
+      const row = children.resume_online[0];
+      if (!row) return emptyBox('结构化在线简历待02b拉取后在此分6段展示；附件和付费墙状态也会出现在这里。');
+      if (Number(row.is_paywalled) === 1) return emptyBox('简历未公开');
+      const s = parseSections(row);
+      if (!s) return emptyBox('简历数据格式异常');
+      return [
+        resumeSection('自我描述', s.basic, (item) => resumeItem(item.name || '基本信息', joinParts([item.age, item.work_years, item.degree, item.status]), item.description)),
+        resumeSection('求职期望', s.expect, (item) => resumeItem(item.position || '期望职位', joinParts([item.city, item.salary]), '')),
+        resumeSection('教育', s.edu, (item) => resumeItem(item.school, joinParts([item.major, item.degree, item.start && item.end ? `${item.start}-${item.end}` : '', (item.tags || []).join('/')]), '')),
+        resumeSection('工作', s.work, (item) => resumeItem(item.company, joinParts([item.title, item.start && item.end ? `${item.start}-${item.end}` : '']), item.desc)),
+        resumeSection('项目', s.proj, (item) => resumeItem(item.name, joinParts([item.role, item.start && item.end ? `${item.start}-${item.end}` : '']), item.desc)),
+        resumeSection('技能', s.skill, (item) => resumeItem('', '', item.text)),
+      ].join('');
+    }
+
+    async function selectCandidate(id) {
+      state.selectedId = id;
+      renderList();
+      const [{ candidate }, { children }, { actions }] = await Promise.all([
+        get(`/candidates/${encodeURIComponent(id)}`),
+        get(`/candidates/${encodeURIComponent(id)}/children`),
+        get(`/candidates/${encodeURIComponent(id)}/write-actions`),
+      ]);
+      renderDetail(candidate, children, actions || []);
+    }
+
+    function renderWriteActions(actions) {
+      const rows = actions || [];
+      if (!rows.length) return '<div class="small">暂无自动动作记录。</div>';
+      return rows.map((a) => `
+        <div class="timeline-row">
+          <strong>${escapeHtml(a.action_type || '')}</strong>
+          <span class="tag">${escapeHtml(a.status || '')}</span>
+          ${has(a.decision) ? `<span class="tag">${escapeHtml(a.decision)}</span>` : ''}
+          <div class="small">${fmtTime(a.executed_at || a.updated_at || a.created_at)}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderDetail(c, children, actions) {
+      const timelineEmpty = !children.contact.length && !children.comment.length && !children.status_history.length;
+      el('main').innerHTML = `
+        <div class="detail">
+          <section>
+            <h2>${escapeHtml(c.name || '未命名候选人')}</h2>
+            <div class="tags">
+              <span class="tag">${escapeHtml(c.source || '推荐')}</span>
+              <span class="tag">${recLabel(c.rec_position)}</span>
+              <span class="tag">${escapeHtml(c.comm_status || '未打招呼')}</span>
+              <span class="tag">${escapeHtml(c.disposition_status || '新入库')}</span>
+            </div>
+            <div class="block full-desc">${highlight(c.geek_desc || '') || pending('待02b补全（在线简历）')}</div>
+            <div class="block grid">
+              ${field('年龄', c.age, '待02b补全（在线简历）')}
+              ${field('学历', c.degree, '待02b补全（在线简历）')}
+              ${field('学历核验', c.degree_verified, '待02b补全（在线简历）')}
+              ${field('院校', c.school, '待02b补全（在线简历）')}
+              ${field('院校档次', c.school_tier, '待02b补全（在线简历）')}
+              ${field('工作年限', c.work_years, '待02b补全（在线简历）')}
+              ${field('期望薪资', c.salary, '待02b补全（在线简历）')}
+            </div>
+          </section>
+          <section>
+            <h3>简历·正文</h3>
+            ${renderResume(children)}
+          </section>
+          <section>
+            <h3>专家点评 · 评级</h3>
+            <div class="tags">
+              ${sabcBadge(c.sabc)}
+              ${has(c.verdict_label) ? `<span class="tag">${escapeHtml(c.verdict_label)}</span>` : ''}
+              ${has(c.sabc_source) ? `<span class="tag">${escapeHtml(c.sabc_source)}</span>` : '<span class="tag badge-pending">未评级</span>'}
+            </div>
+            <div class="block expert">${has(c.expert_comment) ? escapeHtml(c.expert_comment) : pending('待重新评级——点顶部"重新评级本岗位"')}</div>
+            ${has(c.risk_point) ? `<div class="small">备注：${escapeHtml(c.risk_point)}</div>` : ''}
+            <div class="small">规则评级只用于本地初筛；最终由人拍板。</div>
+            <div class="block">
+              <h3>AI 评估 · 第二意见</h3>
+              <div class="small">仅供参考，不影响 SABC 评级和排序。</div>
+              ${renderSecondOpinion(children.ai_review)}
+              <div class="block"><button id="assessBtn" class="btn">${(children.ai_review || []).length ? '再评一次' : '拿不准？让 AI 给个第二意见'}</button></div>
+            </div>
+            <div class="block">
+              <h3>标注·时间线</h3>
+              ${timelineEmpty ? emptyBox('联系方式展示时本地解密，本期纯占位不写解密逻辑；备注编辑、处置标记和状态流转后续再做。') : ''}
+            </div>
+            <div class="block">
+              <h3>自动动作</h3>
+              ${renderWriteActions(actions)}
+            </div>
+          </section>
+        </div>
+      `;
+      const assessBtn = el('assessBtn');
+      if (assessBtn) assessBtn.addEventListener('click', () => runAssess(c.internal_id, assessBtn));
+    }
+
+    function soReport(row) {
+      try { return JSON.parse(row.report_json); } catch { return null; }
+    }
+
+    function renderSecondOpinion(list) {
+      const rows = list || [];
+      if (!rows.length) return '<div class="small" style="margin-top:8px">还没评估过。AI 会对照深度人才画像逐项看这份简历，给出匹配点、疑虑点和面试核实建议。</div>';
+      const latest = rows[0];
+      const rep = soReport(latest);
+      if (!rep) return '<div class="small">评估报告数据异常</div>';
+      const banners = [];
+      if (rep.deep_profile_missing) banners.push('该岗位还没生成深度画像，这次只对照了简版画像，参考价值有限——建议先做负责人访谈。');
+      else if (Number(latest.profile_confirmed) === 0) banners.push('评估所用的画像还没经负责人确认，结论仅供初筛参考。');
+      const sevClass = (s) => s === '高' ? 'badge-c' : s === '低' ? 'badge-d' : 'badge-b';
+      const matches = (rep.matches || []).map((m) => `
+        <div class="dp-item">
+          <strong>${escapeHtml(m.point)}</strong>${has(m.competency) ? `<span class="dp-badge">${escapeHtml(m.competency)}</span>` : ''}
+          ${has(m.evidence) ? `<div class="dp-quote">简历依据：${escapeHtml(m.evidence)}</div>` : ''}
+        </div>`).join('');
+      const concerns = (rep.concerns || []).map((m) => `
+        <div class="dp-item inferred">
+          <strong>${escapeHtml(m.point)}</strong><span class="tag ${sevClass(m.severity)}">${escapeHtml(m.severity || '中')}</span>${has(m.competency) ? `<span class="dp-badge">${escapeHtml(m.competency)}</span>` : ''}
+          ${has(m.basis) ? `<div class="dp-basis">${escapeHtml(m.basis)}</div>` : ''}
+        </div>`).join('');
+      const verify = (rep.verify_in_interview || []).map((v) => `
+        <li>${escapeHtml(v.question)}${has(v.listen_for) ? `<div class="small">听什么：${escapeHtml(v.listen_for)}</div>` : ''}</li>`).join('');
+      const history = rows.length > 1 ? `
+        <details><summary>历史评估（${rows.length - 1} 次）</summary>
+          ${rows.slice(1).map((r) => { const p = soReport(r); return `<div class="small" style="margin-top:6px">${fmtTime(r.created_at)}：${escapeHtml((p && p.overall) || '数据异常')}</div>`; }).join('')}
+        </details>` : '';
+      return `
+        <div class="second-opinion">
+          ${banners.map((b) => `<div class="so-banner">${escapeHtml(b)}</div>`).join('')}
+          <div class="small">评估时间：${fmtTime(latest.created_at)}${rep.deep_profile_version != null ? ` · 对照画像 v${escapeHtml(String(rep.deep_profile_version))}` : ''}</div>
+          <div class="block"><strong>综合意见</strong><div class="full-desc">${escapeHtml(rep.overall || '')}</div></div>
+          ${matches ? `<div class="block"><strong>对上画像的点</strong>${matches}</div>` : ''}
+          ${concerns ? `<div class="block"><strong>疑虑点</strong>${concerns}</div>` : ''}
+          ${verify ? `<div class="block"><strong>面试建议核实</strong><ul style="margin:6px 0 0; padding-left:18px">${verify}</ul></div>` : ''}
+          ${history}
+        </div>`;
+    }
+
+    async function runAssess(candidateId, btn) {
+      btn.disabled = true;
+      btn.textContent = 'AI 评估中…（可能要一两分钟，别关页面）';
+      try {
+        await actionPost('/assess', { candidateId });
+        await selectCandidate(candidateId);
+      } catch (err) {
+        alert('评估失败：' + err.message);
+        btn.disabled = false;
+        btn.textContent = '拿不准？让 AI 给个第二意见';
+      }
+    }
+
+    async function loadCandidates(jobId) {
+      state.jobId = Number(jobId);
+	      const [{ candidates }, { run }] = await Promise.all([
+	        get(`/candidates?jobId=${jobId}`),
+	        get(`/run/latest?type=${encodeURIComponent('推荐流抓取')}`),
+	      ]);
+	      state.candidates = candidates;
+	      const job = state.jobs.find((item) => String(item.id) === String(jobId));
+	      const recommendSummary = run ? `最近推荐抓取 ${fmtTime(run.finished_at)} · ${run.count_total || 0} 条` : '暂无推荐抓取';
+	      el('source').textContent = `${job ? job.name : '岗位'} · ${candidates.length} 人 · ${recommendSummary}`;
+	      renderFilters();
+      renderList();
+    }
+
+    function collectConfig() {
+      return {
+        rubric: el('rubric').value.trim(),
+        hard_bars: {
+          degree: {
+            enabled: el('degreeEnabled').checked,
+            allowed: el('degreeAllowed').value.split(/[,，]/).map((s) => s.trim()).filter(Boolean),
+          },
+          salary: {
+            enabled: el('salaryEnabled').checked,
+            cap_k: Number(el('salaryCap').value) || 0,
+          },
+        },
+      };
+    }
+
+    async function openProfileEditor() {
+      if (!state.jobId) return;
+      const { config } = await actionGet(`/profile?jobId=${state.jobId}`);
+      const hb = (config && config.hard_bars) || config || {};
+      const degree = hb.degree || {};
+      const salary = hb.salary || {};
+      const job = state.jobs.find((j) => String(j.id) === String(state.jobId));
+      el('profileJobName').textContent = job ? job.name : `岗位 ${state.jobId}`;
+      el('rubric').value = (config && config.rubric) || '';
+      el('degreeEnabled').checked = !!degree.enabled;
+      el('degreeAllowed').value = (degree.allowed || []).join(', ');
+      el('salaryEnabled').checked = !!salary.enabled;
+      el('salaryCap').value = salary.cap_k || '';
+      el('profileOverlay').classList.add('open');
+    }
+
+    function closeProfileEditor() {
+      el('profileOverlay').classList.remove('open');
+    }
+
+    async function saveProfile() {
+      await actionPost('/profile', { jobId: state.jobId, config: collectConfig() });
+      closeProfileEditor();
+      alert('已保存。点顶部"重新评级本岗位"生效。');
+    }
+
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+    async function runRate() {
+      if (!state.jobId) return;
+      const jobId = state.jobId;
+      const btn = el('rateJob');
+      btn.disabled = true;
+      btn.textContent = '正在启动评级…';
+      try {
+        try {
+          await actionPost('/rate', { jobId });
+        } catch (err) {
+          // 「该岗位正在评级中」不算失败，直接接着查进度即可。
+          if (!/评级中/.test(err.message)) throw err;
+        }
+        await pollRateProgress(jobId, btn);
+      } catch (err) {
+        alert(`评级失败：${err.message}`);
+        btn.disabled = false;
+        btn.textContent = '重新评级本岗位';
+      }
+    }
+
+    async function startAutomation(kind, btn) {
+      const old = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = '已启动';
+      try {
+        const endpoint = kind === 'greet' ? '/automation/greet/start' : '/automation/request-resume/start';
+        await actionPost(endpoint, { account: 'default', limit: 5 });
+      } catch (err) {
+        alert(`启动失败：${err.message}`);
+      } finally {
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = old;
+        }, 1200);
+      }
+    }
+
+	    function rateSkipText(summary) {
+	      const parts = [
+	        Number(summary.skipped_paywalled || 0) ? `${summary.skipped_paywalled} 人付费墙` : '',
+	        Number(summary.skipped_missing_resume || 0) ? `${summary.skipped_missing_resume} 人缺在线简历` : '',
+	        Number(summary.skipped_manual || 0) ? `${summary.skipped_manual} 个人工评级` : '',
+	      ].filter(Boolean);
+	      return parts.length ? parts.join('、') : '无';
+	    }
+
+	    // 后台评级要跑好几分钟，这里每 2 秒问一次进度，界面显示「已评 X/Y」。
+	    async function pollRateProgress(jobId, btn) {
+      while (true) {
+        let p;
+        try {
+          p = await actionGet('/rate/progress?jobId=' + jobId);
+        } catch (err) {
+          await sleep(2000); // 偶发抖动，重试
+          continue;
+        }
+        if (p.status === 'running') {
+          const total = p.total == null ? '?' : p.total;
+          btn.textContent = `规则评级中… 已评 ${p.done}/${total}`;
+          await sleep(2000);
+          continue;
+        }
+        if (p.status === 'done') {
+	          const s = p.summary;
+	          if (jobId === state.jobId) await loadCandidates(jobId);
+	          const pend = s.pending ? `；${s.pending} 人待确认（缺规则口径或关键信息）` : '';
+	          alert(`规则评级 ${s.rated} 人：S ${s.byTier.S || 0} / A ${s.byTier.A || 0} / B ${s.byTier.B || 0} / C ${s.byTier.C || 0} / D ${s.byTier.D || 0}。跳过：${rateSkipText(s)}${pend}。`);
+          break;
+        }
+        if (p.status === 'error') {
+          alert('评级失败：' + (p.error || '未知错误'));
+          break;
+        }
+        break; // idle：没有在跑，收工
+      }
+      btn.disabled = false;
+      btn.textContent = '重新评级本岗位';
+    }
+
+    // ===== 访谈与深度画像 =====
+
+    function srcBadge(source) {
+      if (source === 'stated') return '<span class="dp-badge">负责人明说</span>';
+      if (source === 'mixed') return '<span class="dp-badge">原话+推断</span>';
+      return '<span class="dp-badge">AI推断</span>';
+    }
+
+    function dpItem(mainHtml, item) {
+      const inferred = item.source !== 'stated';
+      const quotes = (item.quotes || []).filter(has);
+      return `<div class="dp-item ${inferred ? 'inferred' : ''}">
+        ${mainHtml}${srcBadge(item.source)}
+        ${quotes.length ? `<div class="dp-quote">原话：${quotes.map((q) => `「${escapeHtml(q)}」`).join(' ')}</div>` : ''}
+        ${inferred && has(item.inference_basis) ? `<div class="dp-basis">推断依据：${escapeHtml(item.inference_basis)}</div>` : ''}
+      </div>`;
+    }
+
+    function dpSimpleList(title, rows) {
+      if (!rows || !rows.length) return '';
+      return `<div class="block"><h3>${title}</h3>${rows.map((r) => dpItem(
+        `<strong>${escapeHtml(r.item)}</strong>${has(r.detail) ? `<div>${escapeHtml(r.detail)}</div>` : ''}`, r,
+      )).join('')}</div>`;
+    }
+
+    const FU_KIND = { gap: '没聊到', conflict: '前后矛盾', vague: '太模糊' };
+
+    function renderDeepDoc(deep) {
+      const d = deep.doc || {};
+      const confirmed = deep.status === 'confirmed';
+      const statusTag = confirmed
+        ? `<span class="tag badge-a">负责人已确认 · ${fmtTime(deep.confirmed_at)}</span>`
+        : '<span class="tag badge-c">草稿 · 待负责人确认</span>';
+      const comps = (d.core_competencies || []).map((cItem) => dpItem(`
+        <strong>${escapeHtml(cItem.name)}</strong>
+        ${has(cItem.what) ? `<div>具体指：${escapeHtml(cItem.what)}</div>` : ''}
+        ${has(cItem.why) ? `<div>为什么要：${escapeHtml(cItem.why)}</div>` : ''}
+        ${(cItem.resume_evidence || []).length ? `<div class="dp-quote">简历上什么算真证据：${cItem.resume_evidence.map(escapeHtml).join('；')}</div>` : ''}
+        ${(cItem.fake_signals || []).length ? `<div class="dp-basis">什么写法不算数：${cItem.fake_signals.map(escapeHtml).join('；')}</div>` : ''}
+      `, cItem)).join('');
+      const prefs = (d.implicit_preferences || []).map((p) => `
+        <div class="dp-item inferred">
+          <strong>${escapeHtml(p.observation)}</strong><span class="dp-badge">隐性偏好</span>
+          ${has(p.basis) ? `<div class="dp-basis">从哪看出来：${escapeHtml(p.basis)}</div>` : ''}
+        </div>`).join('');
+      const fus = (d.followup_questions || []).map((q, i) => `
+        <div class="dp-item inferred">
+          <strong>${escapeHtml(q.question)}</strong><span class="dp-badge">${FU_KIND[q.kind] || '没聊到'}</span>
+          ${has(q.why_ask) ? `<div class="dp-basis">为什么问：${escapeHtml(q.why_ask)}</div>` : ''}
+          <textarea data-fu="${i}" rows="2" placeholder="把负责人的回答填在这里…"></textarea>
+          <div style="margin-top:6px"><button class="btn fu-save" data-fu="${i}">保存补答</button></div>
+        </div>`).join('');
+      return `
+        <div class="deep-status">
+          <span class="tag score-tag">画像 v${escapeHtml(String(deep.version))}</span>
+          ${statusTag}
+          <span class="small">生成于 ${fmtTime(deep.generated_at)}</span>
+        </div>
+        <div class="deep-status">
+          <button id="deepCopy" class="btn">复制为 Markdown 发负责人核对</button>
+          ${confirmed ? '' : '<button id="deepConfirm" class="btn">标记负责人已确认</button>'}
+        </div>
+        <div class="small">绿色条目 = 负责人访谈里明说的（附原话）；橙色「AI推断」条目 = AI 从访谈推出来的，负责人核对时重点看这些。</div>
+        ${d.position_mission ? `<div class="block"><h3>这个岗位要解决什么问题</h3>${dpItem(`<div>${escapeHtml(d.position_mission.content)}</div>`, d.position_mission)}</div>` : ''}
+        ${dpSimpleList('硬性要求', d.hard_requirements)}
+        ${comps ? `<div class="block"><h3>核心能力（怎么在简历上判）</h3>${comps}</div>` : ''}
+        ${dpSimpleList('加分项', d.plus_points)}
+        ${dpSimpleList('减分项', d.minus_points)}
+        ${dpSimpleList('一票否决', d.deal_breakers)}
+        ${prefs ? `<div class="block"><h3>负责人没明说、但明显在意的</h3>${prefs}</div>` : ''}
+        ${fus ? `<div class="block"><h3>追问清单（发给负责人，答完保存再重新生成）</h3>${fus}</div>` : '<div class="block small">没有待追问的问题。</div>'}
+      `;
+    }
+
+    function docToMarkdown(jobName, deep) {
+      const d = deep.doc || {};
+      const src = (x) => x.source === 'stated' ? '【负责人明说】' : x.source === 'mixed' ? '【原话+推断】' : '【AI推断】';
+      const quo = (x) => (x.quotes || []).filter(has).map((q) => `> 原话：「${q}」`).join('\n');
+      const bas = (x) => x.source !== 'stated' && has(x.inference_basis) ? `> 推断依据：${x.inference_basis}` : '';
+      const item = (x) => [`- ${src(x)} **${x.item}**${has(x.detail) ? `：${x.detail}` : ''}`, quo(x), bas(x)].filter(Boolean).join('\n');
+      const listBlock = (title, rows) => (rows && rows.length) ? `\n## ${title}\n${rows.map(item).join('\n')}` : '';
+      const L = [];
+      L.push(`# 深度人才画像 · ${jobName}`);
+      L.push(`版本 v${deep.version} · 生成于 ${fmtTime(deep.generated_at)} · ${deep.status === 'confirmed' ? '负责人已确认' : '待负责人确认'}`);
+      L.push('\n请重点核对标【AI推断】的条目——那是 AI 从访谈推出来的，不是您的原话，推错了请直接指出。');
+      if (d.position_mission) {
+        L.push(`\n## 这个岗位要解决什么问题\n${src(d.position_mission)} ${d.position_mission.content}`);
+        const q = quo(d.position_mission); if (q) L.push(q);
+        const b = bas(d.position_mission); if (b) L.push(b);
+      }
+      L.push(listBlock('硬性要求', d.hard_requirements));
+      if ((d.core_competencies || []).length) {
+        L.push('\n## 核心能力');
+        for (const cItem of d.core_competencies) {
+          L.push(`\n### ${src(cItem)} ${cItem.name}`);
+          if (has(cItem.what)) L.push(`- 具体指：${cItem.what}`);
+          if (has(cItem.why)) L.push(`- 为什么要：${cItem.why}`);
+          if ((cItem.resume_evidence || []).length) L.push(`- 简历上什么算真证据：${cItem.resume_evidence.join('；')}`);
+          if ((cItem.fake_signals || []).length) L.push(`- 什么写法不算数：${cItem.fake_signals.join('；')}`);
+          const q = quo(cItem); if (q) L.push(q);
+          const b = bas(cItem); if (b) L.push(b);
+        }
+      }
+      L.push(listBlock('加分项', d.plus_points));
+      L.push(listBlock('减分项', d.minus_points));
+      L.push(listBlock('一票否决', d.deal_breakers));
+      if ((d.implicit_preferences || []).length) {
+        L.push('\n## 没明说、但访谈里明显在意的（AI 观察，请核对）');
+        for (const p of d.implicit_preferences) L.push(`- ${p.observation}${has(p.basis) ? `（从哪看出来：${p.basis}）` : ''}`);
+      }
+      if ((d.followup_questions || []).length) {
+        L.push('\n## 想再和您确认几个问题');
+        d.followup_questions.forEach((q, i) => L.push(`${i + 1}. ${q.question}${has(q.why_ask) ? `（${q.why_ask}）` : ''}`));
+      }
+      return L.filter(Boolean).join('\n');
+    }
+
+    function renderDeepBody() {
+      const ivs = state.deepInterviews || [];
+      const deep = state.deepConfig && state.deepConfig.deep_profile;
+      const ivHtml = ivs.length ? ivs.map((iv) => `
+        <details style="margin-top:8px">
+          <summary>${escapeHtml(iv.note || '负责人访谈')} · ${fmtTime(iv.created_at)} · ${iv.transcript.length} 字</summary>
+          <div class="resume-text">${escapeHtml(iv.transcript.length > 3000 ? `${iv.transcript.slice(0, 3000)}……（此处仅截断显示，生成画像时会用全文）` : iv.transcript)}</div>
+        </details>`).join('') : emptyBox('还没有访谈材料。和负责人聊一次「这个岗位要招什么人」，把转写全文粘贴进来。');
+      el('deepBody').innerHTML = `
+        <div class="row">
+          <strong>访谈材料（${ivs.length} 条）</strong>
+          ${ivHtml}
+        </div>
+        <div class="row">
+          <strong>添加访谈</strong>
+          <div class="hint">两种方式任选：直接贴妙记链接自动拉转写（需本机飞书命令行已登录），或打开妙记复制智能转写全文粘贴到大框。追问补答不用在这里加，用画像下方的追问清单。</div>
+          <textarea id="ivText" rows="6" placeholder="粘贴访谈转写全文…（和下面的链接二选一）"></textarea>
+          <input type="text" id="ivUrl" placeholder="或：粘贴飞书妙记链接，保存时自动拉取转写">
+          <div class="deep-status">
+            <button id="ivSave" class="btn">保存访谈</button>
+          </div>
+        </div>
+        <div class="deep-status">
+          <button id="deepGenerate" class="btn btn-primary">${deep ? '重新生成画像（旧的确认状态会作废）' : '生成深度画像'}</button>
+        </div>
+        ${deep ? renderDeepDoc(deep) : '<div class="small">还没生成过画像。保存访谈后点上面的按钮。</div>'}
+      `;
+      el('ivSave').addEventListener('click', () => saveInterview().catch((err) => alert(err.message)));
+      el('deepGenerate').addEventListener('click', () => generateDeep(el('deepGenerate')));
+      const copyBtn = el('deepCopy');
+      if (copyBtn) copyBtn.addEventListener('click', () => copyDeepMarkdown().catch((err) => alert('复制失败：' + err.message)));
+      const confirmBtn = el('deepConfirm');
+      if (confirmBtn) confirmBtn.addEventListener('click', () => confirmDeep().catch((err) => alert(err.message)));
+      el('deepBody').querySelectorAll('.fu-save').forEach((node) => {
+        node.addEventListener('click', () => saveFollowup(Number(node.dataset.fu)).catch((err) => alert(err.message)));
+      });
+    }
+
+    async function reloadDeepData() {
+      const [ivRes, cfgRes] = await Promise.all([
+        actionGet(`/interview?jobId=${state.jobId}`),
+        actionGet(`/profile?jobId=${state.jobId}`),
+      ]);
+      state.deepInterviews = ivRes.interviews;
+      state.deepConfig = cfgRes.config;
+      renderDeepBody();
+    }
+
+    async function openDeepModal() {
+      if (!state.jobId) return;
+      const job = state.jobs.find((j) => String(j.id) === String(state.jobId));
+      el('deepJobName').textContent = job ? job.name : `岗位 ${state.jobId}`;
+      el('deepBody').innerHTML = '<div class="small">读取中…</div>';
+      el('deepOverlay').classList.add('open');
+      await reloadDeepData();
+    }
+
+    function closeDeepModal() {
+      el('deepOverlay').classList.remove('open');
+    }
+
+    async function saveInterview() {
+      const transcript = el('ivText').value;
+      const sourceUrl = el('ivUrl').value.trim();
+      if (!transcript.trim() && !sourceUrl) { alert('先粘贴访谈转写文本，或填妙记链接。'); return; }
+      const btn = el('ivSave');
+      btn.disabled = true;
+      btn.textContent = transcript.trim() ? '保存中…' : '正在拉取妙记转写…（最多两分钟）';
+      try {
+        await actionPost('/interview', { jobId: state.jobId, transcript, sourceUrl });
+        await reloadDeepData();
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = '保存访谈';
+        throw err;
+      }
+    }
+
+    async function generateDeep(btn) {
+      btn.disabled = true;
+      btn.textContent = 'AI 正在通读访谈、生成画像…（可能要几分钟）';
+      try {
+        try {
+          await actionPost('/deep-profile/generate', { jobId: state.jobId });
+        } catch (err) {
+          if (!/生成中/.test(err.message)) throw err;
+        }
+        while (true) {
+          let p;
+          try { p = await actionGet(`/deep-profile/progress?jobId=${state.jobId}`); }
+          catch { await sleep(2000); continue; }
+          if (p.status === 'running') { await sleep(2000); continue; }
+          if (p.status === 'error') throw new Error(p.error || '未知错误');
+          break;
+        }
+        await reloadDeepData();
+      } catch (err) {
+        alert('生成画像失败：' + err.message);
+        await reloadDeepData().catch(() => {});
+      }
+    }
+
+    async function copyDeepMarkdown() {
+      const deep = state.deepConfig && state.deepConfig.deep_profile;
+      if (!deep) return;
+      const job = state.jobs.find((j) => String(j.id) === String(state.jobId));
+      await navigator.clipboard.writeText(docToMarkdown(job ? job.name : `岗位 ${state.jobId}`, deep));
+      alert('已复制画像 Markdown。发给用人部门负责人核对（重点是标「AI推断」的条目）；负责人认可后回来点「标记负责人已确认」。');
+    }
+
+    async function confirmDeep() {
+      if (!window.confirm('确认用人部门负责人已经看过并认可当前这一版画像？此操作会记入审计日志。')) return;
+      await actionPost('/deep-profile/confirm', { jobId: state.jobId });
+      await reloadDeepData();
+    }
+
+    async function saveFollowup(index) {
+      const deep = state.deepConfig && state.deepConfig.deep_profile;
+      if (!deep) return;
+      const q = deep.doc.followup_questions[index];
+      const box = el('deepBody').querySelector(`textarea[data-fu="${index}"]`);
+      const answer = box ? box.value.trim() : '';
+      if (!answer) { alert('先把负责人的回答填进去。'); return; }
+      await actionPost('/interview', { jobId: state.jobId, transcript: `问：${q.question}\n答：${answer}`, note: '追问补答' });
+      alert('补答已保存。点「重新生成画像」让 AI 把它吸收进新版画像。');
+      await reloadDeepData();
+    }
+
+    async function init() {
+      const { jobs } = await get('/jobs');
+      state.jobs = jobs;
+      el('jobSelect').innerHTML = jobs.map((job) => `<option value="${job.id}">${escapeHtml(job.name || `岗位 ${job.id}`)}</option>`).join('');
+      el('jobSelect').addEventListener('change', (event) => loadCandidates(event.target.value));
+      el('search').addEventListener('input', (event) => { state.query = event.target.value; renderList(); });
+      el('commFilter').addEventListener('change', (event) => { state.comm = event.target.value; renderList(); });
+      el('dispFilter').addEventListener('change', (event) => { state.disp = event.target.value; renderList(); });
+      el('sabcFilter').addEventListener('change', (event) => { state.sabc = event.target.value; renderList(); });
+      el('editProfile').addEventListener('click', () => openProfileEditor().catch((err) => alert(err.message)));
+      el('deepProfile').addEventListener('click', () => openDeepModal().catch((err) => alert(err.message)));
+      el('rateJob').addEventListener('click', runRate);
+      el('autoGreet').addEventListener('click', () => startAutomation('greet', el('autoGreet')));
+      el('autoResume').addEventListener('click', () => startAutomation('resume', el('autoResume')));
+      el('profileCancel').addEventListener('click', closeProfileEditor);
+      el('profileSave').addEventListener('click', () => saveProfile().catch((err) => alert(err.message)));
+      el('profileOverlay').addEventListener('click', (event) => { if (event.target.id === 'profileOverlay') closeProfileEditor(); });
+      el('deepClose').addEventListener('click', closeDeepModal);
+      el('deepOverlay').addEventListener('click', (event) => { if (event.target.id === 'deepOverlay') closeDeepModal(); });
+      if (jobs[0]) await loadCandidates(jobs[0].id);
+    }
+
+    function boot(retries = 3) {
+      init().catch((error) => {
+        if (retries > 0) return setTimeout(() => boot(retries - 1), 1000);
+        el('main').innerHTML = `<div class="empty">读取失败：${escapeHtml(error.message)}</div>`;
+      });
+    }
+
+    // ===== Boss 登录状态 =====
+    // 本页面绝不直接碰 Boss：点「登录 Boss」只是让动作服务拉起独立登录窗口；
+    // 状态灯读的是动作服务回显的状态文件。登录窗口开着时禁掉自动化按钮（浏览器档案同时只能一个进程用）。
+    async function refreshBossLogin() {
+      const tag = el('bossLoginState');
+      let busy = false;
+      try {
+        const data = await actionGet('/boss-login/status');
+        const s = data.status;
+        const lockOwner = data.lock ? data.lock.owner : null;
+        let text;
+        let cls = 'login-state';
+        if (s && s.logged_in) { text = 'Boss 已登录'; cls += ' ok'; }
+        else if (s) { text = 'Boss 未登录/已掉线'; cls += ' off'; }
+        else { text = 'Boss 未登录（还没扫过码）'; cls += ' off'; }
+        if (lockOwner === 'login-window') { text += ' · 登录窗口开着'; busy = true; }
+        if (lockOwner === 'automation') text += ' · 自动化操作中';
+        tag.textContent = text;
+        tag.className = cls;
+      } catch {
+        tag.textContent = '登录状态未知（动作服务未启动）';
+        tag.className = 'login-state';
+      }
+      const hint = busy ? '登录窗口开着时不能启动自动化，扫完码先关掉登录窗口' : '';
+      for (const id of ['autoGreet', 'autoResume']) {
+        el(id).disabled = busy;
+        el(id).title = hint;
+      }
+    }
+
+    async function openBossLogin() {
+      const btn = el('bossLoginBtn');
+      btn.disabled = true;
+      btn.textContent = '正在打开登录窗口…';
+      try {
+        await actionPost('/boss-login/open', {});
+        btn.textContent = '已打开，去窗口里扫码';
+      } catch (err) {
+        alert(`打开登录窗口失败：${err.message}`);
+      } finally {
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = '登录 Boss';
+          refreshBossLogin();
+        }, 2000);
+      }
+    }
+
+    el('bossLoginBtn').addEventListener('click', openBossLogin);
+    refreshBossLogin();
+    setInterval(refreshBossLogin, 5000);
+
+    boot();
+  </script>
+</body>
+</html>
