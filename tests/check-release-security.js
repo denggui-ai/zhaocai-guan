@@ -291,6 +291,16 @@ async function waitForServer(child, marker) {
     /path\.join\(resources, 'package-lock\.json'\)/,
     'Mac package self-test must not require a development lockfile inside the runtime app',
   );
+  assert.doesNotMatch(
+    macCandidateSelfTestSource,
+    /tell application id/,
+    'Mac package self-test must not quit another installed copy by shared bundle ID',
+  );
+  assert.match(macCandidateSelfTestSource, /quit-macos-candidate\.swift/, 'Mac self-test must target its own process');
+  const targetedQuitSource = source(path.join('release', 'quit-macos-candidate.swift'));
+  assert.match(targetedQuitSource, /NSRunningApplication\(processIdentifier: pid\)/);
+  assert.match(targetedQuitSource, /bundleURL\.resolvingSymlinksInPath\(\)/);
+  assert.match(targetedQuitSource, /application\.terminate\(\)/);
   assert.match(macReleaseSource, /MACOS-CANDIDATE-SELF-TEST-SHA256SUMS/, 'Mac release must hash its package self-test summary');
   assert.match(macReleaseSource, /mktemp -d \/tmp\/hrboss-macos-candidate\./, 'Mac candidate must own a unique /tmp staging root');
   assert.match(macReleaseSource, /git -C "\$APP_ROOT" archive --format=tar "\$SOURCE_COMMIT"/, 'Mac source stage must come from the immutable commit tree');
