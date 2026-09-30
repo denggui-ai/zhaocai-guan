@@ -4,7 +4,7 @@
 
 ### [下载 Mac Apple 芯片版（DMG）](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg)
 
-**1.0.1 候选版 · 仅 Mac Apple 芯片（M 系列）· 未获 Apple 公证**
+**1.0.1 候选版（rc.1）· 仅 Mac Apple 芯片（M 系列）· 未获 Apple 公证**
 
 [安装包校验文件](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal-SHA256SUMS.txt) · [ZIP 备选](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.zip) · [发行说明与已知限制](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)
 

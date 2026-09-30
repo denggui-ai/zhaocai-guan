@@ -4,7 +4,7 @@
 
 ### [Download for Mac Apple Silicon (DMG)](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg)
 
-**1.0.1 prerelease · Apple Silicon only · Not Apple-notarized**
+**1.0.1 prerelease (rc.1) · Apple Silicon only · Not Apple-notarized**
 
 [Installer checksums](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal-SHA256SUMS.txt) · [Alternative ZIP](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.zip) · [Release notes and known limitations](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)
 
