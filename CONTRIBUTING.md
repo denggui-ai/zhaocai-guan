@@ -1,6 +1,6 @@
 # 参与贡献
 
-感谢你愿意改进 招才官 · Zhaocai Guan。当前为 **1.0.1 公开版候选，未发布**，优先欢迎合成数据缺陷复现、安装文档修正和 Windows 源码体验反馈。
+感谢你愿意改进 招才官 · Zhaocai Guan。当前已发布 **[1.0.1 候选版（rc.1）](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)**，优先欢迎合成数据缺陷复现、安装文档修正和 Windows 源码体验反馈。
 
 ## 产品边界
 

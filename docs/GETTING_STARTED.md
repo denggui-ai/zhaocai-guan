@@ -2,7 +2,7 @@
 
 招才官是 **HR 的本地招聘工作台**。先用两份虚构 TXT 简历体验本地流程，需要时再准备截图、PDF 或 AI。
 
-当前为 [1.0.1 候选版（预发布）](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)，首发仅 Mac Apple 芯片。本轮已用虚构资料验证本地核心流程与同机原路径恢复；逐项结果和未测范围见发行说明。干净 Mac 安装、真实 AI 服务等仍未验收。
+当前为 [1.0.1 候选版（预发布）](https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1)，首发仅 Mac Apple 芯片。本轮已用虚构资料验证本地核心流程与同机原路径恢复；逐项结果和未测范围见发行说明。干净 Mac 安装仍待验收；真实 AI 已完成一次 JD 起草实测，其余场景、服务与稳定性仍待验收。
 
 [下载 Mac Apple 芯片版（DMG）](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg) · [下载体验材料 ZIP](https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-demo-materials-1.0.1.zip) · [看实际界面](DEMO.md) · [常见问题](#help)
 
