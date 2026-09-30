@@ -4,7 +4,7 @@
 </picture>
 
 <h1 align="center">HR 的本地招聘工作台</h1>
-<p align="center">把简历、候选人和面试安排，整理到自己的 Mac。<br>AI 可选，招聘决定由你做。</p>
+<p align="center">简历与面试安排，集中在本机整理。<br>AI 可选，招聘决定由你做。</p>
 
 <p align="center">
   <a href="https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg"><img src="docs/brand/download-mac.svg" alt="下载 Mac Apple 芯片版 DMG" width="244" height="52"></a>
@@ -12,7 +12,7 @@
 <p align="center"><strong>Mac Apple 芯片 · 1.0.1 候选版（rc.1）· 未获 Apple 公证</strong><br>
 <a href="docs/GETTING_STARTED.md#install">安装帮助</a> · <a href="https://github.com/denggui-ai/zhaocai-guan/releases/tag/v1.0.1-rc.1">发行说明与其他下载</a> · <a href="README.en.md">English</a></p>
 
-## 打开工作台，知道今天跟进什么
+## 打开工作台，跟进有条理
 
 谁还需要核对资料，谁已经排好面试，下一步该做什么——放在同一个岗位下查看。
 
