@@ -6,6 +6,7 @@ const http = require('http');
 const os = require('os');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
+const { getGroup, manifest } = require('./support/registry');
 
 const ROOT = path.join(os.tmpdir(), `hrboss-release-security-${process.pid}-${Date.now()}`);
 const TOKEN = 'release-security-test-local-api-token-0001';
@@ -335,10 +336,18 @@ async function waitForServer(child, marker) {
   assert.doesNotMatch(macReleaseSource, /APP_ROOT\/out/, 'Mac release must not use repository out');
   assert.match(macReleaseSource, /HRBOSS_RELEASE_DATE must contain exactly 8 digits/, 'Mac release filenames must reject path-like dates');
   assert.match(macReleaseSource, /HRBOSS_RELEASE_REVISION must be empty or match r1, r2/, 'Mac release revisions must reject path-like suffixes');
-  // The behavior check exercises the final ZIP, frozen identity and every
-  // former exclusion category, including committed forbidden files.
+  // Source export behavior is exercised by its own system-node check. Keep it
+  // in required groups instead of invoking it inside this electron-node check.
   assert.match(developmentSourceRelease, /export-source\.js/);
-  require('./check-source-export-001');
+  const sourceExportCheck = 'tests/check-source-export-001.js';
+  assert.equal(
+    manifest.entries.find(entry => entry.path === sourceExportCheck)?.runtime,
+    'system-node',
+    'source export behavior must run under system Node',
+  );
+  for (const group of ['precheck', 'ci-core', 'ci-windows']) {
+    assert.ok(getGroup(group).includes(sourceExportCheck), `${group} must run source export behavior`);
+  }
   if (process.platform === 'win32') {
     console.log('SKIP POSIX release-shell runtime assertions on Windows');
   } else {
