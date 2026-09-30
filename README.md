@@ -3,8 +3,8 @@
   <img src="docs/brand/readme-hero.svg" alt="招才官——AI 帮你梳理招聘证据。从岗位需求到面试复盘。" width="1280">
 </picture>
 
-<h1 align="center">AI 辅助的本地招聘工作台</h1>
-<p align="center">提炼用人标准，分析简历证据，核对面试与测评。<br>材料在本机管理，招聘判断由你掌握。</p>
+<h1 align="center">本地 AI 招聘工作台</h1>
+<p align="center">提炼岗位要求，核对简历、面试与测评。<br>材料在本机管理，招聘判断由你掌握。</p>
 
 <p align="center">
   <a href="https://github.com/denggui-ai/zhaocai-guan/releases/download/v1.0.1-rc.1/ZhaocaiGuan-macOS-arm64-1.0.1-20260930-r5-internal.dmg"><img src="docs/brand/download-mac.svg" alt="下载 Mac Apple 芯片版 DMG" width="244" height="52"></a>
